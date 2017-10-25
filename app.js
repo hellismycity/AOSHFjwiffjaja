@@ -377,4 +377,4 @@ function clean(text) {
 }
 
 
-client.login('MzY2MDMzMjA3OTMxNTY4MTM4.DNAuwA.Y-JIjYd_Gdzn_SWedEMIH7iM-KQ')
+client.login(process.env.BOT_TOKEN)
