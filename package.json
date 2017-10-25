@@ -1,0 +1,13 @@
+{
+  "name": "Fergie",
+  "description": "Bot",
+  "version": "0.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "discord.js": "11.1.0",
+    "urban.js": "2.4.1",
+    "unirest": "0.5.1"
+  }
