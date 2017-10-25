@@ -46,50 +46,53 @@ let users = guild.memberCount
 }
 })
 
-//client.on('guildMemberAdd', member => {
-//  let guild = member.guild;
-  //if(!guild.channels.find('name', 'join-log')) return
-   //guild.channels.find('name', 'join-log').send('', {
-    //  embed: {
-      //  color: 0x4af43a,
-      //  url: '',
-      //  thumbnail: {url: `${member.user.avatarURL}`},
-      //  title: `✅ ${member.user.tag} joined.`,
+client.on('guildMemberAdd', member => {
+  let guild = member.guild;
+     if(guild.id === '364774461649715202') return
+  if(!guild.channels.find('name', 'join-log')) return
+   guild.channels.find('name', 'join-log').send('', {
+      embed: {
+      color: 0x4af43a,
+      url: '',
+      thumbnail: {url: `${member.user.avatarURL}`},
+      title: `✅ ${member.user.tag} joined.`,
 
-        //description: `You now have ${guild.memberCount} members`,
-        //}
-    //  });
-//})
+      description: `You now have ${guild.memberCount} members`,
+        }
+    });
+})
 
-//client.on('guildMemberRemove', member => {
-  //let guild = member.guild;
-  //if(!guild.channels.find('name', 'join-log')) return
-   //guild.channels.find('name', 'join-log').send('', {
-    //  embed: {
-      //  color: 0xdda325,
-        //url: '',
-        //thumbnail: {url: `${member.user.avatarURL}`},
-        //title: `❌ ${member.user.tag} left.`,
+client.on('guildMemberRemove', member => {
+  let guild = member.guild;
+     if(guild.id === '364774461649715202') return
+  if(!guild.channels.find('name', 'join-log')) return
+   guild.channels.find('name', 'join-log').send('', {
+        embed: {
+        color: 0xdda325,
+        url: '',
+        thumbnail: {url: `${member.user.avatarURL}`},
+        title: `❌ ${member.user.tag} left.`,
 
-        //description: `You now have ${guild.memberCount} members`,
-        //}
-      //});
-//})
+        description: `You now have ${guild.memberCount} members`,
+        }
+     });
+})
 
-// client.on('messageDelete', message => {
-//  let guild = message.guild;
-//  if(!guild.channels.find('name', 'mesaage-log')) return
-  // guild.channels.find('name', 'message-log').send('', {
-    //  embed: {
-      //  color: 0xdda325,
-        //url: '',
-        //thumbnail: {url: `${message.author.avatarURL}`},
-        //title: `🚫 Message deleted by ${message.author.tag}`,
+ client.on('messageDelete', message => {
+  let guild = message.guild;
+   if(guild.id === '364774461649715202') return
+  if(!guild.channels.find('name', 'mesaage-log')) return
+   guild.channels.find('name', 'message-log').send('', {
+      embed: {
+        color: 0xdda325,
+        url: '',
+        thumbnail: {url: `${message.author.avatarURL}`},
+        title: `🚫 Message deleted by ${message.author.tag}`,
 
-      //  description: `Content: \`\`\`${message}\`\`\` `,
-      //  }
-    //  });
-//})
+        description: `Content: \`\`\`${message}\`\`\` `,
+        }
+      });
+})
 
 client.on('message', message => {
 if(message.author.bot) return
@@ -328,7 +331,8 @@ fergie, softban : Softbans the user specified (MOD)
 fergie, randomlyric : Gets a random lyric from an array.
 fergie, order : Place an order (DEV COMMAND - Temp)
 fergie, serverinfo : Shows server info
-fergie, achievement : Generates a Minecraft achievement \`\`\``)
+fergie, achievement : Generates a Minecraft achievement
+fergie, urban : Searches Urban Dictionary \`\`\``)
     message.author.send("You can also check out the commands here:\nhttps://github.com/Ellie-bot/Fergie/wiki/Fergie:-Commands")
 }
 
