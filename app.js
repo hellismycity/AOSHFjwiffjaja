@@ -182,7 +182,6 @@ require("moment-duration-format");
   ]);
 };
                              
-})
   
 if(message.content.startsWith(prefix + 'serverinfo')) {
 message.channel.send({embed: {
