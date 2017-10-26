@@ -4,7 +4,7 @@ const manager = new Discord.ShardingManager('./app.js', {
   token: process.env.BOT_TOKEN
 });
 
-manager.spawn(10);
+manager.spawn(2);
 
 manager.on('launch', (shard) => {
   console.log(`[STATUS] Spawned shard ${shard.id} / ${manager.totalShards}`)
