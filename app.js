@@ -169,18 +169,17 @@ const moment = require("moment");
 require("moment-duration-format");
 
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
-  return message.sendCode("asciidoc", [
-    "= STATISTICS =",
-    "",
-    `• Mem Usage  :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
-    `• Uptime     :: ${duration}`,
-    `• Users      :: ${client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`,
-    `• Servers    :: ${client.guilds.size.toLocaleString()}`,
-    `• Channels   :: ${client.channels.size.toLocaleString()}`,
-    `• Discord.js :: ${discordVersion}`,
-    `• Node.js    :: ${process.version}`,
-  ]);
-};
+  return const embed = new Discord.RichEmbed()
+   embed.setAuthor(`Fergie Stats`)
+   embed.addField(`Memory Usage`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
+   embed.addField(`Uptime`, `${duration}`, true)
+   embed.addField(`Users`, `${client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`, true)
+   embed.addField(`Guilds`, `${client.guilds.size.toLocaleString()}`, true)
+   embed.addField(`Channels`, `${client.channels.size.toLocaleString()}`, true)
+   embed.addField(`Discord.js`, `${discordVersion}`, true)
+   embed.addField(`Node.js`, `${process.version`, true)
+   embed.setColor(0xffffff)
+   message.channel.send({embed})
                              
   
 if(message.content.startsWith(prefix + 'serverinfo')) {
