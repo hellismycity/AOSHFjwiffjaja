@@ -186,7 +186,7 @@ if(message.content.startsWith(prefix + 'serverinfo')) {
 const embed = new Discord.RichEmbed()
    embed.setAuthor(`Server Information for ${message.guild.name}`)
    embed.setThumbnail(`${message.guild.iconURL}`)
-   embed.addField(`→ Owner`, `${message.guild.owner.user.tag} (${message.guild.owner.id})`, true)
+   embed.addField(`→ Owner`, `${message.guild.owner.user.tag}`, true)
    embed.addField(`→ Members`, `${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size} (${message.guild.members.filter(m=>m.user.bot).size} bots)`, true)
    embed.addField(`→ Channels`, `${message.guild.channels.size}`, true)
    embed.addField(`→ Created At`, `${message.guild.createdAt.toString().substr(0, 15)}`, true)
