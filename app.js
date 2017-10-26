@@ -180,7 +180,7 @@ require("moment-duration-format");
    embed.addField(`Node.js`, `${process.version}`, true)
    embed.setColor(0xffffff)
    message.channel.send({embed})
-                             
+}                          
   
 if(message.content.startsWith(prefix + 'serverinfo')) {
 message.channel.send({embed: {
