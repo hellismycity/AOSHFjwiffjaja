@@ -168,7 +168,6 @@ const { version: discordVersion } = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
 
-exports.run = async (client, msg) => {
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
   return message.sendCode("asciidoc", [
     "= STATISTICS =",
