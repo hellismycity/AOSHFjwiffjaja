@@ -177,7 +177,7 @@ require("moment-duration-format");
    embed.addField(`Guilds`, `${client.guilds.size.toLocaleString()}`, true)
    embed.addField(`Channels`, `${client.channels.size.toLocaleString()}`, true)
    embed.addField(`Discord.js`, `${discordVersion}`, true)
-   embed.addField(`Node.js`, `${process.version`, true)
+   embed.addField(`Node.js`, `${process.version}`, true)
    embed.setColor(0xffffff)
    message.channel.send({embed})
                              
