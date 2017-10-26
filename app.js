@@ -163,7 +163,7 @@ if(message.content.startsWith(prefix + 'urban')) {
  })
 }
 
-if(message.content.startsWith(prefix + 'stats)) {
+if(message.content.startsWith(prefix + 'stats')) {
 const { version: discordVersion } = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
