@@ -195,7 +195,7 @@ const embed = new Discord.RichEmbed()
    embed.addField(`→ ID`, `${message.guild.id}`, true)
    embed.addField(`→ Verification`, `${message.guild.verificationLevel}`, true)
    
-   embed.setColor(0xffffff)
+   embed.setColor(message.member.displayColor)
    message.channel.send({embed})
   }
 
