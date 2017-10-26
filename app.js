@@ -183,46 +183,20 @@ require("moment-duration-format");
 }                          
   
 if(message.content.startsWith(prefix + 'serverinfo')) {
-message.channel.send({embed: {
-    thumbnail: {url: `${message.guild.iconURL}`},
-    color: 0x6bd0d6,
-    author: {
-      name: '',
-    },
-    title: `Info for ${message.guild.name}`,
-    description: '',
-    fields: [{
-        name: 'Owner',
-        value: `${message.channel.guild.owner.user.tag} (${message.channel.guild.owner.user.id})`
-      },
-      {
-        name: 'Members',
-        value: `${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size} (${message.guild.members.filter(m=>m.user.bot).size} bots)`,
-      },
-      {
-        name: 'Region',
-        value: `${message.guild.region}`
-      },
-      {
-        name: 'ID',
-        value: `${message.guild.id}`
-      },
-      {
-        name: 'Channels',
-        value: `${message.guild.channels.size}`
-      },
-      {
-        name: 'Created at',
-        value: `${message.guild.createdAt.toString().substr(0, 15)}`
-      },
-      {
-        name: 'Emojis',
-        value: `${message.guild.emojis.size}`
-
-      },
-    ],
-  }
-  })
+const embed = new Discord.RichEmbed()
+   embed.setAuthor(`Server Information for ${message.guild.name}`)
+   embed.setThumbnail(`${message.guild.iconURL}`)
+   embed.addField(`→ Owner`, `${message.guild.owner.user.tag} (${message.guild.owner.id})`, true)
+   embed.addField(`→ Members`, `${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size} (${message.guild.members.filter(m=>m.user.bot).size} bots)`, true)
+   embed.addField(`→ Channels`, `${message.guild.channels.size}`, true)
+   embed.addField(`→ Created At`, `${message.guild.createdAt.toString().substr(0, 15)}`, true)
+   embed.addField(`→ Roles`, `${message.guild.roles.size}`, true)
+   embed.addField(`→ Region`, `${message.guild.region}`, true)
+   embed.addField(`→ ID`, `${message.guild.id}`, true)
+   embed.addField(`→ Verification`, `${message.guild.verificationLevel}`, true)
+   
+   embed.setColor(0xffffff)
+   message.channel.send({embed})
   }
 
   if (message.content.startsWith(prefix + 'restart')) {
