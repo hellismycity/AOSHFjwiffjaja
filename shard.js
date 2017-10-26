@@ -10,3 +10,6 @@ manager.on('launch', (shard) => {
   console.log(`[STATUS] Spawned shard ${shard.id} / ${manager.totalShards}`)
 });
 
+manager.on('message', (shard, message) => {
+console.log(message)
+})
