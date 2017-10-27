@@ -321,8 +321,6 @@ fergie, ping : Checks if the bot is still alive.
 fergie, help : Brings up this help list.
 fergie, ban : Bans the user specified (MOD)
 fergie, softban : Softbans the user specified (MOD)
-fergie, randomlyric : Gets a random lyric from an array.
-fergie, order : Place an order (DEV COMMAND - Temp)
 fergie, serverinfo : Shows server info
 fergie, achievement : Generates a Minecraft achievement
 fergie, urban : Searches Urban Dictionary \`\`\``)
