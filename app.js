@@ -166,6 +166,7 @@ if(message.content.startsWith(prefix + 'urban')) {
 if(message.content.startsWith(prefix + 'twitch')) {
 let args = message.content.split(' ').slice(1).join(' ')
 const moment = require('moment')
+const request = require('snekfetch')
 const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
 
   try {
