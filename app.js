@@ -169,7 +169,7 @@ const moment = require('moment')
 const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
 
   try {
-    const { body } = await request.get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`);
+    const { body } = request.get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`);
     const creationDate = moment(body.created_at).format("DD-MM-YYYY");
     const embed = new discord.RichEmbed()
       .setColor(6570406)
