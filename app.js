@@ -184,7 +184,6 @@ const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs
     return message.reply("Unable to find account. Did you spell it correctly?");
   }
 };
-} 
   
 if(message.content.startsWith(prefix + 'stats')) {
 const { version: discordVersion } = require("discord.js");
