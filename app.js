@@ -163,29 +163,6 @@ if(message.content.startsWith(prefix + 'urban')) {
  })
 }
   
-if(message.content.startsWith(prefix + 'twitch')) {
-let args = message.content.split(' ').slice(1).join(' ')
-const moment = require('moment')
-const request = require('snekfetch')
-const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
-
-  try {
-    const { body } = request.get(`https://api.twitch.tv/kraken/channels/${args}?client_id=${clientID}`);
-    const creationDate = moment(body.created_at).format("DD-MM-YYYY");
-    const embed = new discord.RichEmbed()
-      .setColor(6570406)
-      .setThumbnail(body.logo)
-      .setAuthor(body.display_name, "https://i.imgur.com/OQwQ8z0.jpg", body.url)
-      .addField("Account ID", body._id, true)
-      .addField("Followers", body.followers, true)
-      .addField("Created On", creationDate, true)
-      .addField("Channel Views", body.views, true);
-    return message.channel.send({ embed });
-  } catch (e) {
-    return message.reply("Unable to find account. Did you spell it correctly?" + e.stack);
-  }
-};
-  
 if(message.content.startsWith(prefix + 'stats')) {
 const { version: discordVersion } = require("discord.js");
 const moment = require("moment");
