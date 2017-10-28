@@ -181,7 +181,7 @@ const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs
       .addField("Channel Views", body.views, true);
     return message.channel.send({ embed });
   } catch (e) {
-    return message.reply("Unable to find account. Did you spell it correctly?");
+    return message.reply("Unable to find account. Did you spell it correctly?" + e.stack);
   }
 };
   
