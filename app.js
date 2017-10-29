@@ -275,7 +275,7 @@ const embed = new Discord.RichEmbed()
   
  if(message.content.startsWith(prefix + 'userinfo')) {
    let target = message.mentions.users.first()
-  if(!target) return const embed = new Discord.RichEmbed()
+   const embed = new Discord.RichEmbed()
   .setTitle(``)
   .setAuthor(`${message.author.username}`, `${message.author.avatarURL}`)
   .setColor("RANDOM")
@@ -290,26 +290,7 @@ const embed = new Discord.RichEmbed()
   .addField('Nickname', `${message.author.displayName}`, true)
   .addField('Bot ', `${message.author.bot}`, true);
   message.channel.send({embed});
-   
-  const embed = new Discord.RichEmbed()
-  .setTitle(``)
-  .setAuthor(`${target.username}`, `${target.avatarURL}`)
-
-  .setColor("RANDOM")
-  .setDescription('')
-  .setFooter('')
-  .setImage('')
-  .setThumbnail(`${target.avatarURL}`)
-
-  .setTimestamp(new Date())
-  .addField('Full username',
-    `${target.tag}`)
-  .addField('Created At ', `${target.createdAt.toString().substr(0, 15)}`, true)
-  .addField('Status ', `${target.presence.status}`, true)
-  .addField('Nickname', `${target.displayName}`, true)
-  .addField('Bot ', `${target.bot}`, true);
-
-  message.channel.send({embed}); 
+    
  }
 
   if (message.content.startsWith(prefix + 'randomlyric')) {
