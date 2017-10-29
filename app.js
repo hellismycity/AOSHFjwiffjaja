@@ -275,20 +275,21 @@ const embed = new Discord.RichEmbed()
   
  if(message.content.startsWith(prefix + 'userinfo')) {
    let target = message.mentions.users.first()
+   if(!target) return message.reply('You must mention a user to view info.')
    const embed = new Discord.RichEmbed()
   .setTitle(``)
-  .setAuthor(`${message.author.username}`, `${message.author.avatarURL}`)
+  .setAuthor(`${target.username}`, `${target.avatarURL}`)
   .setColor("RANDOM")
   .setDescription('')
   .setFooter('')
   .setImage('')
-  .setThumbnail(`${message.author.avatarURL}`)
+  .setThumbnail(`${target.avatarURL}`)
   .setTimestamp(new Date())
-  .addField('Full username',`${message.author.tag}`)
-  .addField('Created At ', `${message.author.createdAt.toString().substr(0, 15)}`, true)
-  .addField('Status ', `${message.author.presence.status}`, true)
-  .addField('Nickname', `${message.author.displayName}`, true)
-  .addField('Bot ', `${message.author.bot}`, true);
+  .addField('Full username',`${target.tag}`)
+  .addField('Created At ', `${target.createdAt.toString().substr(0, 15)}`, true)
+  .addField('Status ', `${target.presence.status}`, true)
+  .addField('Nickname', `${target.displayName}`, true)
+  .addField('Bot ', `${target.bot}`, true);
   message.channel.send({embed});
     
  }
