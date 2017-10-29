@@ -187,14 +187,14 @@ if(message.content.startsWith(prefix + 'serverinfo')) {
 const embed = new Discord.RichEmbed()
    embed.setAuthor(`Server Information for ${message.guild.name}`)
    embed.setThumbnail(`${message.guild.iconURL}`)
-   embed.addField(`> Owner`, `${message.guild.owner.user.tag}`, true)
-   embed.addField(`> Members`, `${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size} (${message.guild.members.filter(m=>m.user.bot).size} bots)`, true)
-   embed.addField(`> Channels`, `${message.guild.channels.size}`, true)
-   embed.addField(`> Created At`, `${message.guild.createdAt.toString().substr(0, 15)}`, true)
-   embed.addField(`> Roles`, `${message.guild.roles.size}`, true)
-   embed.addField(`> Region`, `${message.guild.region}`, true)
-   embed.addField(`> ID`, `${message.guild.id}`, true)
-   embed.addField(`> Verification`, `${message.guild.verificationLevel}`, true)
+   embed.addField(`► Owner`, `${message.guild.owner.user.tag}`, true)
+   embed.addField(`► Members`, `${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size} (${message.guild.members.filter(m=>m.user.bot).size} bots)`, true)
+   embed.addField(`► Channels`, `${message.guild.channels.size}`, true)
+   embed.addField(`► Created At`, `${message.guild.createdAt.toString().substr(0, 15)}`, true)
+   embed.addField(`► Roles`, `${message.guild.roles.size}`, true)
+   embed.addField(`► Region`, `${message.guild.region}`, true)
+   embed.addField(`► ID`, `${message.guild.id}`, true)
+   embed.addField(`► Verification`, `${message.guild.verificationLevel}`, true)
    
    embed.setColor(message.member.displayColor)
    message.channel.send({embed})
@@ -272,6 +272,45 @@ const embed = new Discord.RichEmbed()
   message.delete();
 
 };
+  
+ if(message.content.startsWith(prefix + 'userinfo')) {
+   let target = message.mentions.users.first()
+  if(!target) return const embed = new Discord.RichEmbed()
+  .setTitle(``)
+  .setAuthor(`${message.author.username}`, `${message.author.avatarURL}`)
+  .setColor("RANDOM")
+  .setDescription('')
+  .setFooter('')
+  .setImage('')
+  .setThumbnail(`${message.author.avatarURL}`)
+  .setTimestamp(new Date())
+  .addField('Full username',`${message.author.tag}`)
+  .addField('Created At ', `${message.author.createdAt.toString().substr(0, 15)}`, true)
+  .addField('Status ', `${message.author.presence.status}`, true)
+  .addField('Nickname', `${message.author.displayName}`, true)
+  .addField('Bot ', `${message.author.bot}`, true);
+  message.channel.send({embed});
+   
+  const embed = new Discord.RichEmbed()
+  .setTitle(``)
+  .setAuthor(`${target.username}`, `${target.avatarURL}`)
+
+  .setColor("RANDOM")
+  .setDescription('')
+  .setFooter('')
+  .setImage('')
+  .setThumbnail(`${target.avatarURL}`)
+
+  .setTimestamp(new Date())
+  .addField('Full username',
+    `${target.tag}`)
+  .addField('Created At ', `${target.createdAt.toString().substr(0, 15)}`, true)
+  .addField('Status ', `${target.presence.status}`, true)
+  .addField('Nickname', `${target.displayName}`, true)
+  .addField('Bot ', `${target.bot}`, true);
+
+  message.channel.send({embed}); 
+ }
 
   if (message.content.startsWith(prefix + 'randomlyric')) {
     message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
