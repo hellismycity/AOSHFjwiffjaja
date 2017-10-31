@@ -195,6 +195,13 @@ if(message.content.startsWith(prefix + 'urban')) {
    message.channel.send({embed})
  })
 }
+    
+if(message.content.startsWith(prefix + 'reverse')) {
+let args = message.content.split(" ").slice(1)
+var text = args.join(" ");
+    text = text.split("").reverse().join("");
+ message.channel.send(`🔄 ${text}`)
+}
   
 if(message.content.startsWith(prefix + 'stats')) {
 const { version: discordVersion } = require("discord.js");
