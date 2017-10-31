@@ -228,6 +228,39 @@ var Jimp = require('jimp')
     })
   }
 } 
+  
+if(message.content.startsWith(prefix + '3d')) {
+var Jimp = require('jimp')
+  if (message.mentions.users.size === 0) {
+    const res = message.channel.send(':gear: generating...')
+    Jimp.read(message.author.avatarURL, (err, avatar) => {
+      if (err) return message.edit('failed to generate.')
+      avatar.displace(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+        message.delete()
+        message.channel.send({
+          files: [{
+            attachment: buffer,
+            name: 'bringBack-sendFile.png'
+          }]
+        })
+      })
+    })
+  } else {
+    const res = message.channel.send(':gear: generating...')
+    Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
+      if (err) return message.edit('failed to generate.')
+      avatar.displace(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+        message.delete()
+        message.channel.send({
+          files: [{
+            attachment: buffer,
+            name: 'bringBack-sendFile.png'
+          }]
+        })
+      })
+    })
+  }
+} 
     
 if(message.content.startsWith(prefix + 'reverse')) {
 let args = message.content.split(" ").slice(1)
