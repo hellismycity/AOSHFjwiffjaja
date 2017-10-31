@@ -142,7 +142,7 @@ async () => {
     return message.reply("Unable to find account. Did you spell it correctly?");
   }
 };
-
+  }
   if (message.content.startsWith(prefix + 'ban')) {
   var reason = message.content.split(' ').slice(2).join(' ');
   let userToBan = message.mentions.users.first()
