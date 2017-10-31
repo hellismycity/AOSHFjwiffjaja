@@ -198,7 +198,6 @@ if(message.content.startsWith(prefix + 'urban')) {
   
 if(message.content.startsWith(prefix + 'blur')) {
 var Jimp = require('jimp')
-exports.run = (client, message, args) => {
   if (message.mentions.users.size === 0) {
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.author.avatarURL, (err, avatar) => {
