@@ -118,7 +118,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   }
   
   if (message.content.startsWith(prefix + 'twitch')) {
-    let twitchName = message.content.slice(' ').split(1).join(" ")
+    let twitchName = message.content.slice(" ").split(1).join(" ")
   const request = require("snekfetch");
 const moment = require("moment");
 
@@ -235,7 +235,7 @@ var Jimp = require('jimp')
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.author.avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
-      avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+      avatar.pixelate(1).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.send({
           files: [{
@@ -249,7 +249,7 @@ var Jimp = require('jimp')
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
-      avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+      avatar.pixelate(1).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.send({
           files: [{
