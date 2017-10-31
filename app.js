@@ -235,7 +235,7 @@ var Jimp = require('jimp')
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.author.avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
-      avatar.pixelate(1).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+      avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.send({
           files: [{
@@ -249,7 +249,7 @@ var Jimp = require('jimp')
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
-      avatar.pixelate(1).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+      avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.send({
           files: [{
@@ -444,16 +444,15 @@ const embed = new Discord.RichEmbed()
 
  if (message.content.startsWith(prefix + 'help')) {
    message.reply(`You've been DMed a list of commands.`)
-   message.author.send(`\`\`\`xml
-< COMMANDS LIST >
-fergie, ping : Checks if the bot is still alive.
-fergie, help : Brings up this help list.
-fergie, ban : Bans the user specified (MOD)
-fergie, softban : Softbans the user specified (MOD)
-fergie, serverinfo : Shows server info
-fergie, achievement : Generates a Minecraft achievement
-fergie, urban : Searches Urban Dictionary \`\`\``)
-    message.author.send("You can also check out the commands here:\nhttps://github.com/Ellie-bot/Fergie/wiki/Fergie:-Commands")
+   const embed = new Discord.RichEmbed()
+   embed.setAuthor(`Fergie Commands`)
+   embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", true)
+   embed.addField("Utility `(3)`", "`userinfo` `serverinfo` `stats`", true)
+   embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", true)
+   embed.addField("Image `(3)`", "`achievement` `blur` `pixelate`", true)
+   embed.addField("WIP `(1)`", "`twitch`", true)
+   embed.setColor("RANDOM")
+message.author.send({embed})
 }
 
 if(message.content.startsWith(prefix + 'eval')) {
