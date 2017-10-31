@@ -228,7 +228,6 @@ var Jimp = require('jimp')
     })
   }
 } 
-})
     
 if(message.content.startsWith(prefix + 'reverse')) {
 let args = message.content.split(" ").slice(1)
