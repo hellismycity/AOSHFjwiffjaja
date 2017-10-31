@@ -6,6 +6,13 @@ client.on('ready', () => {
 var statuses = [`type fergie, help!`, `with ${client.users.size} users!`, `in ${client.guilds.size} guilds!`, `in ${client.channels.size} channels!`, `type f:help!`]
 client.user.setPresence({ game: { name: `${statuses[Math.floor(Math.random() * statuses.length)]}`, type: 0 } });
   console.log('I am ready!');
+  const snekfetch = require('snekfetch')
+
+snekfetch.post(`https://discordbots.org/api/bots/stats`)
+  .set('Authorization', process.env.DBOTS_TOKEN)
+  .send({ server_count: client.guilds.size })
+  .then(() => console.log('Updated discordbots.org stats.'))
+  .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
 });
 
 var prefix = 'f:'
@@ -44,6 +51,23 @@ let users = guild.memberCount
     .addField('ID', `${guild.id}`, true)
   client.channels.get('372227505324818432').send({embed}).then(guild.leave())
 }
+   const snekfetch = require('snekfetch')
+
+snekfetch.post(`https://discordbots.org/api/bots/stats`)
+  .set('Authorization', process.env.DBOTS_TOKEN)
+  .send({ server_count: client.guilds.size })
+  .then(() => console.log('Updated discordbots.org stats.'))
+  .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
+})
+
+client.on('guildDelete', guild => {
+  const snekfetch = require('snekfetch')
+
+snekfetch.post(`https://discordbots.org/api/bots/stats`)
+  .set('Authorization', process.env.DBOTS_TOKEN)
+  .send({ server_count: client.guilds.size })
+  .then(() => console.log('Updated discordbots.org stats.'))
+  .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
 })
 
 client.on('guildMemberAdd', member => {
