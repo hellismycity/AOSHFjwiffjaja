@@ -142,6 +142,13 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
    message.channel.send("👍");
    var user = message.mentions.users.first()
 }
+  
+if(message.content.startsWith(prefix + 'hackban')) {
+let args = message.content.split(" ").slice(1).join(" ")
+message.guild.ban(args)
+message.channel.send('👍')
+
+}
 
 if(message.content.startsWith(prefix + 'urban')) {
   let args = message.content.split(' ').slice(1).join(' ')
