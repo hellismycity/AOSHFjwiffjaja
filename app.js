@@ -116,6 +116,32 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
     m.edit(`Pong! - Time Taken: ${m.createdTimestamp - message.createdTimestamp}ms`)
   })
   }
+  
+  if (message.content.startsWith(prefix + 'twitch')) {
+    let twitchName = message.content.slice(' ').split(1).join(" ")
+  const request = require("snekfetch");
+const moment = require("moment");
+
+const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
+
+/* eslint-disable no-underscore-dangle */
+async () => {
+  try {
+    const { body } = await request.get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`);
+    const creationDate = moment(body.created_at).format("DD-MM-YYYY");
+    const embed = new Discord.RichEmbed()
+      .setColor(6570406)
+      .setThumbnail(body.logo)
+      .setAuthor(body.display_name, "https://i.imgur.com/OQwQ8z0.jpg", body.url)
+      .addField("Account ID", body._id, true)
+      .addField("Followers", body.followers, true)
+      .addField("Created On", creationDate, true)
+      .addField("Channel Views", body.views, true);
+    return message.channel.send({ embed });
+  } catch (e) {
+    return message.reply("Unable to find account. Did you spell it correctly?");
+  }
+};
 
   if (message.content.startsWith(prefix + 'ban')) {
   var reason = message.content.split(' ').slice(2).join(' ');
