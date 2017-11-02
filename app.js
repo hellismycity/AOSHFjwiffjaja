@@ -416,11 +416,11 @@ const embed = new Discord.RichEmbed()
   .setThumbnail(`${target.avatarURL}`)
   .setTimestamp(new Date())
   .addField('Full username',`${target.tag}`)
+  .addField('Playing', `${target.presence.game === null ? "Not playing anything" : target.presence.game.name}`, true)
   .addField('Created At', `${target.createdAt.toString().substr(0, 15)}`, true)
   .addField('Status', `${target.presence.status}`, true)
-  .addField('Nickname', `${target.displayName}`, true)
+  .addField('Nickname', `${target.user.displayName}`, true)
   .addField('Bot', `${target.bot}`, true)
-  .addField('Roles', `${target.roles.map(r => `${r.name}`).join(" , ")}`, true)
   message.channel.send({embed});
     
  }
