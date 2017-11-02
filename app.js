@@ -418,9 +418,9 @@ const embed = new Discord.RichEmbed()
   .addField('Full username',`${target.tag}`)
   .addField('Created At', `${target.createdAt.toString().substr(0, 15)}`, true)
   .addField('Status', `${target.presence.status}`, true)
-  .addField('Nickname', `${message.member.displayName}`, true)
+  .addField('Nickname', `${target..displayName}`, true)
   .addField('Bot', `${target.bot}`, true)
-  .addField('Roles', `${message.member.roles.array().join(',')}`, true)
+  .addField('Roles', `${target.user.roles.map(r => `${r.name}`).join(" , ")`, true)
   message.channel.send({embed});
     
  }
