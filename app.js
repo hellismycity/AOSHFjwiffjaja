@@ -422,9 +422,9 @@ const embed = new Discord.RichEmbed()
   .addField('Nickname', `${message.mentions.users.first().displayName}`, true)
   .addField('Bot', `${target.bot}`, true)
   .addfield('Roles', 'kys', true)
-  message.channel.send({embed}).catch(e => message.channel.send(`\`\`\`${e.stack}\`\`\``))
+  message.channel.send({embed})
     
- }
+ }.catch(e => message.channel.send(`\`\`\`${e.stack}\`\`\``))
 
   if (message.content.startsWith(prefix + 'randomlyric')) {
     message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
