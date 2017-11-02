@@ -421,7 +421,7 @@ const embed = new Discord.RichEmbed()
   .addField('Status', `${target.presence.status}`, true)
   .addField('Nickname', `${message.mentions.users.first().displayName}`, true)
   .addField('Bot', `${target.bot}`, true)
-  .addfield('Roles', 'kys', true)
+  .addField('Roles', 'kys', true)
   message.channel.send({embed})
     
  }.catch(e => message.channel.send(`\`\`\`${e.stack}\`\`\``))
