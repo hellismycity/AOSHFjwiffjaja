@@ -420,7 +420,7 @@ const embed = new Discord.RichEmbed()
   .addField('Status', `${target.presence.status}`, true)
   .addField('Nickname', `${target.displayName}`, true)
   .addField('Bot', `${target.bot}`, true)
-  .addField('Roles', `${message.member(target).roles.map(r => `${r.name}`).join(" , ")}`, true)
+  .addField('Roles', `${target.roles.map(r => `${r.name}`).join(" , ")}`, true)
   message.channel.send({embed});
     
  }
