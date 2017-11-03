@@ -422,7 +422,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
   } else {
     bot = "No";
   }
-  const embed = new Discord.MessageEmbed()
+  const embed = new Discord.RichEmbed()
     .setColor(randomColor)
     .setThumbnail(`${member.user.displayAvatarURL()}`)
     .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL()}`)
