@@ -404,27 +404,38 @@ const embed = new Discord.RichEmbed()
 };
   
  if(message.content.startsWith(prefix + 'userinfo')) {
-   let target = message.mentions.users.first()
-   if(!target) return message.reply('You must mention a user to view info.')
-   const embed = new Discord.RichEmbed()
-  .setTitle(``)
-  .setAuthor(`${target.username}`, `${target.avatarURL}`)
-  .setColor("RANDOM")
-  .setDescription('')
-  .setFooter('')
-  .setImage('')
-  .setThumbnail(`${target.avatarURL}`)
-  .setTimestamp(new Date())
-  .addField('Full username',`${target.tag}`)
-  .addField('Playing', `${target.presence.game === null ? "Not playing anything" : target.presence.game.name}`, true)
-  .addField('Created At', `${target.createdAt.toString().substr(0, 15)}`, true)
-  .addField('Status', `${target.presence.status}`, true)
-  .addField('Nickname', `${message.mentions.users.first().displayName}`, true)
-  .addField('Bot', `${target.bot}`, true)
-  .addField('Roles', 'kys', true)
-  message.channel.send({embed}).catch(e => message.channel.send(`\`\`\`${e.stack}\`\`\``))
-    
- }
+ const moment = require("moment");
+require("moment-duration-format");
+const status = {
+  online: "Online",
+  idle: "Idle",
+  dnd: "Do Not Disturb",
+  offline: "Offline/Invisible"
+};
+const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
+  const member = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;
+  if (!member) return message.reply("Please provide a vaild Mention or USER ID");
+  let bot;
+  if (member.user.bot === true) {
+    bot = "Yes";
+  } else {
+    bot = "No";
+  }
+  const embed = new Discord.MessageEmbed()
+    .setColor(randomColor)
+    .setThumbnail(`${member.user.displayAvatarURL()}`)
+    .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL()}`)
+    .addField("Nickname:", `${member.nickname !== null ? `Nickname: ${member.nickname}` : "No nickname"}`, true)
+    .addField("Bot?", `${bot}`, true)
+    .addField("Status", `${status[member.user.presence.status]}`, true)
+    .addField("Playing", `${member.user.presence.game ? `${member.user.presence.game.name}` : "not playing anything."}`, true)
+    .addField("Roles", `${member.roles.filter(r => r.id !== message.guild.id).map(roles => `\`${roles.name}\``).join(" **|** ") || "No Roles"}`, true)
+    .addField("Joined At", `${moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss")}`, true)
+    .addField("Created At", `${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY, HH:mm:ss")}`, true);
+
+  message.channel.send({embed})
+};
+
 
   if (message.content.startsWith(prefix + 'randomlyric')) {
     message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
