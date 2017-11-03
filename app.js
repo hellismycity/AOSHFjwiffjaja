@@ -404,14 +404,18 @@ const embed = new Discord.RichEmbed()
 };
   
  if(message.content.startsWith(prefix + 'userinfo')) {
+    const online = client.emojis.find("name", "fergieonline");
+    const offline = client.emojis.find("name", "fergieoffline");
+    const dnd = client.emojis.find("name", "fergiednd");
+    const idle = client.emojis.find("name", "fergieidle");
    let args = message.content.split(" ").slice(1).join(" ")
  const moment = require("moment");
 require("moment-duration-format");
 const status = {
-  online: "Online",
-  idle: "Idle",
-  dnd: "Do Not Disturb",
-  offline: "Offline/Invisible"
+  online: `${online} Online`,
+  idle: `${idle} Idle`,
+  dnd: `${dnd} Do Not Disturb`,
+  offline: `${offline} Offline/Invisible`
 };
 const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
   const member = message.mentions.members.first() || message.guild.members.get(args) || message.member;
