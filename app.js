@@ -430,8 +430,8 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
     .setColor(randomColor)
     .setThumbnail(`${member.user.avatarURL}`)
     .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL}`)
-    .addField("Nickname:", `${member.nickname !== null ? `Nickname: ${member.nickname}` : "No nickname"}`, true)
-    .addField("Bot?", `${bot}`, true)
+    .addField("Nickname", `${member.nickname !== null ? `Nickname: ${member.nickname}` : "No nickname"}`, true)
+    .addField("Bot", `${bot}`, true)
     .addField("Status", `${status[member.user.presence.status]}`, true)
     .addField("Playing", `${member.user.presence.game ? `${member.user.presence.game.name}` : "not playing anything."}`, true)
     .addField("Roles", `${member.roles.filter(r => r.id !== message.guild.id).map(roles => `\`${roles.name}\``).join(" **|** ") || "No Roles"}`, true)
@@ -440,8 +440,27 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
 
   message.channel.send({embed})
 };
+  
+if(message.content.startsWith(prefix + 'test')) {
+let spoiler = null;
 
+const reactionFunc = (client, reaction, user) => {
+  if(reaction.emoji.name !== "👀" || reaction.message.id !== spoiler || user.id === client.user.id) return;
+  reaction.message.edit(`${user} has now revealed this spoiler: \`\`\` At the end, he learns they are a ghost.  \`\`\``);
+  reaction.message.clearReactions();
+  spoiler = null;
+  client.removeListener("messageReactionAdd", reactionFunc);
+};
 
+  message.channel.send("```Spoilers! (click to reveal)```").then(m=>{
+    m.delete();
+    m.react("👀").then( () =>{
+      spoiler = m.id;
+      client.on("messageReactionAdd", reactionFunc.bind(null, client));
+    });
+  });
+};
+  
   if (message.content.startsWith(prefix + 'randomlyric')) {
     message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
   }
