@@ -404,6 +404,7 @@ const embed = new Discord.RichEmbed()
 };
   
  if(message.content.startsWith(prefix + 'userinfo')) {
+   let args = message.content.split(" ").slice(1).join(" ")
  const moment = require("moment");
 require("moment-duration-format");
 const status = {
