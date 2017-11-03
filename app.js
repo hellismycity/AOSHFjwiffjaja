@@ -442,23 +442,14 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
 };
   
 if(message.content.startsWith(prefix + 'test')) {
-let spoiler = null;
-
-const reactionFunc = (client, reaction, user) => {
-  if(reaction.emoji.name !== "👀" || reaction.message.id !== spoiler || user.id === client.user.id) return;
-  reaction.message.edit(`${user} has now revealed this spoiler: \`\`\` At the end, he learns they are a ghost.  \`\`\``);
-  reaction.message.clearReactions();
-  spoiler = null;
-  client.removeListener("messageReactionAdd", reactionFunc);
-};
-
-  message.channel.send("```Spoilers! (click to reveal)```").then(m=>{
-    m.delete();
-    m.react("👀").then( () =>{
-      spoiler = m.id;
-      client.on("messageReactionAdd", reactionFunc.bind(null, client));
-    });
-  });
+ const snekfetch = require('snekfetch');
+ const dbotstoken = process.env.DBOTS_TOKEN
+ const votes = await snekfetch.get(`https://discordbots.org/api/bots/${client.user.id}/votes?onlyids=1`).set('Authorization', dbotstoken);
+if (!votes.body.includes(message.author.id)) {
+    message.channel.send('pls updoot')
+  } else {
+    message.channel.send('yay u updooted')
+  }
 };
   
   if (message.content.startsWith(prefix + 'randomlyric')) {
