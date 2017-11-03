@@ -424,7 +424,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
   }
   const embed = new Discord.RichEmbed()
     .setColor(randomColor)
-    .setThumbnail(`${member.user.displayAvatarURL()}`)
+    .setThumbnail(`${member.user.avatarURL}`)
     .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL()}`)
     .addField("Nickname:", `${member.nickname !== null ? `Nickname: ${member.nickname}` : "No nickname"}`, true)
     .addField("Bot?", `${bot}`, true)
