@@ -443,8 +443,8 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
   
 if(message.content.startsWith(prefix + 'test')) {
  const snekfetch = require('snekfetch');
- const dbotstoken = process.env.DBOTS_TOKEN
- const votes = await snekfetch.get(`https://discordbots.org/api/bots/${client.user.id}/votes?onlyids=1`).set('Authorization', dbotstoken);
+ const votes = snekfetch.get(`https://discordbots.org/api/bots/${client.user.id}/votes?onlyids=1`).set('Authorization', process.env.DBOTS_TOKEN).catch(e => message.channel.send(`\`\`\`${e.stack}\`\`\``))
+
 if (!votes.body.includes(message.author.id)) {
     message.channel.send('pls updoot')
   } else {
