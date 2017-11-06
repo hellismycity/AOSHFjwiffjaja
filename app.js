@@ -142,7 +142,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   }
   
   if (message.content.startsWith(prefix + 'invite')) {
-  message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8
+  message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
   }
                        
   if (message.content.startsWith(prefix + 'twitch')) {
