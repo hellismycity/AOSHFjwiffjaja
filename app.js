@@ -539,6 +539,7 @@ if (!votes.body.includes(message.author.id)) {
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(3)`", "`achievement` `blur` `pixelate`", false)
    embed.addField("WIP `(1)`", "`twitch`", false)
+   embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
 message.author.send({embed})
 }
