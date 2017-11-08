@@ -198,9 +198,9 @@ async () => {
 }
   
  if(message.content.startsWith(prefix + 'name')) {
-   const eemoji = client.emojis.get("name", "error")
+   const emoji = client.emojis.find("name", "error")
   if (!message.member.permissions.has("MANAGE_NICKNAMES")) {
-    message.channel.send(`${eemoji} My Apologies ${message.author}, but you must have the \`MANAGE_NICKNAMES\` permission to use this.`);
+    message.channel.send(`${emoji} My Apologies ${message.author}, but you must have the \`MANAGE_NICKNAMES\` permission to use this.`);
     return;
   }
   let test = message.content.split(' ').slice(1);
