@@ -197,6 +197,33 @@ async () => {
    var user = message.mentions.users.first()
 }
   
+ if(message.content.startsWith(prefix + 'name')) {
+   const eemoji = client.emojis.get("name", "error")
+  if (!message.member.permissions.has("MANAGE_NICKNAMES")) {
+    message.channel.send(`${eemoji} My Apologies ${message.author}, but you must have the \`MANAGE_NICKNAMES\` permission to use this.`);
+    return;
+  }
+  let test = message.content.split(' ').slice(1);
+  if (test == '' || test == null){
+      return message.channel.send({embed: {
+          color: 0x5fef2f,
+          description: `${message.author} cleared my nickname.`
+      } }).then(message.guild.member(client.user).setNickname(''));
+  }
+  else{
+      let command = message.content.split(' ')[0];
+      command = command.slice(prefix.length);
+
+      let nickname = message.content.split(" ").slice(1).join(" ")
+      message.guild.member(client.user).setNickname(`${nickname}`)
+      message.channel.send({embed: {
+          color: 0x5fef2f,
+          description: `${message.author} set my nickname to "**${nickname}**"`
+      } });
+  }
+
+}
+  
 if(message.content.startsWith(prefix + 'discrim')) {
   let args = message.content.split(" ").slice(1).join(" ")
   const res = client.users.filter(u => u.discriminator === `${args}`).map(u => `${u.tag}  (${u.id})`);
@@ -508,7 +535,7 @@ if (!votes.body.includes(message.author.id)) {
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
-   embed.addField("Utility `(4)`", "`userinfo` `serverinfo` `stats` `discrim`", false)
+   embed.addField("Utility `(4)`", "`userinfo` `serverinfo` `stats` `discrim`, `name`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(3)`", "`achievement` `blur` `pixelate`", false)
    embed.addField("WIP `(1)`", "`twitch`", false)
