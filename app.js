@@ -199,7 +199,7 @@ async () => {
   
 if(message.content.startsWith(prefix + 'discrim')) {
   let args = message.content.split(" ").slice(1).join(" ")
-  const res = bot.users.filter(u => u.discriminator === `${args}`).map(u => u.tag);
+  const res = client.users.filter(u => u.discriminator === `${args}`).map(u => u.tag);
   message.channel.send(`${res.join('\n')}`)
 };
 
