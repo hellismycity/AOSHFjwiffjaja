@@ -200,7 +200,7 @@ async () => {
 if(message.content.startsWith(prefix + 'ascii')) {
 let banner = message.content.split(" ").slice(1).join(" ")
 const figletAsync = require("util").promisify(require("figlet"));
-  const data =  figletAsync(banner);
+  const data = figletAsync(banner);
   return message.channel.send(data, { code: true });
 };
 
