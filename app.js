@@ -199,7 +199,7 @@ async () => {
   
 if(message.content.startsWith(prefix + 'discrim')) {
   let args = message.content.split(" ").slice(1).join(" ")
-  const res = client.users.filter(u => u.discriminator === `${args}`).map(u => `${u.tag}  (${u.id}`);
+  const res = client.users.filter(u => u.discriminator === `${args}`).map(u => `${u.tag}  (${u.id})`);
   message.channel.send(`\n ${res.join('\n')}`, { code: "css" }).catch(e => message.channel.send('No users found.'))
 };
 
@@ -508,7 +508,7 @@ if (!votes.body.includes(message.author.id)) {
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
-   embed.addField("Utility `(3)`", "`userinfo` `serverinfo` `stats`", false)
+   embed.addField("Utility `(4)`", "`userinfo` `serverinfo` `stats` `discrim`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(3)`", "`achievement` `blur` `pixelate`", false)
    embed.addField("WIP `(1)`", "`twitch`", false)
