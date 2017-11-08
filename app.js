@@ -200,7 +200,7 @@ async () => {
 if(message.content.startsWith(prefix + 'discrim')) {
   let args = message.content.split(" ").slice(1).join(" ")
   const res = client.users.filter(u => u.discriminator === `${args}`).map(u => u.tag);
-  message.channel.send("Discrim Search \n", `\n ${res.join('\n')}`, { code: "css" }).catch(e => message.channel.send('No users found.'))
+  message.channel.send(`\n ${res.join('\n')}`, { code: "css" }).catch(e => message.channel.send('No users found.'))
 };
 
 if(message.content.startsWith(prefix + 'hackban')) {
