@@ -197,11 +197,10 @@ async () => {
    var user = message.mentions.users.first()
 }
   
-if(message.content.startsWith(prefix + 'ascii')) {
-let banner = message.content.split(" ").slice(1).join(" ")
-const figletAsync = require("util").promisify(require("figlet"));
-  const data = figletAsync(banner);
-  return message.channel.send(data, { code: true });
+if(message.content.startsWith(prefix + 'discrim')) {
+  let args = message.content.split(" ").slice(1).join(" ")
+  const res = bot.users.filter(u => u.discriminator === `${args}`).map(u => u.tag);
+  message.channel.send(`${res.join('\n')}`)
 };
 
 if(message.content.startsWith(prefix + 'hackban')) {
