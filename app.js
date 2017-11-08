@@ -204,7 +204,6 @@ const figletAsync = require("util").promisify(require("figlet"));
   return message.channel.send(data, { code: true });
 };
 
-}
 if(message.content.startsWith(prefix + 'hackban')) {
 let args = message.content.split(" ").slice(1).join(" ")
 message.guild.ban(args)
