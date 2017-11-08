@@ -197,6 +197,14 @@ async () => {
    var user = message.mentions.users.first()
 }
   
+if(message.content.startsWith(prefix + 'ascii')) {
+let banner = message.content.split(" ").slice(1).join(" ")
+const figletAsync = require("util").promisify(require("figlet"));
+  const data =  figletAsync(banner);
+  return message.channel.send(data, { code: true });
+};
+
+}
 if(message.content.startsWith(prefix + 'hackban')) {
 let args = message.content.split(" ").slice(1).join(" ")
 message.guild.ban(args)
