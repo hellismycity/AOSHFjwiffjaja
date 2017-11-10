@@ -233,7 +233,7 @@ const {get} = require("snekfetch");
   
   if (message.content.startsWith(prefix + 'dog')) {  
 const {get} = require("snekfetch");
-      get("https://random.dog/woof.json").then(response => {
+      get("https://random.dog/woof").then(response => {
         message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
       });
   };
