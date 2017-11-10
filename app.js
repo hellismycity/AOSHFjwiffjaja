@@ -147,16 +147,13 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
                        
   if (message.content.startsWith(prefix + 'twitch')) {
     let twitchName = message.content.slice(" ").split(1).join(" ")
-  const request = require("snekfetch");
+  const {get} = require("snekfetch");
 const moment = require("moment");
 
 const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
 
-/* eslint-disable no-underscore-dangle */
-async () => {
-  try {
-    const { body } = await request.get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`);
-    const creationDate = moment(body.created_at).format("DD-MM-YYYY");
+    get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`).then(body => {
+    const creationDate = moment(body.created_at).format("DD-MM-YYYY")
     const embed = new Discord.RichEmbed()
       .setColor(6570406)
       .setThumbnail(body.logo)
@@ -168,9 +165,9 @@ async () => {
     return message.channel.send({ embed });
   } catch (e) {
     return message.reply("Unable to find account. Did you spell it correctly?");
-  }
-};
-  }
+    }
+  })
+}
   if (message.content.startsWith(prefix + 'ban')) {
   var reason = message.content.split(' ').slice(2).join(' ');
   let userToBan = message.mentions.users.first()
