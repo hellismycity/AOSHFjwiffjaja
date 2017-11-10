@@ -230,7 +230,7 @@ const {get} = require("snekfetch");
         message.channel.send('', {embed: {
     color: 3447003,
     title: 'Cat Image',
-    image: response.body.url
+    image: {files:[{attachment: response.body}]},
  
   }
 });
