@@ -233,7 +233,7 @@ const {get} = require("snekfetch");
   
   if (message.content.startsWith(prefix + 'dog')) {  
 const {get} = require("snekfetch");
-      get("https://random.dog/woof").then(response => {
+      get("https://random.dog/woof.json").then(response => {
         message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
       });
   };
@@ -552,7 +552,7 @@ if (!votes.body.includes(message.author.id)) {
    embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
    embed.addField("Utility `(4)`", "`userinfo` `serverinfo` `stats` `discrim`, `name`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
-   embed.addField("Image `(3)`", "`achievement` `blur` `pixelate`", false)
+   embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `cat` `dog`", false)
    embed.addField("WIP `(1)`", "`twitch`", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
