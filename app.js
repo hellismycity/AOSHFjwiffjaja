@@ -145,14 +145,15 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
   }
                        
-  if (message.content.startsWith(prefix + 'twitch')) {
-    let twitchName = message.content.slice(" ").split(1).join(" ")
+
+if (message.content.startsWith(prefix + 'twitch')) {
+  const twitchName = message.content.slice(" ").split(1).join(" ")
   const {get} = require("snekfetch");
-const moment = require("moment");
+  const moment = require("moment");
 
-const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
+  const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
 
-    get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`).then(body => message.channel.send('', {embed: {
+  get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`).then(body => message.channel.send({embed: {
     color: 3447003,
     author: {
       name: body.display_name,
@@ -161,38 +162,29 @@ const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs
     title: `${twitchName}`,
     url: body.url,
     fields: [{
-        name: 'Account ID',
-        value: body._id
-      },
-      {
-        name: 'Followers',
-        value: body.followers
-      },
-      {
-        name: 'Created On',
-        value: creationDate
-      },
-      {
-        name: 'Channel Views',
-        value: body.views
-      }
+      name: 'Account ID',
+      value: body._id
+    },
+    {
+      name: 'Followers',
+      value: body.followers
+    },
+    {
+      name: 'Created On',
+      value: creationDate
+    },
+    {
+      name: 'Channel Views',
+      value: body.views
+    }
     ],
-    timestamp: new Date(),
   }
-});
-    const creationDate = moment(body.created_at).format("DD-MM-YYYY")
-    const embed = new Discord.RichEmbed()
-      .setColor(6570406)
-      .setThumbnail(body.logo)
-      .setAuthor(body.display_name, "https://i.imgur.com/OQwQ8z0.jpg", body.url)
-      .addField("Account ID", body._id, true)
-      .addField("Followers", body.followers, true)
-      .addField("Created On", creationDate, true)
-      .addField("Channel Views", body.views, true);
-    return message.channel.send({ embed });
-    
-  })
-  } 
+  }
+)
+
+  )
+} 
+
   
   if (message.content.startsWith(prefix + 'ban')) {
   var reason = message.content.split(' ').slice(2).join(' ');
