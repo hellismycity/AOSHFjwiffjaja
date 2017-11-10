@@ -152,7 +152,34 @@ const moment = require("moment");
 
 const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
 
-    get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`).then(body => {
+    get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`).then(body => message.channel.send('', {embed: {
+    color: 3447003,
+    author: {
+      name: body.display_name,
+      icon_url: "https://i.imgur.com/OQwQ8z0.jpg"
+    },
+    title: `${twitchName}`,
+    url: body.url,
+    fields: [{
+        name: 'Account ID',
+        value: body._id
+      },
+      {
+        name: 'Followers',
+        value: body.followers
+      },
+      {
+        name: 'Created On',
+        value: creationDate
+      },
+      {
+        name: 'Channel Views',
+        value: body.views
+      }
+    ],
+    timestamp: new Date(),
+  }
+});
     const creationDate = moment(body.created_at).format("DD-MM-YYYY")
     const embed = new Discord.RichEmbed()
       .setColor(6570406)
