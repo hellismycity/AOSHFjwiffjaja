@@ -146,43 +146,27 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   }
                        
 
-if (message.content.startsWith(prefix + 'twitch')) {
-  const twitchName = message.content.slice(" ").split(1).join(" ")
-  const {get} = require("snekfetch");
-  const moment = require("moment");
+if (message.content.startsWith(prefix + 'avatar')) {
+let mentioned = message.mentions.users.first()
 
-  const clientID = "p5yfdqw3lt858mbu4zh9l067rstgdt"; // https://dev.twitch.tv/docs/v5/guides/authentication/
+  if (!mentioned) {
+    const embed = new Discord.RichEmbed()
+    .setTitle(`${message.author.tag}'s Avatar`)
 
-  get(`https://api.twitch.tv/kraken/channels/${twitchName}?client_id=${clientID}`).then(body => message.channel.send({embed: {
-    color: 3447003,
-    author: {
-      name: body.display_name,
-      icon_url: "https://i.imgur.com/OQwQ8z0.jpg"
-    },
-    title: `${twitchName}`,
-    url: body.url,
-    fields: [{
-      name: 'Account ID',
-      value: body._id
-    },
-    {
-      name: 'Followers',
-      value: body.followers
-    },
-    {
-      name: 'Created On',
-      value: creationDate
-    },
-    {
-      name: 'Channel Views',
-      value: body.views
-    }
-    ],
-  }
-  }
-)
+    .setColor("0x4f351")
+    .setImage(message.member.displayAvatar())
 
-  )
+    message.channel.send({embed}) } else {
+  const embed = new Discord.RichEmbed()
+    .setTitle(`${mentioned.tag}'s Avatar`)
+
+    .setColor("0x4f351")
+    .setImage(mentioned.displayAvatar())
+
+    message.channel.send({embed});
+}
+} 
+
 } 
 
   
