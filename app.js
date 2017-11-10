@@ -168,6 +168,7 @@ let mentioned = message.mentions.users.first()
 } 
 
 if (message.content.startsWith(prefix + 'quote')) {
+  const args = message.content.split(" ").slice(1).join(" ")
   const embed = new Discord.RichEmbed()
   .setTitle(``)
   .setAuthor(`Quote`)
@@ -564,10 +565,10 @@ if (!votes.body.includes(message.author.id)) {
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
-   embed.addField("Utility `(4)`", "`userinfo` `serverinfo` `stats` `discrim`, `name`", false)
+   embed.addField("Utility `(5)`", "`userinfo` `serverinfo` `stats` `discrim`, `name` `quote`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `cat` `dog`", false)
-   embed.addField("WIP `(1)`", "`twitch`", false)
+   embed.addField("WIP `(0)`", "", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
 message.author.send({embed})
