@@ -227,7 +227,7 @@ async () => {
 if (message.content.startsWith(prefix + 'cat')) {  
 const {get} = require("snekfetch");
       get("https://random.cat/meow").then(response => {
-        message.channel.send({files:[{attachment: r.body}]})
+        message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
       });
   };
   
