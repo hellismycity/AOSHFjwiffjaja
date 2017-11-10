@@ -167,7 +167,6 @@ let mentioned = message.mentions.users.first()
 }
 } 
 
-} 
 
   
   if (message.content.startsWith(prefix + 'ban')) {
