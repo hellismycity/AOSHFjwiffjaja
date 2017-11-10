@@ -167,7 +167,23 @@ let mentioned = message.mentions.users.first()
 }
 } 
 
+if (message.content.startsWith(prefix + 'quote')) {
+  const embed = new Discord.RichEmbed()
+  .setTitle(``)
+  .setAuthor(`Quote`)
 
+  .setColor(message.member.displayColor)
+  .setDescription(`${args}`)
+  .setFooter(`Submitted by ${message.author.tag}`, `${message.author.avatarURL}`)
+  .setImage('')
+
+  .setTimestamp()
+
+  if(!message.guild.channels.find('name', 'quotes')) return message.channel.send("I couldn't find a quotes channel. Please make one and name it `quotes`")
+  message.channel.send(':thumbsup:');
+  message.guild.channels.find('name', 'quotes').send({embed})
+
+}
   
   if (message.content.startsWith(prefix + 'ban')) {
   var reason = message.content.split(' ').slice(2).join(' ');
