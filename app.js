@@ -154,14 +154,14 @@ let mentioned = message.mentions.users.first()
     .setTitle(`${message.author.tag}'s Avatar`)
 
     .setColor("0x4f351")
-    .setImage(message.author.displayAvatar())
+    .setImage(message.author.displayAvatarURL)
 
     message.channel.send({embed}) } else {
   const embed = new Discord.RichEmbed()
     .setTitle(`${mentioned.tag}'s Avatar`)
 
     .setColor("0x4f351")
-    .setImage(mentioned.displayAvatar())
+    .setImage(mentioned.displayAvatarURL)
 
     message.channel.send({embed});
 }
