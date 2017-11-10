@@ -223,6 +223,20 @@ async () => {
   }
 
 }
+
+if (message.content.startsWith(prefix + 'cat')) {  
+const {get} = require("snekfetch");
+      get("https://random.cat/meow").then(response => {
+        message.channel.send('', {embed: {
+    color: 3447003,
+    title: 'Cat Image',
+    image: response.body.file
+ 
+  }
+});
+      });
+  };
+  
   
 if(message.content.startsWith(prefix + 'discrim')) {
   let args = message.content.split(" ").slice(1).join(" ")
