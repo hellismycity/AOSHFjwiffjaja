@@ -227,13 +227,7 @@ async () => {
 if (message.content.startsWith(prefix + 'cat')) {  
 const {get} = require("snekfetch");
       get("https://random.cat/meow").then(response => {
-        message.channel.send('', {embed: {
-    color: 3447003,
-    title: 'Cat Image',
-    image: response.body
- 
-  }
-});
+        message.channel.send({files:[{attachment: r.body}]})
       });
   };
   
