@@ -147,7 +147,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
                        
 
 if (message.content.startsWith(prefix + 'avatar')) {
-let mentioned = message.mentions.users.first()
+  const mentioned = message.mentions.members.first() || message.guild.members.get(args) || message.member;
 
   if (!mentioned) {
     const embed = new Discord.RichEmbed()
@@ -187,8 +187,9 @@ if (message.content.startsWith(prefix + 'quote')) {
 }
   
   if (message.content.startsWith(prefix + 'ban')) {
+    const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(' ');
-  let userToBan = message.mentions.users.first()
+   const userToBan = message.mentions.members.first()
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
