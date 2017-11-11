@@ -147,6 +147,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
                        
 
 if (message.content.startsWith(prefix + 'avatar')) {
+  const args = message.content.split(" ").slice(1).join(" ")
   const mentioned = message.mentions.members.first() || message.guild.members.get(args) || message.member;
 
   if (!mentioned) {
