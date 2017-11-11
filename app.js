@@ -131,7 +131,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   }
 
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
-    let mentionMsg = ':ghost:';
+    let mentionMsg = "Hello, I'm Fergie! To see the commands, type `f:help`. Need more help? Come to my server! \n https://discordapp.com/invite/ZXugv2Z";
     return message.channel.send(mentionMsg);
   }
 
