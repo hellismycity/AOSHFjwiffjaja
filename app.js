@@ -331,11 +331,12 @@ var Jimp = require('jimp')
 if(message.content.startsWith(prefix + 'pixelate')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
       avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -345,11 +346,12 @@ var Jimp = require('jimp')
       })
     })
   } else {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
       avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -364,11 +366,12 @@ var Jimp = require('jimp')
 if(message.content.startsWith(prefix + 'blur')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
       avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -378,11 +381,12 @@ var Jimp = require('jimp')
       })
     })
   } else {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
       avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -394,14 +398,15 @@ var Jimp = require('jimp')
   }
 } 
   
-if(message.content.startsWith(prefix + 'test')) {
+if(message.content.startsWith(prefix + 'invert')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
       avatar.invert().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -411,11 +416,12 @@ var Jimp = require('jimp')
       })
     })
   } else {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
       avatar.invert().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -631,7 +637,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
    embed.addField("Utility `(5)`", "`userinfo` `serverinfo` `stats` `discrim`, `name` `quote`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
-   embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `cat` `dog`", false)
+   embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
