@@ -298,11 +298,12 @@ if(message.content.startsWith(prefix + 'urban')) {
 if(message.content.startsWith(prefix + 'blur')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -312,11 +313,12 @@ var Jimp = require('jimp')
       })
     })
   } else {
-    const res = message.channel.send(':gear: generating...')
+    const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
+        message.channel.stopTyping()
         message.channel.send({
           files: [{
             attachment: buffer,
@@ -333,7 +335,7 @@ var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
     const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.stopTyping()
@@ -348,7 +350,7 @@ var Jimp = require('jimp')
   } else {
     const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.pixelate(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.stopTyping()
@@ -368,7 +370,7 @@ var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
     const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.stopTyping()
@@ -383,7 +385,7 @@ var Jimp = require('jimp')
   } else {
     const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.stopTyping()
@@ -403,7 +405,7 @@ var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
     const res = message.channel.startTyping()
     Jimp.read(message.author.avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.invert().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.stopTyping()
@@ -418,7 +420,7 @@ var Jimp = require('jimp')
   } else {
     const res = message.channel.startTyping()
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
-      if (err) return message.edit('failed to generate.')
+      if (err) return message.channel.send('failed to generate.')
       avatar.invert().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.stopTyping()
