@@ -147,8 +147,8 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   
     if(message.content.startsWith(prefix + 'rate')) {
       const args = message.content.split(" ").slice(1).join(" ")
-      if(!args) return message.channel.send(`I'd Rate **{message.author.username} ${(Math.floor(Math.random() * 101))}\/100`)
-  message.channel.send(`I'd Rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
+      if(!args) return message.channel.send(`I'd rate **${message.author.username}** ${(Math.floor(Math.random() * 101))}\/100`)
+  message.channel.send(`I'd rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
 }
                        
 
