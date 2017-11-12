@@ -582,16 +582,6 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
   message.channel.send({embed})
 };
   
-if(message.content.startsWith(prefix + 'test')) {
- const snekfetch = require('snekfetch');
- const votes = snekfetch.get(`https://discordbots.org/api/bots/${client.user.id}/votes?onlyids=1`).set('Authorization', process.env.DBOTS_TOKEN).catch(e => message.channel.send(`\`\`\`${e.stack}\`\`\``))
-
-if (!votes.body.includes(message.author.id)) {
-    message.channel.send('pls updoot')
-  } else {
-    message.channel.send('yay u updooted')
-  }
-};
   
   if (message.content.startsWith(prefix + 'randomlyric')) {
     message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
