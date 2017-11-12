@@ -400,7 +400,7 @@ var Jimp = require('jimp')
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.author.avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
-      avatar.sepia().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+      avatar.displace().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.send({
           files: [{
@@ -414,7 +414,7 @@ var Jimp = require('jimp')
     const res = message.channel.send(':gear: generating...')
     Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
       if (err) return message.edit('failed to generate.')
-      avatar.sepia().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+      avatar.displace().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.delete()
         message.channel.send({
           files: [{
