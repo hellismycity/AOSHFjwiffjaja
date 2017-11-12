@@ -144,6 +144,12 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
   }
+  
+    if(message.content.startsWith(prefix + 'rate')) {
+      const args = message.content.split(" ").slice(1).join(" ")
+      if(!args) return message.channel.send(`I'd Rate **{message.author.username} ${(Math.floor(Math.random() * 101))}\/100`)
+  message.channel.send(`I'd Rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
+}
                        
 
 if (message.content.startsWith(prefix + 'avatar')) {
@@ -569,6 +575,7 @@ if (!votes.body.includes(message.author.id)) {
    embed.addField("Utility `(5)`", "`userinfo` `serverinfo` `stats` `discrim`, `name` `quote`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `cat` `dog`", false)
+   embed.addField("Misc `(2)`", "`help` `invite`", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
 message.author.send({embed})
