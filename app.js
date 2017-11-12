@@ -253,11 +253,12 @@ const {get} = require("snekfetch");
       });
   };
   
-  if (message.content.startsWith(prefix + 'dog')) {  
-const {get} = require("snekfetch");
-      get("https://random.dog/woof.json").then(response => {
-        message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
-      });
+  if (message.content.startsWith(prefix + 'dog')) {
+    message.channel.send('Sorry, but this command does not work for an unknown reason.')
+//const {get} = require("snekfetch");
+  //    get("https://random.dog/woof.json").then(response => {
+    //    message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
+     // });
   };
   
   
