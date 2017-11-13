@@ -248,7 +248,7 @@ if (message.content.startsWith(prefix + 'quote')) {
 
 if (message.content.startsWith(prefix + 'cat')) {
   const {get} = require("snekfetch");
-      get("https://random.dog/meow").then(res => {
+      get("https://random.cat/meow").then(res => {
         const embed = new Discord.RichEmbed()
     .setImage(res.body.url)
           message.channel.send({embed});
