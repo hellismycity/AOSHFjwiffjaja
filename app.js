@@ -261,7 +261,7 @@ const {get} = require("snekfetch");
       .setImage(imageURL)
       .setTitle('Random Dog Images')
       message.channel.send({embed})
-    })
+    }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
 }
   
   
