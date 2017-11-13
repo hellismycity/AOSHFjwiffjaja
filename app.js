@@ -255,13 +255,13 @@ const {get} = require("snekfetch");
   
   if (message.content.startsWith(prefix + 'dog')) {
     const request = require('snekfetch')
- request('https://random.dog/woof.json', (e,r,b).then(=> 
+ request('https://random.dog/woof.json', (e,r,b) => {
       var imageURL = JSON.parse(b).url
       var embed = new Discord.RichEmbed()
       .setImage(imageURL)
       .setTitle('Random Dog Images')
       message.channel.send({embed})
-    }))
+    })
 }
   
   
