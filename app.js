@@ -250,7 +250,7 @@ if (message.content.startsWith(prefix + 'cat')) {
   const {get} = require("snekfetch");
       get("https://random.cat/meow").then(res => {
         const embed = new Discord.RichEmbed()
-    .setImage(res.body.url)
+    .setImage(res.body.file)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
