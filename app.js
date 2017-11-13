@@ -255,9 +255,9 @@ const {get} = require("snekfetch");
   
   if (message.content.startsWith(prefix + 'dog')) {
   const {get} = require("snekfetch");
-    const embed = new Discord.RichEmbed()
-    .setImage(res)
       get("https://random.dog/woof.json").then(res => {
+        const embed = new Discord.RichEmbed()
+    .setImage(res)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
