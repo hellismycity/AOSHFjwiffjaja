@@ -257,7 +257,7 @@ const {get} = require("snekfetch");
   const {get} = require("snekfetch");
       get("https://random.dog/woof.json").then(res => {
         const embed = new Discord.RichEmbed()
-    .setImage(res)
+    .setImage(res.body.url)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
