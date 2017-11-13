@@ -246,11 +246,13 @@ if (message.content.startsWith(prefix + 'quote')) {
 
 }
 
-if (message.content.startsWith(prefix + 'cat')) {  
-const {get} = require("snekfetch");
-      get("https://random.cat/meow").then(response => {
-        message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
-      });
+if (message.content.startsWith(prefix + 'cat')) {
+  const {get} = require("snekfetch");
+      get("https://random.dog/meow").then(res => {
+        const embed = new Discord.RichEmbed()
+    .setImage(res.body.url)
+          message.channel.send({embed});
+      }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
   
   if (message.content.startsWith(prefix + 'dog')) {
@@ -639,7 +641,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
-   embed.addField("Utility `(5)`", "`userinfo` `serverinfo` `stats` `discrim`, `name` `quote`", false)
+   embed.addField("Utility `(6)`", "`userinfo` `serverinfo` `stats` `discrim` `name` `quote`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
