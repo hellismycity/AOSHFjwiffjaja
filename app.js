@@ -255,12 +255,9 @@ const {get} = require("snekfetch");
   
   if (message.content.startsWith(prefix + 'dog')) {
     const {get} = require('snekfetch')
- get('https://random.dog/woof').then(b => {
+ get('https://random.dog/woof.json').then(b => {
       var imageURL = JSON.parse(b).url
-      var embed = new Discord.RichEmbed()
-      .setImage(imageURL)
-      .setTitle('Random Dog Images')
-      message.channel.send({embed})
+      message.channel.send(imageURL)
     }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
 }
   
