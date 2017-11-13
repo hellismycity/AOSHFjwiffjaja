@@ -257,7 +257,7 @@ const {get} = require("snekfetch");
   const {get} = require("snekfetch");
       get("https://random.dog/woof.json").then(res => {
           message.channel.send(res.body.url);
-      }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``)
+      }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
 
   
