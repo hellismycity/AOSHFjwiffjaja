@@ -254,12 +254,15 @@ const {get} = require("snekfetch");
   };
   
   if (message.content.startsWith(prefix + 'dog')) {
-    message.channel.send('Sorry, but this command does not work for an unknown reason.')
-//const {get} = require("snekfetch");
-  //    get("https://random.dog/woof.json").then(response => {
-    //    message.channel.send({files:[{attachment: response.body.file}]}).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
-     // });
-  };
+    const request = require('snekfetch')
+ request('https://random.dog/woof.json', (e,r,b).then(=> 
+      var imageURL = JSON.parse(b).url
+      var embed = new Discord.RichEmbed()
+      .setImage(imageURL)
+      .setTitle('Random Dog Images')
+      message.channel.send({embed})
+    }))
+}
   
   
 if(message.content.startsWith(prefix + 'discrim')) {
