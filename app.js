@@ -254,12 +254,12 @@ const {get} = require("snekfetch");
   };
   
   if (message.content.startsWith(prefix + 'dog')) {
-    const {get} = require('snekfetch')
- get('https://random.dog/woof.json').then(b => {
-      var imageURL = JSON.parse(b).url
-      message.channel.send(imageURL)
-    }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
-}
+  const {get} = require("snekfetch");
+      get("https://random.dog/woof.json").then(res => {
+          message.channel.send(res.body.url);
+      }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``)
+  };
+
   
   
 if(message.content.startsWith(prefix + 'discrim')) {
