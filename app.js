@@ -276,17 +276,6 @@ if (message.content.startsWith(prefix + 'cat')) {
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
-
- if (message.content.startsWith(prefix + 'neko')) {
-  const {get} = require("snekfetch");
-      get("https://nekos.life/api/neko").then(res => {
-        const embed = new Discord.RichEmbed()
-    .setImage(res.body)
-          message.channel.send({embed});
-      }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
-  };
-
-  
   
 if(message.content.startsWith(prefix + 'discrim')) {
   let args = message.content.split(" ").slice(1).join(" ")
