@@ -281,7 +281,7 @@ if (message.content.startsWith(prefix + 'cat')) {
   const {get} = require("snekfetch");
       get("https://nekos.life/api/neko").then(res => {
         const embed = new Discord.RichEmbed()
-    .setImage(res.body.url)
+    .setImage(res.body)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
