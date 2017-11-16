@@ -653,7 +653,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    message.reply(`You've been DMed a list of commands.`)
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
-   embed.addField("Fun `(3)`", "`ping` `reverse` `urban` ", false)
+   embed.addField("Fun `(4)`", "`ping` `reverse` `urban` `8ball`", false)
    embed.addField("Utility `(6)`", "`userinfo` `serverinfo` `stats` `discrim` `name` `quote`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
