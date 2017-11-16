@@ -443,7 +443,8 @@ if(message.content.startsWith(prefix + 'reverse')) {
 let args = message.content.split(" ").slice(1)
 var text = args.join(" ");
     text = text.split("").reverse().join("");
- message.channel.send(`🔄 ${text}`, disableEveryone: true)
+ message.channel.send(`🔄 ${text}`)
+  disableEveryone: true
 }
   
 if(message.content.startsWith(prefix + 'stats')) {
