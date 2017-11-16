@@ -152,7 +152,18 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
       if(!args) return message.channel.send(`I'd rate **${message.author.username}** ${(Math.floor(Math.random() * 101))}\/100`)
   message.channel.send(`I'd rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
 }
-                       
+
+if (message.content.startsWith(prefix + '8ball')) {
+  const responses = [
+   'Yes', 'No', 'Maybe', 'Definitely', 'Probably', 'Ask me later', 'Definitely not', 'Unlikely', 'Absolutely'
+]
+ let ball = message.content.split(" ").slice(1).join(" ")
+    if (!message.content.endsWith("?")) {
+    message.channel.send("That doesn't look like a question. Make sure you end your question with `?`")
+    } else {
+     message.channel.send(`:8ball: | Question: **${ball}** \n Response: ${responses[Math.floor(Math.random() * responses.length)]}`);
+  } 
+}
 
 if (message.content.startsWith(prefix + 'avatar')) {
   const mentioned = message.mentions.users.first()
