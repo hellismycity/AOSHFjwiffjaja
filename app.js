@@ -187,11 +187,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
 } 
   
  if (message.content.startsWith(prefix + 'roles')) {
-   message.channel.send({embed: {
-  color: 0x4f351,
-  title: `Roles for ${message.guild.name}:`,
-  description: `${message.guild.roles.array(r => `${r.name}`).join("\n")}`
-} })
+ message.guild.roles.map(r=>`${r.name} ${r.id}`).join('\n')
  }
   
 if (message.content.startsWith(prefix + 'quote')) {
