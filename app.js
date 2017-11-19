@@ -186,24 +186,14 @@ if (message.content.startsWith(prefix + 'avatar')) {
 }
 } 
   
- if (message.content.startsWith(prefix + 'google')) {
-    var {get} = require('snekfetch');
-    const args = message.content.split(' ').slice(1).join(' ');
-    let res = message.channel.send(`:mag: \`${args}\`...`);
-    get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyDu7_tL50kfEcegjXnYqfBxXrKqBrknkkY&cx=013036536707430787589:_pqjad5hr1a&q=${args}&alt=json`, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        var kek = JSON.parse(body)
-        //message.edit(`:mag: \`${args}\` **${kek.items[0].title}**\n__<${kek.items[0].link}>__\n${kek.items[0].snippet}`);
-        message.channel.send({embed: {
-          author: {name: `${args} - Google Search`, icon_url: `https://shady.world/assets/google.jpg`},
-          description: `[**${kek.items[0].title}**](${kek.items[0].link})\n\n${kek.items[0].snippet}`,
-          color: 0xffffff,
-          footer: {text: `${Number(kek.queries.request[0].totalResults).toLocaleString()} total results`}
-        }})
-      }
-    });
-  }
-
+ if (message.content.startsWith(prefix + 'roles')) {
+   message.channel.send({embed: {
+  color: 0x4f351,
+  title: `Roles for ${message.guild.name}:`,
+  description: `${message.guild.roles.array(r => `${r.name}`).join("\n")}`
+} })
+ }
+  
 if (message.content.startsWith(prefix + 'quote')) {
   const args = message.content.split(" ").slice(1).join(" ")
   const embed = new Discord.RichEmbed()
@@ -670,7 +660,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(4)`", "`ping` `reverse` `urban` `8ball`", false)
-   embed.addField("Utility `(7)`", "`userinfo` `serverinfo` `stats` `google` `discrim` `name` `quote`", false)
+   embed.addField("Utility `(7)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote`", false)
    embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
