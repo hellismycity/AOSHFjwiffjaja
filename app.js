@@ -169,7 +169,7 @@ if (message.content.startsWith(prefix + '8ball')) {
   const emote = client.emojis.find('name', 'lmao')
   const args = message.content.split(" ").slice(1).join(`${emote}`)
   if(!args) {
-  message.channel.send(`**lmao** \n*Usage* \n \`lmao <text>\` \n *Description* \n Adds ${emote} in every space of your message`)
+  return message.channel.send(`___**lmao**___ \n**Usage:** \`lmao <text>\` \n **Description:** Adds ${emote} in every space of your message`)
   }
   message.channel.send(`${emote} ${args} ${emote}`)
  }
