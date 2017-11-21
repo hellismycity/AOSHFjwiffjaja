@@ -165,6 +165,12 @@ if (message.content.startsWith(prefix + '8ball')) {
   } 
 }
 
+ if (message.content.startsWith(prefix + 'spookify')) {
+  const iseeu = client.emojis.get('name', 'iseeyoublob')
+  const args = message.content.split(" ").slice(1).join(`${iseeu}`)
+  message.channel.send(`${iseeu} ${args} ${iseeu}`)
+ }
+  
 if (message.content.startsWith(prefix + 'avatar')) {
   const mentioned = message.mentions.users.first()
 
