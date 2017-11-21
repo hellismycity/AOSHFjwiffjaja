@@ -165,10 +165,13 @@ if (message.content.startsWith(prefix + '8ball')) {
   } 
 }
 
- if (message.content.startsWith(prefix + 'spookify')) {
-  const iseeu = client.emojis.find('name', 'iseeyoublob')
-  const args = message.content.split(" ").slice(1).join(`${iseeu}`)
-  message.channel.send(`${iseeu} ${args} ${iseeu}`)
+ if (message.content.startsWith(prefix + 'lmao')) {
+  const emote = client.emojis.find('name', 'lmao')
+  const args = message.content.split(" ").slice(1).join(`${emote}`)
+  if(!args) {
+  message.channel.send(`**lmao** \n*Usage* \n \`lmao <text>\` \n *Description* \n Adds ${lmao} in every space of your message`)
+  }
+  message.channel.send(`${emote} ${args} ${emote}`)
  }
   
 if (message.content.startsWith(prefix + 'avatar')) {
