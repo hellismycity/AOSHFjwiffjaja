@@ -187,7 +187,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
 } 
   
  if (message.content.startsWith(prefix + 'roles')) {
- message.channel.send(`${message.guild.roles.map(r=>` ${r.name}    ${r.id}`).join('\n')}`, { code: "fix" } )
+ message.channel.send(`${message.guild.roles.map(r=>`# ${r.name}  //  ${r.id}`).join('\n')}`, { code: "md" } )
  }
   
 if (message.content.startsWith(prefix + 'quote')) {
