@@ -196,6 +196,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
 } 
   
  if (message.content.startsWith(prefix + 'roles')) {
+   if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
   message.channel.send(`${message.guild.roles.map(r=>`[${r.name}][${r.id}]`).join('\n')}`, { code: "md" } )
  }
   
