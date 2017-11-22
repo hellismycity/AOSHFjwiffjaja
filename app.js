@@ -490,6 +490,7 @@ require("moment-duration-format");
 }                          
   
 if(message.content.startsWith(prefix + 'serverinfo')) {
+  if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
  const arrow = client.emojis.get('373337856061472769')
 const embed = new Discord.RichEmbed()
    embed.setAuthor(`Server Information for ${message.guild.name}`)
