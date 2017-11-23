@@ -164,6 +164,19 @@ if (message.content.startsWith(prefix + '8ball')) {
      message.channel.send(`:8ball: | Question: **${ball}** \n Response: ${responses[Math.floor(Math.random() * responses.length)]}`);
   } 
 }
+  
+  if (message.content.startsWith(client.user)) {
+    const Cleverbot = require("cleverbot-node");
+const clbot = new Cleverbot;
+    let args = message.content.split(" ").slice(1).join(" ")
+     clbot.write(message.content, (response) => {
+      message.channel.startTyping();
+      setTimeout(() => {
+        message.channel.send(response.output).catch(console.error);
+        message.channel.stopTyping();
+      }, Math.random() * (1 - 3) + 1 * 1000);
+    });
+  }
 
  if (message.content.startsWith(prefix + 'lmao')) {
   const emote = client.emojis.find('name', 'lmao')
