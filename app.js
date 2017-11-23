@@ -165,7 +165,7 @@ if (message.content.startsWith(prefix + '8ball')) {
   } 
 }
   
-  if (message.content.startsWith(client.user)) {
+  if (message.content.startsWith(prefixMention)) {
     const Cleverbot = require("cleverbot-node");
 const clbot = new Cleverbot;
     clbot.configure({botapi: process.env.CLEVERBOT_TOKEN});
