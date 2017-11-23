@@ -166,17 +166,12 @@ if (message.content.startsWith(prefix + '8ball')) {
 }
   
   if (message.content.startsWith(prefixMention)) {
-    const Cleverbot = require("cleverbot-node");
-const clbot = new Cleverbot;
-    clbot.configure({botapi: process.env.CLEVERBOT_TOKEN});
     let args = message.content.split(" ").slice(1).join(" ")
-     clbot.write(message.content, (response) => {
-      message.channel.startTyping();
-      setTimeout(() => {
-        message.channel.send(response.output).catch(console.error);
-        message.channel.stopTyping();
-      }, Math.random() * (1 - 3) + 1 * 1000);
-    });
+  var cleverbot = require("cleverbot.io"),
+bot = new cleverbot(process.env.cb_user, process.env.cb_token);
+    bot.ask(args, function (err, response) {
+  message.channel.send(response); // Will likely be: "Living in a lonely world"
+});
   }
 
  if (message.content.startsWith(prefix + 'lmao')) {
