@@ -168,6 +168,7 @@ if (message.content.startsWith(prefix + '8ball')) {
   if (message.content.startsWith(client.user)) {
     const Cleverbot = require("cleverbot-node");
 const clbot = new Cleverbot;
+    clbot.configure({botapi: process.env.CLEVERBOT_TOKEN});
     let args = message.content.split(" ").slice(1).join(" ")
      clbot.write(message.content, (response) => {
       message.channel.startTyping();
