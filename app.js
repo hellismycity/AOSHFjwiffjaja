@@ -174,7 +174,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        bot.ask(args, function (err, response) {
   message.channel.send(response); // Will likely be: "Living in a lonely world"
         message.channel.stopTyping();
-       }
+       })    
        });
   }
 
