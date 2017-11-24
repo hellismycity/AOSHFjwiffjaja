@@ -169,9 +169,13 @@ if (message.content.startsWith(prefix + '8ball')) {
     let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
 bot = new cleverbot(process.env.cb_user, process.env.cb_token);
-    bot.ask(args, function (err, response) {
+       message.channel.startTyping();
+      setTimeout(() => {
+       bot.ask(args, function (err, response) {
   message.channel.send(response); // Will likely be: "Living in a lonely world"
-});
+        message.channel.stopTyping();
+       }
+       });
   }
 
  if (message.content.startsWith(prefix + 'lmao')) {
