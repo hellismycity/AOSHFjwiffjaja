@@ -172,7 +172,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        message.channel.startTyping();
       setTimeout(() => {
        bot.ask(args, function (err, response) {
-  message.channel.send(response); // Will likely be: "Living in a lonely world"
+  message.channel.send(response).catch(err => message.channel.send('An error occurred! This is probably something to do with the Cleverbot API. Error:' + `\n \`\`\`${err.stack}\`\`\``))
         message.channel.stopTyping();
        })    
        });
