@@ -22,6 +22,8 @@ var prefix = 'f:'
 const fergieLyrics = ["🎶 \"Heard you in the mood for a little MILFshake\"\n*https://www.youtube.com/watch?v=bsUWK-fixiA*"]
 
 client.on('guildCreate', guild => {
+  const defaultChannel = guild.channels.find(c=> c.permissionsFor(guild.me).has("SEND_MESSAGES"));
+  defaultChannel.send("Hi, I'm Fergie! \n To see all of my commands, type `f:help` \n Full command documentation can be found at https://github.com/Fergie-bot/fergie/wiki \n You can join my server here: https://discordapp.com/invite/ZXugv2Z")
 let users = guild.memberCount
 let bots = guild.members.filter(m=>m.user.bot).size
 let percent = Math.floor(bots / users * 10000) / 100;
