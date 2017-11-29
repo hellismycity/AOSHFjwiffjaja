@@ -169,10 +169,8 @@ if (message.content.startsWith(prefix + '8ball')) {
   
   if (message.content.startsWith(prefixMention)) {
     let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote"]
-   if( validCommands.some(word => message.content.startsWith(prefixMention + word))) {
- return
-}
-    let args = message.content.split(" ").slice(1).join(" ")
+   if(! validCommands.some(word => message.content.startsWith(prefixMention + word))) {
+      let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
 bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        message.channel.startTyping();
@@ -182,6 +180,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
         message.channel.stopTyping();
        })    
        });
+}
   }
   
   if (message.content.startsWith(prefix + 'flipcoin')) {
