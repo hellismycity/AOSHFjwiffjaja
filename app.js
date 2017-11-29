@@ -179,7 +179,13 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        })    
        });
   }
+  
+  if (message.content.startsWith(prefix + 'flipcoin')) {
+  const coin = ['Heads', 'Tails']
+   message.reply(`You got ${coin[~~(Math.random() * 100) % 2]}!`)
+  }
 
+  
  if (message.content.startsWith(prefix + 'lmao')) {
   const emote = client.emojis.find('name', 'lmao')
   const args = message.content.split(" ").slice(1).join(`${emote}`)
@@ -259,6 +265,31 @@ if (message.content.startsWith(prefix + 'quote')) {
    message.guild.member(userToBan).ban()
    message.channel.send("👍");
    var user = message.mentions.users.first()
+}
+  
+   if (message.content.startsWith(prefix + 'kick')) {
+    const args = message.content.split(" ").slice(1).join(" ")
+  var reason = message.content.split(' ').slice(2).join(' ');
+   const userToKick = message.mentions.members.first()
+
+  if (!message.member.permissions.has("KICK_MEMBERS")) {
+    return message.channel.send('You do not have the required permissions to execute this command.');
+  }
+
+   if (message.author.id === message.mentions.users.first().id) {
+    return message.channel.send("You cannot kick yourself.")
+   }
+  if (client.user.id === message.mentions.users.first().id) {
+   return message.channel.send("I cannot kick myself.")
+  }
+  if (message.mentions.users.size === 0) {
+   return message.reply("Please mention a user to kick.");
+  }
+  if (!message.guild.member(userToKick).kickable) {
+   return message.channel.send("I cannot kick that member.")
+  }
+
+   message.guild.member(userToKick).kick()
 }
   
  if(message.content.startsWith(prefix + 'name')) {
@@ -681,9 +712,9 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    message.reply(`You've been DMed a list of commands.`)
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
-   embed.addField("Fun `(4)`", "`ping` `reverse` `urban` `8ball`", false)
+   embed.addField("Fun `(5)`", "`ping` `reverse` `flipcoin` `urban` `8ball`", false)
    embed.addField("Utility `(7)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote`", false)
-   embed.addField("Moderation `(3)`", "`ban` `softban` `hackban`", false)
+   embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
