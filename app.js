@@ -170,6 +170,7 @@ if (message.content.startsWith(prefix + '8ball')) {
   if (message.content.startsWith(prefix + 'emojify')) {
     let newmsg = message.content.replace(/[A-Za-z]/g, letter => `:regional_indicator_${letter.toLowerCase()}:`)
 message.channel.send.send(newmsg)
+  }
   
   if (message.content.startsWith(prefixMention)) {
     let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify"]
