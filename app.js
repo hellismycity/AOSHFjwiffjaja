@@ -167,8 +167,12 @@ if (message.content.startsWith(prefix + '8ball')) {
   } 
 }
   
+  if (message.content.startsWith(prefix + 'emojify')) {
+    let newmsg = .replace(/[A-Za-z]/g, letter => `:regional_indicator_${letter.toLowerCase()}:`)
+message.channel.send.send(newmsg)
+  
   if (message.content.startsWith(prefixMention)) {
-    let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote"]
+    let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify"]
    if(! validCommands.some(word => message.content.startsWith(prefixMention + word))) {
       let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
@@ -715,7 +719,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    message.reply(`You've been DMed a list of commands.`)
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
-   embed.addField("Fun `(5)`", "`ping` `reverse` `flipcoin` `urban` `8ball`", false)
+   embed.addField("Fun `(6)`", "`ping` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(7)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
