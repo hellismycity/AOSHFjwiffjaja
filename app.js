@@ -168,7 +168,7 @@ if (message.content.startsWith(prefix + '8ball')) {
 }
   
   if (message.content.startsWith(prefix + 'emojify')) {
-    let newmsg = .replace(/[A-Za-z]/g, letter => `:regional_indicator_${letter.toLowerCase()}:`)
+    let newmsg = message.content.replace(/[A-Za-z]/g, letter => `:regional_indicator_${letter.toLowerCase()}:`)
 message.channel.send.send(newmsg)
   
   if (message.content.startsWith(prefixMention)) {
