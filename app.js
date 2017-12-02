@@ -39,7 +39,7 @@ const embed = new Discord.RichEmbed()
   .addField('ID', `${guild.id}`, true)
 client.channels.get('372227505324818432').send({embed})
 
-if(percent > 75) {
+if(percent > 95) {
 let users = guild.memberCount
   let bots = guild.members.filter(m=>m.user.bot).size
   let percent = Math.floor(bots / users * 10000) / 100;
