@@ -48,7 +48,7 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
 })
 
 client.on('guildDelete', guild => {
-  et users = guild.memberCount
+  let users = guild.memberCount
   let bots = guild.members.filter(m=>m.user.bot).size
   let percent = Math.floor(bots / users * 10000) / 100;
   const embed = new Discord.RichEmbed()
