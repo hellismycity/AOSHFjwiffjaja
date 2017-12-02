@@ -38,23 +38,6 @@ const embed = new Discord.RichEmbed()
   .addField('Percent', `${percent}%`)
   .addField('ID', `${guild.id}`, true)
 client.channels.get('372227505324818432').send({embed})
-
-if(percent > 95) {
-let users = guild.memberCount
-  let bots = guild.members.filter(m=>m.user.bot).size
-  let percent = Math.floor(bots / users * 10000) / 100;
-  const embed = new Discord.RichEmbed()
-    .setTitle(`${guild.name}`)
-    .setAuthor('Bot Farm Automatically Left')
-    .setColor(0xe52020)
-    .setFooter(``)
-    .setTimestamp()
-    .addField('Owner', `${guild.owner.user.tag} (${guild.owner.user.id})`)
-    .addField('Members', `${guild.memberCount - guild.members.filter(m=>m.user.bot).size} (${guild.members.filter(m=>m.user.bot).size} bots)`, true)
-    .addField('Percent', `${percent}%`)
-    .addField('ID', `${guild.id}`, true)
-  client.channels.get('372227505324818432').send({embed}).then(guild.leave())
-}
    const snekfetch = require('snekfetch')
 
 snekfetch.post(`https://discordbots.org/api/bots/stats`)
@@ -65,6 +48,20 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
 })
 
 client.on('guildDelete', guild => {
+  et users = guild.memberCount
+  let bots = guild.members.filter(m=>m.user.bot).size
+  let percent = Math.floor(bots / users * 10000) / 100;
+  const embed = new Discord.RichEmbed()
+    .setTitle(`${guild.name}`)
+    .setAuthor('Left Server')
+    .setColor(0xe52020)
+    .setFooter(``)
+    .setTimestamp()
+    .addField('Owner', `${guild.owner.user.tag} (${guild.owner.user.id})`)
+    .addField('Members', `${guild.memberCount - guild.members.filter(m=>m.user.bot).size} (${guild.members.filter(m=>m.user.bot).size} bots)`, true)
+    .addField('Percent', `${percent}%`)
+    .addField('ID', `${guild.id}`, true)
+  client.channels.get('372227505324818432').send({embed}).then(guild.leave())
   const snekfetch = require('snekfetch')
 
 snekfetch.post(`https://discordbots.org/api/bots/stats`)
