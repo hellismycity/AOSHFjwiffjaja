@@ -228,6 +228,12 @@ if (message.content.startsWith(prefix + 'avatar')) {
   message.channel.send(`${message.guild.roles.map(r=>`[${r.name}][${r.id}]`).join('\n')}`, { code: "md" } )
  }
   
+ if (message.content.startsWith(prefix + 'why')) {
+  const snekfetch = require('snekfetch')
+  snekfetech.get('https://nekos.life/api/why').then(res =>
+ message.channel.send(res.body))
+ }
+  
 if (message.content.startsWith(prefix + 'quote')) {
   const args = message.content.split(" ").slice(1).join(" ")
   const embed = new Discord.RichEmbed()
