@@ -230,7 +230,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
   
  if (message.content.startsWith(prefix + 'why')) {
   const snekfetch = require('snekfetch')
-  snekfetech.get('https://nekos.life/api/why').then(res =>
+  snekfetch.get('https://nekos.life/api/why').then(res =>
  message.channel.send(res.body))
  }
   
