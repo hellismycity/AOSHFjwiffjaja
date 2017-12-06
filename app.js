@@ -172,7 +172,7 @@ message.channel.send(newmsg)
   }
   
   if (message.content.startsWith(prefixMention)) {
-    let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify"]
+    let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify"]
    if(! validCommands.some(word => message.content.startsWith(prefixMention + word))) {
       let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
@@ -185,6 +185,15 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        })    
        });
 }
+  }
+ 
+  if (message.content.startsWith(prefix + 'f')) {
+   const args = message.content.split(" ").slice(1).join(" ")
+   if(!args) {
+     message.channel.send(`**${message.author.tag}** paid their respects ❤`)
+   } else {
+     message.channel.send(`**message.author.tag}** paid their respects to **${args}** ❤`)
+  }
   }
   
   if (message.content.startsWith(prefix + 'flipcoin')) {
@@ -719,7 +728,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    message.reply(`You've been DMed a list of commands.`)
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
-   embed.addField("Fun `(6)`", "`ping` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
+   embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(7)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
