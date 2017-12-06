@@ -192,7 +192,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
    if(!args) {
      message.channel.send(`**${message.author.tag}** paid their respects ❤`)
    } else {
-     message.channel.send(`**message.author.tag}** paid their respects to **${args}** ❤`)
+     message.channel.send(`**${message.author.tag}** paid their respects to **${args}** ❤`)
   }
   }
   
