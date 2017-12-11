@@ -231,24 +231,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
     message.channel.send({embed});
 }
 } 
-  
-  if (message.content.startsWith(prefix + 'mock')) {
-    let args = message.content.split(" ").slice(1).join(" ")
-      
-      const mock = args
-    
-   const alternateCase = (args) => {
-  const chars = args.toUpperCase().split('');
-  for (let i = 0; i < chars.length; i += 2) {
-    chars[i] = chars[i].toLowerCase();
-  }
-  return chars.join('');
-   }
-
-     message.channel.send(alternateCase(mock.cleanContent))
-  
-};
- 
+   
   
  if (message.content.startsWith(prefix + 'roles')) {
    if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
