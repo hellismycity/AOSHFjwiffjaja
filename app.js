@@ -234,8 +234,8 @@ if (message.content.startsWith(prefix + 'avatar')) {
   
   if (message.content.startsWith(prefix + 'mock')) {
     let args = message.content.split(" ").slice(1).join(" ")
-      const grabMock = args.length === 0 ? message.channel.fetchMessages({ limit:1, before: message.id})
-      const mock = grabMock.size === 1 ? grabMock.first() : grabMock;
+      
+      const mock = args
     
    const alternateCase = (string) => {
   const chars = string.toUpperCase().split('');
