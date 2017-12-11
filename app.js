@@ -243,7 +243,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
     chars[i] = chars[i].toLowerCase();
   }
   return chars.join('');
-     
+   }
 
      message.channel.send(alternateCase(mock.cleanContent))
   
