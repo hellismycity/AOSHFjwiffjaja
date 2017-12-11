@@ -234,6 +234,9 @@ if (message.content.startsWith(prefix + 'avatar')) {
   
   if (message.content.startsWith(prefix + 'mock')) {
     let args = message.content.split(" ").slice(1).join(" ")
+      const grabMock = args.length === 0 ? message.channel.fetchMessages({ limit:1, before: message.id})
+      const mock = grabMock.size === 1 ? grabMock.first() : grabMock;
+    
    const alternateCase = (string) => {
   const chars = string.toUpperCase().split('');
   for (let i = 0; i < chars.length; i += 2) {
@@ -241,8 +244,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
   }
   return chars.join('');
      
-     const grabMock = args.length === 0 ? message.channel.fetchMessages({ limit:1, before: message.id})
-      const mock = grabMock.size === 1 ? grabMock.first() : grabMock;
+
      message.channel.send(alternateCase(mock.cleanContent)
   
 };
