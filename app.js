@@ -232,6 +232,22 @@ if (message.content.startsWith(prefix + 'avatar')) {
 }
 } 
   
+  if (message.content.startsWith(prefix + 'mock')) {
+    let args = message.content.split(" ").slice(1).join(" ")
+   const alternateCase = (string) => {
+  const chars = string.toUpperCase().split('');
+  for (let i = 0; i < chars.length; i += 2) {
+    chars[i] = chars[i].toLowerCase();
+  }
+  return chars.join('');
+     
+     const grabMock = args.length === 0 ? message.channel.fetchMessages({ limit:1, before: message.id})
+      const mock = grabMock.size === 1 ? grabMock.first() : grabMock;
+     message.channel.send(alternateCase(mock.cleanContent)
+  
+};
+ 
+  
  if (message.content.startsWith(prefix + 'roles')) {
    if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
   message.channel.send(`${message.guild.roles.map(r=>`[${r.name}][${r.id}]`).join('\n')}`, { code: "md" } )
