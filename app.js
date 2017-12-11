@@ -245,7 +245,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
   return chars.join('');
      
 
-     message.channel.send(alternateCase(mock.cleanContent)
+     message.channel.send(alternateCase(mock.cleanContent))
   
 };
  
