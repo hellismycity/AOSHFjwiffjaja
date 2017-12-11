@@ -237,8 +237,8 @@ if (message.content.startsWith(prefix + 'avatar')) {
       
       const mock = args
     
-   const alternateCase = (string) => {
-  const chars = string.toUpperCase().split('');
+   const alternateCase = (args) => {
+  const chars = args.toUpperCase().split('');
   for (let i = 0; i < chars.length; i += 2) {
     chars[i] = chars[i].toLowerCase();
   }
