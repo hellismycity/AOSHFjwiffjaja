@@ -257,6 +257,15 @@ if (message.content.startsWith(prefix + 'quote')) {
 
 }
   
+  if (message.content.startsWith(prefix + 'time')) {
+   var time = require('time')
+   let args = message.content.split(" ").slice(1).join(" ")
+   if(!args) return message.channel.send('Please provide a timezone. Valid formats are: \n `f:time UTC` or `f:time America/Texas`.')
+let a = new time.Date() 
+a.setTimezone(`${args}`).catch(e => message.channel.send(e.message))
+message.channel.send(`${a.toString()}`)
+  }
+  
   if (message.content.startsWith(prefix + 'ban')) {
     const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(' ');
