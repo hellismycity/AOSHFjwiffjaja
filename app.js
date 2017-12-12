@@ -261,10 +261,13 @@ if (message.content.startsWith(prefix + 'quote')) {
    var time = require('time')
    let args = message.content.split(" ").slice(1).join(" ")
    if(!args) return message.channel.send('Please provide a timezone. Valid formats are: \n `f:time UTC` or `f:time America/Texas`.')
-let a = new time.Date() 
+let a = new time.Date()
+try {
 a.setTimezone(`${args}`)
-   .catch(e => message.channel.send(e.message))
 message.channel.send(`${a.toString()}`)
+} catch (e) {
+message.channel.send(e.message)
+}
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
