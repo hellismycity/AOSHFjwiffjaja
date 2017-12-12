@@ -264,7 +264,7 @@ if (message.content.startsWith(prefix + 'quote')) {
 let a = new time.Date()
 try {
 a.setTimezone(`${args}`)
-message.channel.send(`${a.toString()}`)
+message.channel.send(`Time in ${args}: ${a.toString()}`)
 } catch (e) {
 message.channel.send(e.message)
 }
