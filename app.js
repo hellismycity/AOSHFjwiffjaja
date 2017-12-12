@@ -264,7 +264,15 @@ if (message.content.startsWith(prefix + 'quote')) {
 let a = new time.Date()
 try {
 a.setTimezone(`${args}`)
-message.channel.send(`Time in ${args}: ${a.toString()}`)
+const embed = new Discord.RichEmbed()
+  .setAuthor(`Time in ${args}`)
+
+  .setColor(message.member.displayColor)
+ .addField('Date', `${a.getDate()}`, true)
+ .addFied('Day', `${a.getDay()}`, true)
+ .addField('Time', `${a.getHours()}`, true)
+message.channel.send(embed)
+// message.channel.send(`Time in ${args}: ${a.toString()}`)
 } catch (e) {
 message.channel.send(e.message)
 }
