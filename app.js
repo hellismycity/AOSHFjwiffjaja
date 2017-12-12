@@ -263,7 +263,7 @@ if (message.content.startsWith(prefix + 'quote')) {
    if(!args) return message.channel.send('Please provide a timezone. Valid formats are: \n `f:time UTC` or `f:time America/Texas`.')
 let a = new time.Date() 
 a.setTimezone(`${args}`)
-message.channel.send(`${a.toString()}`)
+message.channel.send(`${a.toString()}`).catch(e => message.channel.send(e.message))
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
