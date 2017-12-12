@@ -264,9 +264,7 @@ if (message.content.startsWith(prefix + 'quote')) {
 let a = new time.Date() 
 a.setTimezone(`${args}`)
 message.channel.send(`${a.toString()}`)
-  } catch (e) {
-   message.channel.send(e.message)
-  }
+  } 
   
   if (message.content.startsWith(prefix + 'ban')) {
     const args = message.content.split(" ").slice(1).join(" ")
