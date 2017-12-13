@@ -290,7 +290,7 @@ message.channel.send(e.message)
   if (client.user.id === message.mentions.users.first().id) {
    return message.channel.send("I cannot ban myself.")
   }
-  if (!args)
+  if (!args) {
    return message.reply("Please mention a user or use an ID.");
   }
   if (!message.guild.member(userToBan).bannable) {
@@ -302,7 +302,8 @@ message.channel.send(e.message)
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n`, e.message, { code: true })
     }
-
+}
+ 
   
    if (message.content.startsWith(prefix + 'kick')) {
     const args = message.content.split(" ").slice(1).join(" ")
