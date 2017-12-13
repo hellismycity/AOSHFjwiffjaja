@@ -302,7 +302,7 @@ message.channel.send(e.message)
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n`, e.message, { code: true })
     }
-}
+
   
    if (message.content.startsWith(prefix + 'kick')) {
     const args = message.content.split(" ").slice(1).join(" ")
