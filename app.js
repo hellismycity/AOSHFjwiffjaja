@@ -273,7 +273,7 @@ message.channel.send(e.message)
   if (message.content.startsWith(prefix + 'ban')) {
     const args = message.content.split(" ").slice(1).join(" ")
   var reasonbase = message.content.split(' ').slice(2).join(' ');
-    let reason = `[${message.author.tag}]: ${reason}` || `[${message.author.tag}] No reason given` 
+    let reason = `[${message.author.tag}]: ${reasonbase}` || `[${message.author.tag}] No reason given` 
    const userToBan = message.mentions.users.first() || message.guild.members.get(args) || message.member;
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
