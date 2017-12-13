@@ -278,8 +278,8 @@ message.channel.send(e.message)
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
   }
-    if(!client.user.permissions.has("BAN_MEMBERS")) {
-     return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission. 
+    if(!msg.guild.member(client.user).permissions.has("BAN_MEMBERS")) {
+     return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission.')
     }
    
    try {
