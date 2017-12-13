@@ -272,7 +272,8 @@ message.channel.send(e.message)
   
   if (message.content.startsWith(prefix + 'ban')) {
     const args = message.content.split(" ").slice(1).join(" ")
-  var reason = message.content.split(' ').slice(2).join(' ');
+  var reasonbase = message.content.split(' ').slice(2).join(' ');
+    let reason = `[${message.author.tag}]: ${reason}` || `[${message.author.tag}] No reason given` 
    const userToBan = message.mentions.users.first() || message.guild.members.get(args) || message.member;
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
@@ -284,10 +285,10 @@ message.channel.send(e.message)
    
    try {
 
-   if (message.author.id === message.mentions.users.first().id) {
+   if (message.author.id === userToBan) {
     return message.channel.send("You cannot ban yourself.")
    }
-  if (client.user.id === message.mentions.users.first().id) {
+  if (client.user.id === userToBan) {
    return message.channel.send("I cannot ban myself.")
   }
   if (!args) {
@@ -297,7 +298,7 @@ message.channel.send(e.message)
    return message.channel.send(`I can't ban ${userToBan.user.username}!`)
   }
 
-   message.guild.member(userToBan).ban()
+  userToBan.ban(reason)
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
