@@ -277,6 +277,7 @@ message.channel.send(e.message)
     let reason = `[${message.author.tag}]: ${reasonbase}`
     } else {
       let reason = `[${message.author.tag}] No reason given`
+      }
    const userToBan = message.mentions.users.first() || message.guild.members.get(args) || message.member;
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
