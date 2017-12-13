@@ -273,11 +273,16 @@ message.channel.send(e.message)
   if (message.content.startsWith(prefix + 'ban')) {
     const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(' ');
-   const userToBan = message.mentions.members.first()
+   const userToBan = msg.mentions.members() || msg.guild.members.get(args) || msg.member;
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
   }
+    if(!client.user.permissions.has("BAN_MEMBERS")) {
+     return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission. 
+    }
+   
+   try {
 
    if (message.author.id === message.mentions.users.first().id) {
     return message.channel.send("You cannot ban yourself.")
@@ -285,16 +290,18 @@ message.channel.send(e.message)
   if (client.user.id === message.mentions.users.first().id) {
    return message.channel.send("I cannot ban myself.")
   }
-  if (message.mentions.users.size === 0) {
-   return message.reply("Please mention a user to ban.");
+  if (!args)
+   return message.reply("Please mention a user or use an ID.");
   }
   if (!message.guild.member(userToBan).bannable) {
-   return message.channel.send("I cannot ban that member.")
+   return message.channel.send(`I can't ban ${userToBan.user.username}!`)
   }
 
    message.guild.member(userToBan).ban()
-   message.channel.send("👍");
-   var user = message.mentions.users.first()
+   message.channel.send("👍 Successfully **banned** the user.");
+    } catch (e) {
+    message.channel.send(`An error occurred whilst attempting to execute the ban command. \n`, e.message, { code: true })
+    }
 }
   
    if (message.content.startsWith(prefix + 'kick')) {
