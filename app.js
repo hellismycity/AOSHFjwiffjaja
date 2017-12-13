@@ -300,7 +300,7 @@ message.channel.send(e.message)
    message.guild.member(userToBan).ban()
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
-    message.channel.send(`An error occurred whilst attempting to execute the ban command. \n`, \`${e.message}\`)
+    message.channel.send(`An error occurred whilst attempting to execute the ban command. + \n \`\`\`${e.stack}\`\`\``)
     }
 }
  
