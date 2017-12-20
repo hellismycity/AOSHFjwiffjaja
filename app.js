@@ -232,7 +232,24 @@ if (message.content.startsWith(prefix + 'avatar')) {
 }
 } 
    
-  
+ if (message.content.startsWith(prefix + "weather")) {
+   const snekfetch = require("snekfetch")
+const args = message.content.split(" ").slice(1)
+   try {
+      if (!args[0]) {
+        message.channel.send('Please provide a place to find weather.');
+      } else {
+        const cb = '```'; // lazy af yo
+        snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {
+       message.channel.send(`${cb}\n${data.text}\n${cb}`);
+        }).catch(console.error);
+      }
+    
+    } catch (error) {
+      message.channel.send(error.message)
+    }
+  }
+
  if (message.content.startsWith(prefix + 'roles')) {
    if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
   message.channel.send(`${message.guild.roles.map(r=>`[${r.name}][${r.id}]`).join('\n')}`, { code: "md" } )
