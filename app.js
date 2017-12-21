@@ -79,7 +79,7 @@ client.on('guildMemberAdd', member => {
       embed: {
       color: 0x4af43a,
       url: '',
-      thumbnail: {url: `${member.user.avatarURL}`},
+      thumbnail: {url: `${member.user.displayAvatarURL}`},
       title: `✅ ${member.user.tag} joined.`,
 
       description: `You now have ${guild.memberCount} members`,
@@ -95,7 +95,7 @@ client.on('guildMemberRemove', member => {
         embed: {
         color: 0xdda325,
         url: '',
-        thumbnail: {url: `${member.user.avatarURL}`},
+        thumbnail: {url: `${member.user.displayAvatarURL}`},
         title: `❌ ${member.user.tag} left.`,
 
         description: `You now have ${guild.memberCount} members`,
@@ -106,12 +106,12 @@ client.on('guildMemberRemove', member => {
  client.on('messageDelete', message => {
   let guild = message.guild;
    if(guild.id === '364774461649715202') return
-  if(!guild.channels.find('name', 'mesaage-log')) return
+  if(!guild.channels.find('name', 'mesasge-log')) return
    guild.channels.find('name', 'message-log').send('', {
       embed: {
         color: 0xdda325,
         url: '',
-        thumbnail: {url: `${message.author.avatarURL}`},
+        thumbnail: {url: `${message.author.displayAvatarURL}`},
         title: `🚫 Message deleted by ${message.author.tag}`,
 
         description: `Content: \`\`\`${message}\`\`\` `,
