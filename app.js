@@ -239,9 +239,10 @@ const args = message.content.split(" ").slice(1)
       if (!args[0]) {
         message.channel.send('Please provide a place to find weather.');
       } else {
-        const cb = '```'; // lazy af yo
+        const ascii = '```asciidoc'; 
+        const cb = '```'
         snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {
-       message.channel.send(`${cb}\n${data.text}\n${cb}`);
+       message.channel.send(`${ascii}\n${data.text}\n${cb}`);
         }).catch(console.error);
       }
     
