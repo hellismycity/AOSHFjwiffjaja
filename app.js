@@ -291,7 +291,7 @@ message.channel.send(e.message)
   if (message.content.startsWith(prefix + 'ban')) {
     const args = message.content.split(" ").slice(1).join(" ")
   var reasonbase = message.content.split(' ').slice(2).join(" ")
-   const userToBan = message.mentions.users.first() || message.guild.members.get(args) || message.member;
+   const userToBan = message.mentions.members.first() || message.guild.members.get(args) || message.member;
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
@@ -299,13 +299,13 @@ message.channel.send(e.message)
     if(!message.guild.member(client.user).permissions.has("BAN_MEMBERS")) {
      return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission.')
     }
-   
+
    try {
 
-   if (message.author.id === userToBan) {
+   if (message.author.id === userToBan.user.id) {
     return message.channel.send("You cannot ban yourself.")
    }
-  if (client.user.id === userToBan) {
+  if (client.user.id === userToBan.user.id) {
    return message.channel.send("I cannot ban myself.")
   }
   if (!args) {
@@ -321,6 +321,7 @@ message.channel.send(e.message)
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
     }
 }
+
  
   
    if (message.content.startsWith(prefix + 'kick')) {
