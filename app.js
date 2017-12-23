@@ -104,6 +104,7 @@ client.on('guildMemberRemove', member => {
 })
 
  client.on('messageDelete', message => {
+   if(message.guild.id !== "370757108020412417") return
   let guild = message.guild;
    if(message.author.bot) return
    client.channels.get('370825095301824512').send('', {
@@ -120,6 +121,8 @@ client.on('guildMemberRemove', member => {
 
 client.on('messageUpdate', (newMessage, oldMessage) => {
   let guild = newMessage.guild;
+  
+  if(guild.id !== "370757108020412417") return
    if(newMessage.author.bot) return
    client.channels.get('370825095301824512').send('', {
       embed: {
@@ -135,11 +138,12 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
 
 client.on('userUpdate', (newUser, oldUser) => {
   let guild = newUser.guild;
+  if(guild.id !== "370757108020412417") return
    client.channels.get('370825095301824512').send('', {
       embed: {
         color: newUser.displayColor,
         url: '',
-        thumbnail: {url: `${newUser.author.displayAvatarURL}`},
+        thumbnail: {url: `${newUser.user.displayAvatarURL}`},
         title: `👥 User Updated [${newUser.user.tag}]`,
 
         description: `Before: \`\`\`${newUser}\`\`\` \n After: \`\`\`${oldUser}\`\`\`  `,
