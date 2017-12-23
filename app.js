@@ -120,17 +120,17 @@ client.on('guildMemberRemove', member => {
       });
 })
 
-client.on('messageUpdate', (newMessage, oldMessage, message) => {
-  let guild = message.guild;
+client.on('messageUpdate', (newMessage, oldMessage) => {
+  let guild = newMessage.guild;
    if(guild.id === '364774461649715202') return
-   if(message.author.bot) return
+   if(newMessage.author.bot) return
   if(!guild.channels.find('name', 'message-log')) return
    guild.channels.find('name', 'message-log').send('', {
       embed: {
         color: 0xdda325,
         url: '',
-        thumbnail: {url: `${message.author.displayAvatarURL}`},
-        title: `🗒 Message updated by ${message.author.tag} `,
+        thumbnail: {url: `${newMessage.author.displayAvatarURL}`},
+        title: `🗒 Message updated by ${newMessage.author.tag} `,
 
         description: `Before: \`\`\`${oldMessage}\`\`\` \n After: \`\`\`${newMessage}\`\`\`  `,
         }
