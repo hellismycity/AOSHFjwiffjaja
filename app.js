@@ -106,6 +106,7 @@ client.on('guildMemberRemove', member => {
  client.on('messageDelete', message => {
   let guild = message.guild;
    if(guild.id === '364774461649715202') return
+   if(message.author.bot) return
   if(!guild.channels.find('name', 'message-log')) return
    guild.channels.find('name', 'message-log').send('', {
       embed: {
@@ -115,6 +116,23 @@ client.on('guildMemberRemove', member => {
         title: `🚫 Message deleted by ${message.author.tag}`,
 
         description: `Content: \`\`\`${message}\`\`\` `,
+        }
+      });
+})
+
+client.on('messageUpdate', (newMessage, oldMessage, message) => {
+  let guild = message.guild;
+   if(guild.id === '364774461649715202') return
+   if(message.author.bot) return
+  if(!guild.channels.find('name', 'message-log')) return
+   guild.channels.find('name', 'message-log').send('', {
+      embed: {
+        color: 0xdda325,
+        url: '',
+        thumbnail: {url: `${message.author.displayAvatarURL}`},
+        title: `🗒 Message updated by ${message.author.tag} `,
+
+        description: `Before: \`\`\`${oldMessage}\`\`\` \n After: \`\`\`${newMessage}\`\`\`  `,
         }
       });
 })
