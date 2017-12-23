@@ -110,7 +110,7 @@ client.on('guildMemberRemove', member => {
   if(!guild.channels.find('name', 'message-log')) return
    guild.channels.find('name', 'message-log').send('', {
       embed: {
-        color: 0xdda325,
+        color: message.member.displayColor,
         url: '',
         thumbnail: {url: `${message.author.displayAvatarURL}`},
         title: `🚫 Message deleted by ${message.author.tag}`,
@@ -127,7 +127,7 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
   if(!guild.channels.find('name', 'message-log')) return
    guild.channels.find('name', 'message-log').send('', {
       embed: {
-        color: 0xdda325,
+        color: newMessage.member.displayColor,
         url: '',
         thumbnail: {url: `${newMessage.author.displayAvatarURL}`},
         title: `🗒 Message updated by ${newMessage.author.tag} `,
