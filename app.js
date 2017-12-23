@@ -105,10 +105,8 @@ client.on('guildMemberRemove', member => {
 
  client.on('messageDelete', message => {
   let guild = message.guild;
-   if(guild.id === '364774461649715202') return
    if(message.author.bot) return
-  if(!guild.channels.find('name', 'fergie-log')) return
-   guild.channels.find('name', 'fergie-log').send('', {
+   client.channels.get('370825095301824512').send('', {
       embed: {
         color: message.member.displayColor,
         url: '',
@@ -122,10 +120,8 @@ client.on('guildMemberRemove', member => {
 
 client.on('messageUpdate', (newMessage, oldMessage) => {
   let guild = newMessage.guild;
-   if(guild.id === '364774461649715202') return
    if(newMessage.author.bot) return
-  if(!guild.channels.find('name', 'fergie-log')) return
-   guild.channels.find('name', 'fergie-log').send('', {
+   client.channels.get('370825095301824512').send('', {
       embed: {
         color: newMessage.member.displayColor,
         url: '',
@@ -139,9 +135,7 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
 
 client.on('userUpdate', (newUser, oldUser) => {
   let guild = newUser.guild;
-   if(guild.id === '364774461649715202') return
-  if(!guild.channels.find('name', 'fergie-log')) return
-   guild.channels.find('name', 'fergie-log').send('', {
+   client.channels.get('370825095301824512').send('', {
       embed: {
         color: newUser.member.displayColor,
         url: '',
