@@ -107,8 +107,8 @@ client.on('guildMemberRemove', member => {
   let guild = message.guild;
    if(guild.id === '364774461649715202') return
    if(message.author.bot) return
-  if(!guild.channels.find('name', 'message-log')) return
-   guild.channels.find('name', 'message-log').send('', {
+  if(!guild.channels.find('name', 'fergie-log')) return
+   guild.channels.find('name', 'fergie-log').send('', {
       embed: {
         color: message.member.displayColor,
         url: '',
@@ -124,18 +124,35 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
   let guild = newMessage.guild;
    if(guild.id === '364774461649715202') return
    if(newMessage.author.bot) return
-  if(!guild.channels.find('name', 'message-log')) return
-   guild.channels.find('name', 'message-log').send('', {
+  if(!guild.channels.find('name', 'fergie-log')) return
+   guild.channels.find('name', 'fergie-log').send('', {
       embed: {
         color: newMessage.member.displayColor,
         url: '',
         thumbnail: {url: `${newMessage.author.displayAvatarURL}`},
         title: `🗒 Message updated by ${newMessage.author.tag} `,
 
-        description: `Before: \`\`\`${oldMessage}\`\`\` \n After: \`\`\`${newMessage}\`\`\`  `,
+        description: `Before: \`\`\`${newMessage}\`\`\` \n After: \`\`\`${oldMessage}\`\`\`  `,
         }
       });
 })
+
+client.on('userUpdate', (newUser, oldUser) => {
+  let guild = newUser.guild;
+   if(guild.id === '364774461649715202') return
+  if(!guild.channels.find('name', 'fergie-log')) return
+   guild.channels.find('name', 'fergie-log').send('', {
+      embed: {
+        color: newUser.member.displayColor,
+        url: '',
+        thumbnail: {url: `${newUser.author.displayAvatarURL}`},
+        title: `👥 User Updated [${newUser.user.tag}]`,
+
+        description: `Before: \`\`\`${newUser}\`\`\` \n After: \`\`\`${oldUser}\`\`\`  `,
+        }
+      });
+})
+
 
 client.on('message', message => {
 if(message.author.bot) return
