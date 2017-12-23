@@ -136,21 +136,6 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
       });
 })
 
-client.on('userUpdate', (newUser, oldUser) => {
-  let guild = newUser.guild;
-  if(guild.id !== "370757108020412417") return
-   client.channels.get('370825095301824512').send('', {
-      embed: {
-        color: newUser.displayColor,
-        url: '',
-        thumbnail: {url: `${newUser.user.displayAvatarURL}`},
-        title: `👥 User Updated [${newUser.user.tag}]`,
-
-        description: `Before: \`\`\`${newUser}\`\`\` \n After: \`\`\`${oldUser}\`\`\`  `,
-        }
-      });
-})
-
 
 client.on('message', message => {
 if(message.author.bot) return
