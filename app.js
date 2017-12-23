@@ -137,7 +137,7 @@ client.on('userUpdate', (newUser, oldUser) => {
   let guild = newUser.guild;
    client.channels.get('370825095301824512').send('', {
       embed: {
-        color: newUser.member.displayColor,
+        color: newUser.displayColor,
         url: '',
         thumbnail: {url: `${newUser.author.displayAvatarURL}`},
         title: `👥 User Updated [${newUser.user.tag}]`,
