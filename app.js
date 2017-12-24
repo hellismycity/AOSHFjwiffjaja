@@ -776,7 +776,7 @@ if(message.content.startsWith(prefix + 'eval')) {
         .setTitle(`Evaluation:`)
  
         .setColor("0x4f351")
-        .setDescription(`✔ Input: \n \`\`\`js${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`js${clean(evaled)}\`\`\``)
+        .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
  
       message.channel.send({embed});
     } catch (err) {
@@ -784,7 +784,7 @@ if(message.content.startsWith(prefix + 'eval')) {
       .setTitle(`Evaluation:`)
  
       .setColor("0xff0202")
-      .setDescription(`❌ Input: \n \`\`\`js${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`js${clean(err)}\`\`\``)
+      .setDescription(`❌ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(err)}\`\`\``)
  
       message.channel.send({embed});
     }
