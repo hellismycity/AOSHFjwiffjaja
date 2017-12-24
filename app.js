@@ -765,11 +765,11 @@ if(message.content.startsWith(prefix + 'eval')) {
 if (message.author.id !== "298706728856453121") return
 let evall = message.content.split(' ')[0];
 let evalstuff = message.content.split(" ").slice(1).join(" ")
+ let evaled = eval(code);
+  evaled = require('util').inspect(evaled);
 try {
      const code = message.content.split(" ").slice(1).join(" ")
-     let evaled = eval(code);
      if (typeof evaled !== 'string')
-       evaled = require('util').inspect(evaled);
 
        const embed = new Discord.RichEmbed()
        .setTitle(`Evaluation:`)
