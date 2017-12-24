@@ -5,8 +5,9 @@ const client = new Discord.Client({
 const urban = require('urban.js')
 
 client.on('ready', () => {
-var statuses = [`type fergie, help!`, `with ${client.users.size} users!`, `in ${client.guilds.size} guilds!`, `in ${client.channels.size} channels!`, `type f:help!`]
-client.user.setPresence({ game: { name: `${statuses[Math.floor(Math.random() * statuses.length)]}`, type: 0 } });
+// var statuses = [`type fergie, help!`, `with ${client.users.size} users!`, `in ${client.guilds.size} guilds!`, `in ${client.channels.size} channels!`, `type f:help!`]
+//client.user.setPresence({ game: { name: `${statuses[Math.floor(Math.random() * statuses.length)]}`, type: 0 } });
+  client.user.setGame("Happy holidays! 🎄")
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
