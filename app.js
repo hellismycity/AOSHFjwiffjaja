@@ -779,11 +779,11 @@ let output = `${clean(evaled)}`
        .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
 
      message.channel.send({embed})
-  if (output.length > 1992) {
+   } catch (err) {
+     if (output.length > 1992) {
     message.channel.send("The eval output was too large, so I put it in a .txt file.") 
     message.channel.send(new MessageAttachment(Buffer.from(output), "output.txt")) 
       }
-   } catch (err) {
      const embed = new Discord.RichEmbed()
      .setTitle(`Evaluation:`)
 
@@ -795,7 +795,7 @@ let output = `${clean(evaled)}`
  }
 
     if (message.content.startsWith(prefix + 'say')) {
-    if (!["298706728856453121", "229552088525438977"].includes(message.author.id)) return;
+    if (message.author.id !== "298706728856453121") return
     let args = message.content.split(' ').slice(1).join(' ')
     message.delete();
     message.channel.send(`${args}`)
