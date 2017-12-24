@@ -768,7 +768,7 @@ let evalstuff = message.content.split(" ").slice(1).join(" ")
 try {
      const code = message.content.split(" ").slice(1).join(" ")
      let evaled = eval(code);
-
+let output = `${clean(evaled)}`
      if (typeof evaled !== 'string')
        evaled = require('util').inspect(evaled);
 
@@ -779,9 +779,10 @@ try {
        .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
 
      message.channel.send({embed})
-  if (clean(evaled).length > 1992 {
-    message.channel.send("The eval output was too large, so I put it in a .txt file.", new MessageAttachment(Buffer.from(clean(evaled), "output.txt"))) 
-      })
+  if (output.length > 1992 {
+    message.channel.send("The eval output was too large, so I put it in a .txt file.") 
+    message.channel.send(new MessageAttachment(Buffer.from(output), "output.txt")) 
+      }
    } catch (err) {
      const embed = new Discord.RichEmbed()
      .setTitle(`Evaluation:`)
