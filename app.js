@@ -746,42 +746,6 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
     message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
   }
 
-  if (message.content.startsWith(prefix + 'order')) {
-    let orderMenuItem = message.content.split(' ').slice(1).join(' ');
-    let orderChannel = message.guild.channels.find("name", "order-requests")
-    if (!["298706728856453121", "229552088525438977"].includes(message.author.id)) {
-      return message.reply("Sorry! This command is developer only until it becomes stable.")
-    }
-
-    if (!orderMenuItem) {
-      return message.reply("You didn't provide any arguments.")
-    }
-
-    if (!orderChannel) {
-      return message.reply("I cannot log the order as there's no \"order-requests\" channel.")
-    }
-
-    if (orderMenuItem !== "Milf") {
-      return message.reply("Sorry, that item is not on the menu.")
-    } else if (orderMenuItem !== "Fergburger"){
-      return message.reply("Sorry, that item is not on the menu.")
-    } else {
-    message.reply("Coming right up!")
-    orderChannel.send('', {
-      embed: {
-        color: 0xa5a5a5,
-        author: {
-          name: message.author.tag,
-          icon_url: message.author.avatarURL
-        },
-        url: '',
-        description: `**Order:** ${orderMenuItem}`,
-        timestamp: new Date(),
-        }
-      });
-    }
-  }
-
 
  if (message.content.startsWith(prefix + 'help')) {
    message.reply(`You've been DMed a list of commands.`)
@@ -814,7 +778,10 @@ try {
        .setColor("0x4f351")
        .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
 
-     message.channel.send({embed});
+     message.channel.send({embed})
+  if (clean(evaled).length > 1992 {
+    message.channel.send("The eval output was too large, so I put it in a .txt file.", new MessageAttachment(Buffer.from(clean(evaled), "output.txt"))) 
+      })
    } catch (err) {
      const embed = new Discord.RichEmbed()
      .setTitle(`Evaluation:`)
