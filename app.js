@@ -769,7 +769,6 @@ let evalstuff = message.content.split(" ").slice(1).join(" ")
   evaled = require('util').inspect(evaled);
 try {
      const code = message.content.split(" ").slice(1).join(" ")
-     if (typeof evaled !== 'string')
 
        const embed = new Discord.RichEmbed()
        .setTitle(`Evaluation:`)
