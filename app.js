@@ -762,30 +762,33 @@ message.author.send({embed})
 }
 
 if(message.content.startsWith(prefix + 'eval')) {
-if (message.author.id !== "298706728856453121") return
- const code = message.content.split(" ").slice(1).join(" ")
- let evaled = eval(code);
-  evaled = require('util').inspect(evaled);
-try {
-
-       const embed = new Discord.RichEmbed()
-       .setTitle(`Evaluation:`)
-
-       .setColor("0x4f351")
-       .setDescription(`✔ Input: \n \`\`\`${code}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
-
-     message.channel.send({embed})
-   } catch (err) {
-     
-     const embed = new Discord.RichEmbed()
-     .setTitle(`Evaluation:`)
-
-     .setColor("0xff0202")
-     .setDescription(`❌ Input: \n \`\`\`${code}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(err)}\`\`\``)
-
-     message.channel.send({embed});
-   }
- }
+ if (message.author.id !== "298706728856453121") return
+ let evall = message.content.split(' ')[0];
+ let evalstuff = message.content.split(" ").slice(1).join(" ")
+ try {
+      const code = message.content.split(" ").slice(1).join(" ")
+      let evaled = eval(code);
+ 
+      if (typeof evaled !== 'string')
+        evaled = require('util').inspect(evaled);
+ 
+        const embed = new Discord.RichEmbed()
+        .setTitle(`Evaluation:`)
+ 
+        .setColor("0x4f351")
+        .setDescription(`✔ Input: \n \`\`\`js${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`js${clean(evaled)}\`\`\``)
+ 
+      message.channel.send({embed});
+    } catch (err) {
+      const embed = new Discord.RichEmbed()
+      .setTitle(`Evaluation:`)
+ 
+      .setColor("0xff0202")
+      .setDescription(`❌ Input: \n \`\`\`js${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`js${clean(err)}\`\`\``)
+ 
+      message.channel.send({embed});
+    }
+  }
 
     if (message.content.startsWith(prefix + 'say')) {
     if (message.author.id !== "298706728856453121") return
