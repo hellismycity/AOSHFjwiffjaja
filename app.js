@@ -785,7 +785,7 @@ try {
      .setTitle(`Evaluation:`)
 
      .setColor("0xff0202")
-     .setDescription(`❌ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(err)}\`\`\``)
+     .setDescription(`❌ Input: \n \`\`\`${code}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(err)}\`\`\``)
 
      message.channel.send({embed});
    }
