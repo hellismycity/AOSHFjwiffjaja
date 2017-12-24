@@ -779,7 +779,7 @@ let output = `${clean(evaled)}`
        .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
 
      message.channel.send({embed})
-  if (output.length > 1992 {
+  if (output.length > 1992) {
     message.channel.send("The eval output was too large, so I put it in a .txt file.") 
     message.channel.send(new MessageAttachment(Buffer.from(output), "output.txt")) 
       }
