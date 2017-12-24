@@ -779,7 +779,7 @@ try {
      let output = `${clean(evaled)}`
      if (output.length > 1992) {
     message.channel.send("The eval output was too large, so I put it in a .txt file.") 
-    message.channel.send(new MessageAttachment(Buffer.from(output), "output.txt")) 
+    message.channel.send(new Discord.MessageAttachment(Buffer.from(output), "output.txt")) 
       }
      const embed = new Discord.RichEmbed()
      .setTitle(`Evaluation:`)
