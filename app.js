@@ -763,18 +763,16 @@ message.author.send({embed})
 
 if(message.content.startsWith(prefix + 'eval')) {
 if (message.author.id !== "298706728856453121") return
-let evall = message.content.split(' ')[0];
-let evalstuff = message.content.split(" ").slice(1).join(" ")
+ const code = message.content.split(" ").slice(1).join(" ")
  let evaled = eval(code);
   evaled = require('util').inspect(evaled);
 try {
-     const code = message.content.split(" ").slice(1).join(" ")
 
        const embed = new Discord.RichEmbed()
        .setTitle(`Evaluation:`)
 
        .setColor("0x4f351")
-       .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
+       .setDescription(`✔ Input: \n \`\`\`${code}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
 
      message.channel.send({embed})
    } catch (err) {
