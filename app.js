@@ -164,7 +164,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   }
   
   if (message.content.startsWith(prefix + "setgame")) {
-   let args = message.content.slice(1).split(" ").join(" ")
+   let args = message.content.split(" ").slice(1).join(" ")
    const emoji = client.emojis.find("name", "error") 
    if (!args) {
    message.channel.send(`${emoji} ${message.author}, you need to provide arguments to change my playing status!`) 
@@ -173,7 +173,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
    message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`) 
    } else {
    client.user.setGame(args)
-     message.channel.send(":thumbsup: successfully changed playing status.")
+     message.channel.send(":thumbsup: successfully changed playing status to `${args}`")
    }
   }
   
