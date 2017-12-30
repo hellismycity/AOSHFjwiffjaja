@@ -139,10 +139,6 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
 client.on('message', message => {
 if(message.author.bot) return
 
-if(logger === "true") {
- const collector = message.channel.createMessageCollector(()=>true);
-  collector.on("collect", (collected, collector) => console.log(`[WATCHED][${collected.author.username}][#${collected.channel.name}]${collected.content}`)); 
-}
   
 const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   const prefixMention = mentionPrefix.exec(message.content);
@@ -232,6 +228,11 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
 messsage.reply("Stopped testing")
   }
   }
+  
+  if(logger === "true") {
+ const collector = message.channel.createMessageCollector(()=>true);
+  collector.on("collect", (collected, collector) => console.log(`[WATCHED][${collected.author.username}][#${collected.channel.name}]${collected.content}`)); 
+}
  
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
