@@ -234,7 +234,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
    if(logger === false) { 
   const collector = message.channel.createMessageCollector(()=>true);
      collector.on("end", (collected) => console.log("Stopped logging messages."))
-messsage.reply("Stopped testing")
+message.reply("Stopped testing")
   } 
 }
   }
