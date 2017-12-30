@@ -173,6 +173,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
    message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`) 
    } else {
    client.user.setGame(args)
+     message.channel.send(":thumbsup: successfully changed playing status.")
    }
   }
   
