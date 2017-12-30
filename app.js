@@ -226,13 +226,12 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
   if(message.content === "f:test off") {
    let logger = false
 messsage.reply("Stopped testing")
-  }
-  }
-  
+  } 
   if(logger === "true") {
  const collector = message.channel.createMessageCollector(()=>true);
   collector.on("collect", (collected, collector) => console.log(`[WATCHED][${collected.author.username}][#${collected.channel.name}]${collected.content}`)); 
 }
+  }
  
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
