@@ -174,7 +174,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
    } else {
   if(args.length < 1) game = null;
   client.user.setGame(`${args}`)
-     message.channel.send(`:thumbsup: successfully changed playing status to \`${args}`\`)
+     message.channel.send(`:thumbsup: successfully changed playing status to \`${args}\``)
    }
   }
   
