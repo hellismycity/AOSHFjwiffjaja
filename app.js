@@ -174,7 +174,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
    } else {
   if(args.length < 1) game = null;
   client.user.setGame(`${args}`)
-     message.channel.send(`:thumbsup: successfully changed playing status to \`${args}\``)
+     message.channel.send(`:thumbsup: Successfully changed playing status to \`${args}\``)
    }
   }
   
@@ -204,7 +204,7 @@ message.channel.send(newmsg)
   }
   
   if (message.content.startsWith(prefixMention)) {
-    let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify"]
+    let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify", "setgame", "weather", "time"]
    if(! validCommands.some(word => message.content.startsWith(prefixMention + word))) {
       let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
@@ -271,10 +271,10 @@ const args = message.content.split(" ").slice(1)
       if (!args[0]) {
         message.channel.send('Please provide a place to find weather.');
       } else {
-        const ascii = '```asciidoc'; 
+        const oof = '```css'; 
         const cb = '```'
         snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {
-       message.channel.send(`${ascii}\n${data.text}\n${cb}`);
+       message.channel.send(`${oof}\n${data.text}\n${cb}`);
         }).catch(console.error);
       }
     
