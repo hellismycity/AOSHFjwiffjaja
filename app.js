@@ -185,6 +185,12 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
       if(!args) return message.channel.send(`I'd rate **${message.author.username}** ${(Math.floor(Math.random() * 101))}\/100`)
   message.channel.send(`I'd rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
 }
+  
+if(message.content.startsWith(prefix + "test")) {
+ message.channel.fetchMessages({limit: 10})
+  .then(messages => message.channel.send(`messages.content`, { code: "true" }))
+  .catch(message.channel.send(error.message)); 
+}
 
 if (message.content.startsWith(prefix + '8ball')) {
   const responses = [
