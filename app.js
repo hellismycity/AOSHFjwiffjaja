@@ -232,7 +232,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
    let logger = false
    if(logger === false) { 
   const collector = message.channel.createMessageCollector(()=>true);
-     collector.on("end" => return))
+     collector.on("end", => return))
 messsage.reply("Stopped testing")
   } 
 }
