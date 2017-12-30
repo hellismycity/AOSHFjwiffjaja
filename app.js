@@ -228,6 +228,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
    let logger = false
 messsage.reply("Stopped testing")
   }
+  }
  
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
