@@ -189,7 +189,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
 if(message.content.startsWith(prefix + "test")) {
  message.channel.fetchMessages({limit: 10})
   .then(messages => message.channel.send(`messages.content`, { code: "true" }))
-  .catch(message.channel.send(error.message)); 
+  .catch(console.error); 
 }
 
 if (message.content.startsWith(prefix + '8ball')) {
