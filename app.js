@@ -166,11 +166,14 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   if (message.content.startsWith(prefix + "setgame")) {
    let args = message.content.slice(1).split(" ").join(" ")
    const emoji = client.emojis.find("name", "error") 
-   if (message.author.id !== "298706728856453121") return  message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`) 
    if (!args) {
    message.channel.send(`${emoji} ${message.author}, you need to provide arguments to change my playing status!`) 
-   }
+   } 
+   if (message.author.id !== "298706728856453121") {
+   message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`) 
+   } else {
    client.user.setGame(args)
+   }
   }
   
     if(message.content.startsWith(prefix + 'rate')) {
