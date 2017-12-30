@@ -5,9 +5,7 @@ const client = new Discord.Client({
 const urban = require('urban.js')
 
 client.on('ready', () => {
-// var statuses = [`type fergie, help!`, `with ${client.users.size} users!`, `in ${client.guilds.size} guilds!`, `in ${client.channels.size} channels!`, `type f:help!`]
-//client.user.setPresence({ game: { name: `${statuses[Math.floor(Math.random() * statuses.length)]}`, type: 0 } });
-  client.user.setGame("Happy holidays! 🎄")
+  //client.user.setGame("f:help for help!")
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
@@ -163,6 +161,16 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
+  }
+  
+  if (message.content.startsWith(prefix + "setgame")) {
+   let args = message.content.slice(1).split(" ").join(" ")
+   const emoji = client.emojis.find("name", "error") 
+   if (message.author.id !== "298706728856453121") return  message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`) 
+   if (!args) {
+   message.channel.send(`${emoji} ${message.author}, you need to provide arguments to change my playing status!`) 
+   }
+   client.user.setGame(args)
   }
   
     if(message.content.startsWith(prefix + 'rate')) {
