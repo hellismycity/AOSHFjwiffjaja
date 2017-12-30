@@ -228,6 +228,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
  const collector = message.channel.createMessageCollector(()=>true);
   collector.on("collect", (collected, collector) => console.log(`[WATCHED][${collected.author.username}][#${collected.channel.name}]${collected.content}`)); 
   }
+   }
   if(message.content === "f:test off") {
    let logger = false
    if(logger === false) { 
