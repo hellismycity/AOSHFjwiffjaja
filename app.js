@@ -221,24 +221,6 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
 }
   }
   
-  if(message.content.startsWith(prefix + "test")) {
-   if(message.content === "f:test on") {
-  let logger = true
-   if(logger === true) {
- const collector = message.channel.createMessageCollector(()=>true);
-  collector.on("collect", (collected, collector) => console.log(`[WATCHED][${collected.author.username}][#${collected.channel.name}]${collected.content}`)); 
-  }
-   }
-  if(message.content === "f:test off") {
-   let logger = false
-   if(logger === false) { 
-  const collector = message.channel.createMessageCollector(()=>true);
-     collector.on("end", (collected) => console.log("Stopped logging messages."))
-message.reply("Stopped testing")
-  } 
-}
-  }
- 
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
    if(!args) {
