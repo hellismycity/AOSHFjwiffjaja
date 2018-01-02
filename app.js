@@ -5,7 +5,8 @@ const client = new Discord.Client({
 const urban = require('urban.js')
 
 client.on('ready', () => {
-  //client.user.setGame("f:help for help!")
+  const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
+  client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
