@@ -340,6 +340,7 @@ message.channel.send(e.message)
 
    if (message.author.id === userToBan.user.id) {
     return message.channel.send("You cannot ban yourself.")
+   }
   if (!args) {
    return message.reply("Please mention a user or use an ID.");
   }
