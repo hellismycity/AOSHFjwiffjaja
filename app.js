@@ -164,7 +164,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   // For personal guild
   if (message.guild.id === "397581409256079361") {
      const regex = /(fuck(?:ing)?|dicks?|ass(?:hole)?|sucks?(?:ing)?|bitch(?:es)?|cunt(?:s)?|hoe(?:s?)|kys(?:kill yourself)?)/igm.test(message.content)
-     if(ads) {
+     if(regex) {
       message.delete()
        message.channel.send(`[${message.author}] Please do not swear.`)
      }
