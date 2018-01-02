@@ -161,6 +161,15 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   })
   }
   
+  // For personal guild
+  if (message.guild.id === "397581409256079361") {
+     const regex = /(fuck(?:ing)?|dicks?|ass(?:hole)?|sucks?(?:ing)?|bitch(?:es)?|cunt(?:s)?|hoe(?:s?)|kys(?:kill yourself)?)/igm.test(message.content)
+     if(ads) {
+      message.delete()
+       message.channel.send(`[${message.author}] Please do not swear.`)
+     }
+       }
+  
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
   }
