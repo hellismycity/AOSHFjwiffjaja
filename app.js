@@ -209,10 +209,14 @@ if (message.content.startsWith(prefix + '8ball')) {
 }
   
   if (message.content.startsWith(prefix + 'emojify')) {
+    try {
     let args = message.content.split(" ").slice(1).join(" ")
     if(!args) return message.channel.send('You must provide some characters to emojify!')
     let newmsg = args.replace(/[A-Za-z]/g, letter => `:regional_indicator_${letter.toLowerCase()}:`)
 message.channel.send(newmsg)
+    } catch (e) {
+     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
+    }
   }
   
   if (message.content.startsWith(prefixMention)) {
