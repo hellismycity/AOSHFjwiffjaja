@@ -19,7 +19,6 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
 
 var prefix = 'f:'
 
-const fergieLyrics = ["🎶 \"Heard you in the mood for a little MILFshake\"\n*https://www.youtube.com/watch?v=bsUWK-fixiA*"]
 
 client.on('guildCreate', guild => {
   const defaultChannel = guild.channels.find(c=> c.permissionsFor(guild.me).has("SEND_MESSAGES"));
@@ -240,7 +239,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
   
  if (message.content.startsWith(prefix + 'lmao')) {
   const emote = client.emojis.find('name', 'lmao')
-  const args = message.content.split(" ").slice(1).join(`${emote}`)
+  const args = message.content.split(" ").slice(1).join(` ${emote} `)
   if(!args) {
   return message.channel.send(`___**lmao**___ \n**Usage:** \`lmao <text>\` \n **Description:** Adds ${emote} in every space of your message`)
   }
@@ -431,9 +430,13 @@ if(message.content.startsWith(prefix + 'discrim')) {
 
 if(message.content.startsWith(prefix + 'hackban')) {
 let args = message.content.split(" ").slice(1).join(" ")
+try {
 message.guild.ban(args)
-message.channel.send('👍')
+message.channel.send('👍 Successfully **hackbanned** the user.')
 
+} catch (e) {
+ message.channel.send(`An error occurred whilst attempting to execute the hackban command. \n \`\`\`${e.message}\`\`\``)
+}
 }
 
 if(message.content.startsWith(prefix + 'urban')) {
