@@ -371,7 +371,7 @@ message.channel.send(e.message)
    return message.channel.send(`I can't ban ${userToBan.user.username}!`)
   }
 
-  userToKick.kick({reason: reason || null})
+  userToKick.kick(reason || null)
    message.channel.send("👍 Successfully **kicked** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the kick command. \n \`\`\`${e.message}\`\`\``)
