@@ -341,7 +341,7 @@ message.channel.send(e.message)
    if (message.author.id === userToBan.user.id) {
     return message.channel.send("You cannot ban yourself.")
    }
-  if (client.user.id === userToBan.user.id) {
+  if (client.user === userToBan) {
    return message.channel.send("I cannot ban myself.")
   }
   if (!args) {
