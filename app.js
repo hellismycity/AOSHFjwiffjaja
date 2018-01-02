@@ -139,7 +139,7 @@ client.on('messageUpdate', (newMessage, oldMessage) => {
 
 client.on('message', message => {
 if(message.author.bot) return
-
+const emoji = client.emojis.find("name", "fergie_error") 
   
 const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   const prefixMention = mentionPrefix.exec(message.content);
@@ -337,10 +337,6 @@ message.channel.send(e.message)
     }
 
    try {
-
-   if (message.author.id === userToBan.user.id) {
-    return message.channel.send("You cannot ban yourself.")
-   }
   if (!args) {
    return message.reply("Please mention a user or use an ID.");
   }
@@ -355,31 +351,31 @@ message.channel.send(e.message)
     }
 }
 
- 
-  
    if (message.content.startsWith(prefix + 'kick')) {
     const args = message.content.split(" ").slice(1).join(" ")
-  var reason = message.content.split(' ').slice(2).join(' ');
-   const userToKick = message.mentions.members.first()
+  var reason = message.content.split(' ').slice(2).join(" ")
+   const userToKick = message.mentions.members.first() || message.guild.members.get(args) || message.member;
 
   if (!message.member.permissions.has("KICK_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
   }
+    if(!message.guild.member(client.user).permissions.has("KICK_MEMBERS")) {
+     return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission.')
+    }
 
-   if (message.author.id === message.mentions.users.first().id) {
-    return message.channel.send("You cannot kick yourself.")
-   }
-  if (client.user.id === message.mentions.users.first().id) {
-   return message.channel.send("I cannot kick myself.")
-  }
-  if (message.mentions.users.size === 0) {
-   return message.reply("Please mention a user to kick.");
+   try {
+  if (!args) {
+   return message.reply("Please mention a user or use an ID.");
   }
   if (!message.guild.member(userToKick).kickable) {
-   return message.channel.send("I cannot kick that member.")
+   return message.channel.send(`I can't ban ${userToBan.user.username}!`)
   }
 
-   message.guild.member(userToKick).kick()
+  userToBan.kick({reason: reason || null})
+   message.channel.send("👍 Successfully **kick** the user.");
+    } catch (e) {
+    message.channel.send(`An error occurred whilst attempting to execute the kick command. \n \`\`\`${e.message}\`\`\``)
+    }
 }
   
  if(message.content.startsWith(prefix + 'name')) {
