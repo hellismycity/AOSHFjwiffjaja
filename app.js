@@ -377,9 +377,9 @@ message.channel.send(e.message)
   if (!args) {
    return message.reply("Please mention a user or use an ID.");
   }
-  if (!message.guild.member(userToBan).bannable) {
+ /* if (!message.guild.member(userToBan).bannable) {
    return message.channel.send(`That member cannot be banned!`)
-  }
+  } */
 
   userToBan.ban({days: 0, reason: reason || null})
    message.channel.send("👍 Successfully **banned** the user.");
