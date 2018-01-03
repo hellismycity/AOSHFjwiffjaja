@@ -5,8 +5,10 @@ const client = new Discord.Client({
 const urban = require('urban.js')
 
 client.on('ready', () => {
+  const avatars = ["https://cdn.discordapp.com/attachments/318636556006981644/398012109797195776/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012134560235521/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012248016158720/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398016034512044034/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012493722550272/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012699696562178/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012658835521546/image.jpg"]
   const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
   client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
+  client.user.setAvatar(`${avatars[Math.floor(Math.random() * avatars.length)]}`)
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
