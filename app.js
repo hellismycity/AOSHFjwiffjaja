@@ -361,8 +361,8 @@ message.channel.send(e.message)
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
-   // message.channel.send("Um yeah it broke try again later")
-    const args = message.content.split(" ").slice(1).join(" ")
+    message.channel.send("Um yeah it broke try again later")
+  /* const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToBan = message.guild.members.find("name", args) || message.guild.members.get(args)
 
@@ -377,16 +377,16 @@ message.channel.send(e.message)
   if (!args) {
    return message.reply("Please mention a user or use an ID.");
   }
- /* if (!message.guild.member(userToBan).bannable) {
+ if (!message.guild.member(userToBan).bannable) {
    return message.channel.send(`That member cannot be banned!`)
-  } */
+  } /*
 
   userToBan.ban({days: 0, reason: reason || null})
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
     } 
-} 
+}  */
 
    if (message.content.startsWith(prefix + 'kick')) {
       message.channel.send("Um yeah it broke try again later")
