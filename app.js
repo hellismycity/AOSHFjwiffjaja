@@ -362,9 +362,9 @@ message.channel.send(e.message)
   
   if (message.content.startsWith(prefix + 'ban')) {
     message.channel.send("Um yeah it broke try again later")
- /*   const args = message.content.split(" ").slice(1).join(" ")
+    const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
-   const userToBan = message.mentions.members.first() || message.guild.members.get(args) || message.member;
+   const userToBan = message.guild.members.get(args)
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
@@ -385,7 +385,7 @@ message.channel.send(e.message)
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
-    } */
+    } 
 } 
 
    if (message.content.startsWith(prefix + 'kick')) {
