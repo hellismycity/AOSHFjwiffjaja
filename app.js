@@ -218,6 +218,16 @@ if (message.content.startsWith(prefix + '8ball')) {
   })
   }
   
+   if (message.content.startsWith(prefix + 'test')) {
+   let args = message.content.split(" ").slice(1).join(" ")
+    const limit = args;
+  message.channel.fetchMessages({limit: limit})
+  .then(messages=> {
+    const replyToMsg = messages.first();
+    message.channel.send(`Fetched ${limit} messages: \`\`\`md\n${clean(replyToMsg.content)}\n\`\`\``)
+  })
+  }
+  
   if (message.content.startsWith(prefix + 'emojify')) {
     try {
     let args = message.content.split(" ").slice(1).join(" ")
