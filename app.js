@@ -211,7 +211,7 @@ if (message.content.startsWith(prefix + '8ball')) {
   if (message.content.startsWith(prefix + 'source')) {
    let args = message.content.split(" ").slice(1).join(" ")
     const replyTo = args[0];
-  message.channel.messages.fetch({limit: 1, around: replyTo})
+  message.channel.fetchMessages({limit: 1, around: replyTo})
   .then(messages=> {
     const replyToMsg = messages.first();
     message.channel.send(`Raw message with the ID of ${replyTo}: \`\`\`md\n${clean(replyToMsg.content)}\n\`\`\``)
