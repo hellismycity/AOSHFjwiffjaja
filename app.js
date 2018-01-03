@@ -222,7 +222,7 @@ if (message.content.startsWith(prefix + '8ball')) {
    let args = message.content.split(" ").slice(1).join(" ")
     const limit = args;
  message.channel.fetchMessages({limit: limit})
-		.then(messages => messages.map(m => `${m.author.tag} ${m.content}`));
+		.then(messages => messages.map(m => `${m.author.tag} ${m.content}`).join("\n"));
   }
   
   if (message.content.startsWith(prefix + 'emojify')) {
@@ -304,7 +304,7 @@ if (message.content.toLowerCase().startsWith(prefix + "info")) {
     .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
     .addField("Avatar Designer", `${client.users.get("287475779346890752").tag}`, false)
     .setColor("0x4f351")
-    .setFooter(`${client.users.get("298706728856453121").avatarURL}`, `Made with love by ${client.users.get("298706728856453121").tag}`)
+    .setFooter(`Made with love by ${client.users.get("298706728856453121").tag}`, `${client.users.get("298706728856453121").avatarURL}`)
   
     message.channel.send({embed});
 }
