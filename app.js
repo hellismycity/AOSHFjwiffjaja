@@ -302,9 +302,9 @@ if (message.content.toLowerCase().startsWith(prefix + "info")) {
   const embed = new Discord.RichEmbed()
     .setTitle(`Information about Fergie`)
     .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
-    .addField("Avatar Designer", `${client.users.get("287475779346890752").user.tag}`, false)
+    .addField("Avatar Designer", `${client.users.get("287475779346890752").tag}`, false)
     .setColor("0x4f351")
-    .setFooter(`${client.users.get("298706728856453121").displayAvatarURL}`, `Made with love by ${client.users.get("298706728856453121").user.tag}`)
+    .setFooter(`${client.users.get("298706728856453121").displayAvatarURL}`, `Made with love by ${client.users.get("298706728856453121").tag}`)
   
     message.channel.send({embed});
 }
