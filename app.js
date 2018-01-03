@@ -385,8 +385,8 @@ message.channel.send(e.message)
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
-    } 
-}  */
+    } */ 
+}  
 
    if (message.content.startsWith(prefix + 'kick')) {
       message.channel.send("Um yeah it broke try again later")
