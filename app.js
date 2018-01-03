@@ -176,7 +176,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   
   if (message.content.startsWith(prefix + "setgame")) {
    let args = message.content.split(" ").slice(1).join(" ")
-   const emoji = client.emojis.find("name", "error") 
+   const emoji = client.emojis.find("name", "fergie_error") 
    if (!args) {
    message.channel.send(`${emoji} ${message.author}, you need to provide arguments to change my playing status!`) 
    } 
@@ -246,11 +246,9 @@ message.channel.send(newmsg)
   var cleverbot = require("cleverbot.io"),
 bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        message.channel.startTyping();
-      setTimeout(() => {
        bot.ask(args, function (err, response) {
   message.channel.send(response).catch(err => message.channel.send('An error occurred! This is probably something to do with the Cleverbot API. Error:' + `\n \`\`\`${err.stack}\`\`\``))
-        message.channel.stopTyping();
-       })    
+        message.channel.stopTyping();   
        });
 }
   }
@@ -298,7 +296,18 @@ if (message.content.startsWith(prefix + 'avatar')) {
 
     message.channel.send({embed});
 }
-} 
+
+if (message.content.toLowerCase.startsWith(prefix + "info")) {
+  const embed = new Discord.RichEmbed()
+    .setTitle(`Information about Fergie`)
+    .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
+   .addField("Avatar Designer", `${client.users.get("287475779346890752").user.tag}`, false)
+    .setColor("0x4f351")
+
+  .setFooter(`${client.users.get("298706728856453121").displayAvatarURL}`, `Made with love by ${client.users.get("298706728856453121").user.tag}`)
+  
+    message.channel.send({embed});
+}
    
  if (message.content.startsWith(prefix + "weather")) {
    const snekfetch = require("snekfetch")
