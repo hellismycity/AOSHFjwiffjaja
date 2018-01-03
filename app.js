@@ -222,7 +222,7 @@ if (message.content.startsWith(prefix + '8ball')) {
    let args = message.content.split(" ").slice(1).join(" ")
     const limit = args;
  message.channel.fetchMessages({limit: limit})
-		.then(messages => message.channel.send(``\`\`${messages.join("\n")}\`\`\``));
+		.then(messages => message.channel.send(`\`\`\`${messages.join("\n")}\`\`\`\`));
   }
   
   if (message.content.startsWith(prefix + 'emojify')) {
