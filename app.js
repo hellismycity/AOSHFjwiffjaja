@@ -208,6 +208,16 @@ if (message.content.startsWith(prefix + '8ball')) {
   } 
 }
   
+  if (message.content.startsWith(prefix + 'source')) {
+   let args = message.content.split(" ").slice(1).join(" ")
+    const replyTo = args[0];
+  message.channel.messages.fetch({limit: 1, around: replyTo})
+  .then(messages=> {
+    const replyToMsg = messages.first();
+    message.channel.send(`Raw message with the ID of ${replyTo}: \`\`\`md\n${clean(replyToMsg.content)}\n\`\`\``)
+  }
+  }
+  
   if (message.content.startsWith(prefix + 'emojify')) {
     try {
     let args = message.content.split(" ").slice(1).join(" ")
@@ -394,7 +404,6 @@ message.channel.send(e.message)
 }
   
  if(message.content.startsWith(prefix + 'name')) {
-   const emoji = client.emojis.find("name", "error")
   if (!message.member.permissions.has("MANAGE_NICKNAMES")) {
     message.channel.send(`${emoji} My Apologies ${message.author}, but you must have the \`MANAGE_NICKNAMES\` permission to use this.`);
     return;
@@ -446,6 +455,12 @@ if(message.content.startsWith(prefix + 'discrim')) {
 
 if(message.content.startsWith(prefix + 'hackban')) {
 let args = message.content.split(" ").slice(1).join(" ")
+  if (!message.member.permissions.has("BAN_MEMBERS")) {
+    return message.channel.send('You do not have the required permissions to execute this command.');
+  }
+    if(!message.guild.member(client.user).permissions.has("BAN_MEMBERS")) {
+     return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission.')
+    }
 try {
 message.guild.ban(args)
 message.channel.send('👍 Successfully **hackbanned** the user.')
@@ -782,7 +797,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
-   embed.addField("Utility `(7)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote`", false)
+   embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote` `weather` `time` `source`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
