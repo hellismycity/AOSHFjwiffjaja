@@ -361,7 +361,7 @@ message.channel.send(e.message)
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
-    message.channel.send("Um yeah it broke try again later)
+    message.channel.send("Um yeah it broke try again later")
  /*   const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToBan = message.mentions.members.first() || message.guild.members.get(args) || message.member;
@@ -389,7 +389,7 @@ message.channel.send(e.message)
 } 
 
    if (message.content.startsWith(prefix + 'kick')) {
-      message.channel.send("Um yeah it broke try again later)
+      message.channel.send("Um yeah it broke try again later")
   /*  const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToKick = message.mentions.members.first() || message.guild.members.get(args) || message.member;
