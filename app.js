@@ -361,10 +361,10 @@ message.channel.send(e.message)
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
-    message.channel.send("Um yeah it broke try again later")
+   // message.channel.send("Um yeah it broke try again later")
     const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
-   const userToBan = message.guild.members.get(args)
+   const userToBan = message.mentions.users.first() || message.guild.members.get(args) 
 
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
