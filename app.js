@@ -215,7 +215,7 @@ if (message.content.startsWith(prefix + '8ball')) {
   .then(messages=> {
     const replyToMsg = messages.first();
     message.channel.send(`Raw message with the ID of ${replyTo}: \`\`\`md\n${clean(replyToMsg.content)}\n\`\`\``)
-  }
+  })
   }
   
   if (message.content.startsWith(prefix + 'emojify')) {
