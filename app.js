@@ -361,7 +361,8 @@ message.channel.send(e.message)
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
-    const args = message.content.split(" ").slice(1).join(" ")
+    message.channel.send("Um yeah it broke try again later)
+ /*   const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToBan = message.mentions.members.first() || message.guild.members.get(args) || message.member;
 
@@ -384,11 +385,12 @@ message.channel.send(e.message)
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
-    }
-}
+    } */
+} 
 
    if (message.content.startsWith(prefix + 'kick')) {
-    const args = message.content.split(" ").slice(1).join(" ")
+      message.channel.send("Um yeah it broke try again later)
+  /*  const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToKick = message.mentions.members.first() || message.guild.members.get(args) || message.member;
 
@@ -411,7 +413,7 @@ message.channel.send(e.message)
    message.channel.send("👍 Successfully **kicked** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the kick command. \n \`\`\`${e.message}\`\`\``)
-    }
+    } */
 }
   
  if(message.content.startsWith(prefix + 'name')) {
