@@ -298,7 +298,7 @@ if (message.content.startsWith(prefix + 'avatar')) {
 }
 }
 
-if (message.content.toLowerCase.startsWith(prefix + "info")) {
+if (message.content.toLowerCase().startsWith(prefix + "info")) {
   const embed = new Discord.RichEmbed()
     .setTitle(`Information about Fergie`)
     .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
