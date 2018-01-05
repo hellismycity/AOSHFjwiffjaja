@@ -384,7 +384,7 @@ console.log(userToBan.toString())
    return message.channel.send(`I can't ban that user!`)
   } 
 
-  message.mentions.members.first().ban({days: 0, reason: reason || null}) || message.guild.members.get(args).ban({days: 0, reason: reason || null})
+  message.mentions.members.first().toString().ban({days: 0, reason: reason || null})
      
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
