@@ -361,7 +361,6 @@ message.channel.send(e.message)
   } 
   
   if (message.content.startsWith(prefix + 'ban')) {
-    message.channel.send("Um yeah it broke try again later")
    const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToBan = message.mentions.users.first() || message.guild.members.get(args)
@@ -385,8 +384,8 @@ console.log(userToBan.toString())
    return message.channel.send(`I can't ban that user!`)
   } 
 
-  //userToBan.ban({days: 0, reason: reason || null})
-    message.guild.ban(userToBan.toString())
+  message.mentions.users.first().ban({days: 0, reason: reason || null}) || message.guild.ban(message.guild.members.get(args))
+     
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
