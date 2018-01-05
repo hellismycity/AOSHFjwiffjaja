@@ -360,11 +360,10 @@ message.channel.send(e.message)
 }
   } 
   
-  if (message.content.startsWith(prefix + 'ban')) {
+ /* if (message.content.startsWith(prefix + 'ban')) {
    const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToBan = message.mentions.users.first() || message.guild.members.get(args)
-console.log(userToBan.toString())
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
   }
@@ -384,13 +383,34 @@ console.log(userToBan.toString())
    return message.channel.send(`I can't ban that user!`)
   } 
 
-  message.mentions.members.first().toString().ban({days: 0, reason: reason || null})
+  message.mentions.members.first().ban({days: 0, reason: reason || null})
      
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
     }
-}  
+} */
+  
+   if(message.content.startsWith(prefix + 'ban')) {
+let args = message.content.split(" ").slice(1).join(" ")
+let reasonbase = message.content.split(" ").slice(2).join(" ")
+let reason = `[${message.author.tag}] ${reasonbase || "No reason given"}`
+try {
+  const member = message.mentions.members.first() || message.guild.members.get(args)
+   
+if(message.author.toString() === member.toString()) return message.channel.send("You can't ban yourself!")
+  if (message.member.permissions.has("BAN_MEMBERS")) {
+  if(!args) return message.channel.send('Please provide someone to ban.')
+  if(!member) return message.channel.send('Please provide a valid mention or ID.')
+ if(!member.bannable) return message.channel.send(":x: I am unable to ban that user.")
+ member.ban(reason).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``)) 
+} else {
+ message.channel.send('You must have the `BAN_MEMBERS` permission to use this command!')
+}   
+} catch (e) {
+ message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)  
+}
+} 
 
    if (message.content.startsWith(prefix + 'kick')) {
       message.channel.send("Um yeah it broke try again later")
@@ -416,7 +436,6 @@ console.log(userToBan.toString())
   userToKick.kick(reason || null)
    message.channel.send("👍 Successfully **kicked** the user.");
     } catch (e) {
-    message.channel.send(`An error occurred whilst attempting to execute the kick command. \n \`\`\`${e.message}\`\`\``)
     } */
 }
   
