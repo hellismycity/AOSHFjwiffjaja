@@ -365,7 +365,7 @@ message.channel.send(e.message)
    const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToBan = message.mentions.users.first() || message.guild.members.get(args)
-console.log(usertoBan.toString())
+console.log(userToBan.toString())
   if (!message.member.permissions.has("BAN_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
   }
