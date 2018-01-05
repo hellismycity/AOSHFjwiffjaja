@@ -396,8 +396,7 @@ let args = message.content.split(" ").slice(1).join(" ")
 let reasonbase = message.content.split(" ").slice(2).join(" ")
 let reason = `[${message.author.tag}] ${reasonbase || "No reason given"}`
 try {
- // const member = message.mentions.members.first() || message.guild.members.get(args)
-  let member = args[0]
+  const member = message.mentions.members.first() || message.guild.members.get(args)
    
 if(message.author.toString() === member.toString()) return message.channel.send("You can't ban yourself!")
   if (message.member.permissions.has("BAN_MEMBERS")) {
