@@ -385,7 +385,7 @@ console.log(userToBan.toString())
    return message.channel.send(`I can't ban that user!`)
   } 
 
-  message.guild.member(userToBan.toString()).ban({days: 0, reason: reason || null})
+  userToBan.toString().ban({days: 0, reason: reason || null})
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
