@@ -396,17 +396,19 @@ let args = message.content.split(" ").slice(1).join(" ")
 let reasonbase = message.content.split(" ").slice(2).join(" ")
 let reason = `[${message.author.tag}] ${reasonbase || "No reason given"}`
 try {
-  const member = message.mentions.members.first() || message.guild.members.get(args)
+ // const member = message.mentions.members.first() || message.guild.members.get(args)
+  let member = args[0]
    
 if(message.author.toString() === member.toString()) return message.channel.send("You can't ban yourself!")
   if (message.member.permissions.has("BAN_MEMBERS")) {
   if(!args) return message.channel.send('Please provide someone to ban.')
   if(!member) return message.channel.send('Please provide a valid mention or ID.')
  if(!member.bannable) return message.channel.send(":x: I am unable to ban that user.")
- member.ban(reason).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``)) 
+ member.ban(reason)
 } else {
  message.channel.send('You must have the `BAN_MEMBERS` permission to use this command!')
 }   
+message.channel.send(":thumbsup: Successfully **banned** the user.")
 } catch (e) {
  message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)  
 }
