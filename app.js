@@ -198,17 +198,12 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   
 if(message.content.startsWith(prefix + "test")) {
  var MAPI = require("mojang-api")
- MAPI.nameHistory('853c80ef3c3749fdaa49938b674adae6', function(err, res) {
+   const args = message.content.split(" ").slice(1).join(" ")
+MAPI.nameToUuid(`${args}`, function(err, res) {
     if (err)
         message.channel.send(err);
     else {
-        if (res.length == 1) {
-            message.channel.send(res.names + "")
-        } else {
-            var lastChange = res[res.length - 1];
-            var at = new Date(lastChange.changedToAt);
-             message.channel.send(lastChange.name + " wasn't so content with their username. They last changed their username at " + at + ".");
-        }
+        message.channel.send(res[0].name + "? No, they're " + res[0].id + " to me.");
     }
 });
 
