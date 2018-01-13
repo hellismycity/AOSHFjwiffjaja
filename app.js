@@ -197,7 +197,8 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
 }
   
 if(message.content.startsWith(prefix + "test")) {
- var MAPI = require("mojang-api")
+  message.reply('not today')
+  /* var MAPI = require("mojang-api")
    const args = message.content.split(" ").slice(1).join(" ")
 MAPI.nameToUuid(`${args}`, function(err, res) {
     if (err)
@@ -207,7 +208,7 @@ MAPI.nameToUuid(`${args}`, function(err, res) {
     }
 });
 
-}
+} */
   
 if (message.content.startsWith(prefix + '8ball')) {
   const responses = [
