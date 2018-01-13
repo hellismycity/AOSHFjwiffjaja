@@ -203,7 +203,7 @@ if(message.content.startsWith(prefix + "test")) {
         message.channel.send(err);
     else {
         if (res.length == 1) {
-            message.channel.send(res[0].name + " is very content with their existing username, because they didn't change it. Excellent job.")
+            message.channel.send(res.names + "")
         } else {
             var lastChange = res[res.length - 1];
             var at = new Date(lastChange.changedToAt);
