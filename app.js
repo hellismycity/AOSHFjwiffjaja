@@ -207,8 +207,8 @@ MAPI.nameToUuid(`${args}`, function(err, res) {
         message.channel.send(res[0].name + "? No, they're " + res[0].id + " to me.");
     }
 });
-
-} */
+ */
+} 
   
 if (message.content.startsWith(prefix + '8ball')) {
   const responses = [
