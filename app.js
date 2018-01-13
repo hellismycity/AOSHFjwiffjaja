@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client({
   disableEveryone: true
 });
-const urban = require('urban.js')
 
 client.on('ready', () => {
   const avatars = ["https://cdn.discordapp.com/attachments/318636556006981644/398012109797195776/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012134560235521/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012248016158720/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398016034512044034/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012493722550272/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012699696562178/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012658835521546/image.jpg"]
@@ -197,7 +196,24 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   message.channel.send(`I'd rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
 }
   
+if(message.content.startsWith(prefix + "test")) {
+ var MAPI = require("mojang-api")
+ MAPI.nameHistory('853c80ef3c3749fdaa49938b674adae6', function(err, res) {
+    if (err)
+        message.channel.send(err);
+    else {
+        if (res.length == 1) {
+            message.channel.send(res[0].name + " is very content with their existing username, because they didn't change it. Excellent job.")
+        } else {
+            var lastChange = res[res.length - 1];
+            var at = new Date(lastChange.changedToAt);
+             message.channel.send(lastChange.name + " wasn't so content with their username. They last changed their username at " + at + ".");
+        }
+    }
+});
 
+}
+  
 if (message.content.startsWith(prefix + '8ball')) {
   const responses = [
    'Yes', 'No', 'Maybe', 'Definitely', 'Probably', 'Ask me later', 'Definitely not', 'Unlikely', 'Absolutely'
