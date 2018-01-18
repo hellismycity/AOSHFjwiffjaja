@@ -167,7 +167,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
     message.author.send("Here you go!\n \n https://goo.gl/forms/jhQOKUKRnO1FIBOm1")
       const embed = new Discord.RichEmbed()
     .setTitle(`Form requested`)
-    .addDescription("Details:")
+    .setDescription("Details:")
     .addField("Tag", `${message.author.tag}`, false)
     .addField("ID", `${message.author.id}`, false)
     .addField("Channel", `${message.channel.name} (${message.channel.id})`, false)
