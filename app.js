@@ -162,7 +162,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   })
   }
   
-  if (message.content.toLowercase().startsWith(prefix + "nameapp")) {
+  if (message.content.toLowerCase().startsWith(prefix + "nameapp")) {
  message.react(":white_check_mark:")
     message.author.send("Here you go!\n \n https://goo.gl/forms/jhQOKUKRnO1FIBOm1")
       const embed = new Discord.RichEmbed()
