@@ -7,7 +7,7 @@ client.on('ready', () => {
   const avatars = ["https://cdn.discordapp.com/attachments/318636556006981644/398012109797195776/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012134560235521/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012248016158720/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398016034512044034/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012493722550272/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012699696562178/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012658835521546/image.jpg"]
   const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
   client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
-  client.user.setAvatar(`${avatars[Math.floor(Math.random() * avatars.length)]}`)
+setInterval(function(){ client.user.setAvatar(`${Math.floor(Math.random() * avatars.length)}`); }, 900000);
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
@@ -160,6 +160,20 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   message.channel.send('Ping?').then(m => {
     m.edit(`Pong! - Time Taken: ${m.createdTimestamp - message.createdTimestamp}ms`)
   })
+  }
+  
+  if (message.content.toLowercase().startsWith(prefix + "nameapp")) {
+ message.react(":white_check_mark:")
+    message.author.send("Here you go!\n \n https://goo.gl/forms/jhQOKUKRnO1FIBOm1")
+      const embed = new Discord.RichEmbed()
+    .setTitle(`Form requested`)
+    .addDescription("Details:")
+    .addField("Tag", `${message.author.tag}`, false)
+    .addField("ID", `${message.author.id}`, false)
+    .addField("Channel", `${message.channel.name} (${message.channel.id})`, false)
+    .setColor("0xedca3d")
+    .setTimestamp()
+    client.channels.get("372610299548794881").send(`${message.author.tag} (${message.author.id}) requested the form.`, { embed })
   }
   
   // For personal guild
