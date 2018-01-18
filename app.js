@@ -103,7 +103,7 @@ client.on('guildMemberRemove', member => {
      });
 })
 
- client.on('messageDelete', message => {
+  /* client.on('messageDelete', message => {
    if(message.guild.id !== "370757108020412417") return
   let guild = message.guild;
    if(message.author.bot) return
@@ -117,24 +117,7 @@ client.on('guildMemberRemove', member => {
         description: `Content: \`\`\`${message}\`\`\` `,
         }
       });
-})
-
-client.on('messageUpdate', (newMessage, oldMessage) => {
-  let guild = newMessage.guild;
-  
-  if(guild.id !== "370757108020412417") return
-   if(newMessage.author.bot) return
-   client.channels.get('370825095301824512').send('', {
-      embed: {
-        color: newMessage.member.displayColor,
-        url: '',
-        thumbnail: {url: `${newMessage.author.displayAvatarURL}`},
-        title: `🗒 Message updated by ${newMessage.author.tag} `,
-
-        description: `Before: \`\`\`${newMessage}\`\`\` \n After: \`\`\`${oldMessage}\`\`\`  `,
-        }
-      });
-})
+}) */
 
 
 client.on('message', message => {
