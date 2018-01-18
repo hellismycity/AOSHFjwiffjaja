@@ -449,7 +449,7 @@ message.channel.send(":thumbsup: Successfully **banned** the user.")
     } */
 }
   
- if(message.content.startsWith(prefix + 'name')) {
+ if(message.content.startsWith(prefix + 'changenick')) {
   if (!message.member.permissions.has("MANAGE_NICKNAMES")) {
     message.channel.send(`${emoji} My Apologies ${message.author}, but you must have the \`MANAGE_NICKNAMES\` permission to use this.`);
     return;
@@ -843,7 +843,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Commands`)
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
-   embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `name` `quote` `weather` `time` `source`", false)
+   embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `changenick` `quote` `weather` `time` `source`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
    embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
