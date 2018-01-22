@@ -244,7 +244,7 @@ message.channel.send(newmsg)
   
   if (message.content.startsWith(prefixMention)) {
     let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify", "setgame", "weather", "time"]
-   if(! validCommands.some(word => message.content.startsWith(prefixMention + word))) {
+   if(message.content.startsWith(prefix + validCommands)) return
       let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
 bot = new cleverbot(process.env.cb_user, process.env.cb_token);
@@ -254,7 +254,6 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
         message.channel.stopTyping();   
        });
 }
-  }
   
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
