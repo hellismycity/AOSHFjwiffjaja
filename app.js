@@ -698,7 +698,7 @@ require("moment-duration-format");
    embed.addField(`Channels`, `${client.channels.size.toLocaleString()}`, false)
    embed.addField(`Discord.js`, `${discordVersion}`, false)
    embed.addField(`Node.js`, `${process.version}`, false)
-   embed.addField(`Shards`, `${client.shard.count}`, false)
+   embed.addField(`Shards`, `${client.shard.count || "Currently no shards"}`, false)
    embed.setColor(0xffffff)
    message.channel.send({embed})
 }                          
