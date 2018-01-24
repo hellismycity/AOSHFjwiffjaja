@@ -7,7 +7,7 @@ client.on('ready', () => {
   const avatars = ["https://cdn.discordapp.com/attachments/318636556006981644/398012109797195776/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012134560235521/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012248016158720/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398016034512044034/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012493722550272/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012699696562178/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012658835521546/image.jpg"]
   const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
   client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
-setInterval(function(){ client.user.setAvatar(`${Math.floor(Math.random() * avatars.length)}`); }, 900000);
+// setInterval(function(){ client.user.setAvatar(`${Math.floor(Math.random() * avatars.length)}`); }, 900000);
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
@@ -256,22 +256,6 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        });
 }
   
-  if (message.content.toLowerCase().startsWith(prefix + "respawnshards")) {
-    if(message.author.id !== "298706728856453121" || "299175087389802496") {
-     return message.channel.send("You do not have permission to do this!")
-    }
-   const manager = new Discord.ShardingManager('./app.js', {
-  respawn: true,
-  token: process.env.BOT_TOKEN
-});
-
-manager.spawn(2);
-
-manager.on('launch', (shard) => {
-  console.log(`[RESPAWN] Spawned shard ${shard.id} / ${manager.totalShards}`)
-  message.channel.send(`Spawned shard ${shard.id} / ${manager.totalShards}`)
-}); 
-  }
   
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
@@ -707,6 +691,7 @@ require("moment-duration-format");
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Fergie Stats`)
+   embed.addField(`Shards`, `${client.shard.count}`, true)
    embed.addField(`Memory Usage`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
    embed.addField(`Uptime`, `${duration}`, true)
    embed.addField(`Users`, `${client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`, true)
