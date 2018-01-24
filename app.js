@@ -256,6 +256,23 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        });
 }
   
+  if (message.content.toLowerCase().startsWith(prefix + "restartshards")) {
+    if(message.author.id !== "298706728856453121 || 299175087389802496") {
+     message.channel.send("You do not have permission to do this!")
+    }
+   const manager = new Discord.ShardingManager('./app.js', {
+  respawn: true,
+  token: process.env.BOT_TOKEN
+});
+
+manager.spawn(2);
+
+manager.on('launch', (shard) => {
+  console.log(`[RESPAWN] Spawned shard ${shard.id} / ${manager.totalShards}`)
+  message.channel.send(`Spawned shard ${shard.id} / ${manager.totalShards}`)
+}); 
+  }
+  
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
    if(!args) {
