@@ -528,15 +528,15 @@ if(message.content.startsWith(prefix + 'urban')) {
    //message.channel.send(`\`Definition for ${args.join(' ')}\`\n\n**Definition**: ${result.body.list[0].definition}\n\n**Example**: ${result.body.list[0].example}\n\n**Author**: ${result.body.list[0].author}\n\n**Up / Down Ratio**: ${result.body.list[0].thumbs_up} :thumbsup: to ${result.body.list[0].thumbs_down} :thumbsdown:`)
    const embed = new Discord.RichEmbed()
    embed.setAuthor(`Definition for ${args}`)
-   embed.setTitle(`By ${result.body.list[0].author || "No Author"}`)
-   embed.setDescription(`${result.body.list[0].definition || "No Definition"}`)
-   embed.addField(`Example`, `${result.body.list[0].example || "No Example"}`, false)
+   embed.setTitle(`By ${result.body.list[0].author || `${emoji} No Author`}`)
+   embed.setDescription(`${result.body.list[0].definition || `${emoji} No Definition`}`)
+   embed.addField(`Example`, `${result.body.list[0].example || `${emoji} No Example`}`, false)
    embed.setColor(0xffffff)
    embed.setFooter(`👍 ${result.body.list[0].thumbs_up} | 👎 ${result.body.list[0].thumbs_down}  `)
    message.channel.send({embed})
  })
   } catch (e) {
-   message.channel.send(`${error} there was a problem with the result.`) 
+   message.channel.send(`${emoji} there was a problem with the result.`) 
   }
 }
   
