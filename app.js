@@ -257,7 +257,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
 }
   
   if (message.content.toLowerCase().startsWith(prefix + "respawnshards")) {
-    if(message.author.id !== "298706728856453121 || 299175087389802496") {
+    if(message.author.id !== "298706728856453121" || "299175087389802496") {
      return message.channel.send("You do not have permission to do this!")
     }
    const manager = new Discord.ShardingManager('./app.js', {
