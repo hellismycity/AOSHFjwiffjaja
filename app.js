@@ -517,6 +517,7 @@ message.channel.send('👍 Successfully **hackbanned** the user.')
 }
 
 if(message.content.startsWith(prefix + 'urban')) {
+  try {
   let args = message.content.split(' ').slice(1).join(' ')
   const unirest = require ('unirest')
  unirest.get(`https://mashape-community-urban-dictionary.p.mashape.com/define?term=${args}`)
@@ -534,6 +535,9 @@ if(message.content.startsWith(prefix + 'urban')) {
    embed.setFooter(`👍 ${result.body.list[0].thumbs_up} | 👎 ${result.body.list[0].thumbs_down}  `)
    message.channel.send({embed})
  })
+  } catch (e) {
+   message.channel.send(`${error} there was a problem with the result.`) 
+  }
 }
   
 if(message.content.startsWith(prefix + 'blur')) {
