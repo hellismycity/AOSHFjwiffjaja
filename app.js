@@ -494,9 +494,19 @@ if (message.content.startsWith(prefix + 'cat')) {
   };
   
 if(message.content.startsWith(prefix + 'discrim')) {
+  try {
   let args = message.content.split(" ").slice(1).join(" ")
-  const res = client.users.filter(u => u.discriminator === `${args}`).map(u => `${u.tag}  (${u.id})`);
-  message.channel.send(`\n ${res.join('\n')}`, { code: "css" }).catch(e => message.channel.send('No users found.'))
+  if(!args) {
+   return message.channel.send("Please provide a discriminator!")
+  }
+  if(args[0].length > 4) {
+   return message.channel.send("That does not look like a valid discriminator!") 
+  }
+  const res = client.users.filter(u => u.discriminator === `${args[0]}`).map(u => `${u.tag}  (${u.id})`);
+  message.channel.send(`\n ${res.join('\n') || "No users with that discriminator found"}`, { code: "css" })
+  } catch (e) {
+   message.channel.send(`An error occurred! \n \`\`\`${e.message}\`\`\``) 
+  }
 };
 
 if(message.content.startsWith(prefix + 'hackban')) {
