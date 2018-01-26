@@ -502,7 +502,7 @@ if(message.content.startsWith(prefix + 'discrim')) {
   if(args[0].length > 4) {
    return message.channel.send("That does not look like a valid discriminator!") 
   }
-  const res = client.users.filter(u => u.discriminator === `${args[0]}`).map(u => `User(s) found! \n + ${u.tag} +  ---(${u.id})---`);
+  const res = client.users.filter(u => u.discriminator === `${args[0]}`).map(u => `${u.tag} (${u.id})`);
   message.channel.send(`\n ${res.join('\n') || "- No users with that discriminator found -"}`, { code: "diff" })
   } catch (e) {
    message.channel.send(`An error occurred! \n \`\`\`${e.message}\`\`\``) 
