@@ -858,11 +858,15 @@ message.author.send({embed})
 }
 
 if(message.content.startsWith(prefix + 'eval')) {
- if (message.author.id !== "298706728856453121") return
+  let trusted = ["298706728856453121", "299175087389802496"]
+ if (message.author.id !== trusted) return
  let evall = message.content.split(' ')[0];
  let evalstuff = message.content.split(" ").slice(1).join(" ")
  try {
       const code = message.content.split(" ").slice(1).join(" ")
+      if(!code) {
+      return message.channel.send("You have to give me something to eval!") 
+      }
       let evaled = eval(code);
  
       if (typeof evaled !== 'string')
