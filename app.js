@@ -859,7 +859,7 @@ message.author.send({embed})
 
 if(message.content.startsWith(prefix + 'eval')) {
   let trusted = ["298706728856453121", "299175087389802496"]
- if (message.author.id !== trusted) return
+ if (!trusted.includes(message.author.id)) return;
  let evall = message.content.split(' ')[0];
  let evalstuff = message.content.split(" ").slice(1).join(" ")
  try {
