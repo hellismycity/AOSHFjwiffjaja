@@ -133,10 +133,10 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
     if (message.content.indexOf(thisPrefix) == 0) prefix = thisPrefix;
   }
 
- /* if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
-    let mentionMsg = "Hello, I'm Fergie! To see the commands, type `f:help`. Need more help? Come to my server! \n https://discordapp.com/invite/ZXugv2Z";
+  if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
+    let mentionMsg = "oh";
     return message.channel.send(mentionMsg);
-  } */
+  } 
 
   if (message.content.startsWith(prefix + 'ping')) {
   message.channel.send('Ping?').then(m => {
