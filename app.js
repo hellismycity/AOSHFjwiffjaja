@@ -244,7 +244,7 @@ message.channel.send(newmsg)
   if (message.content.startsWith(prefixMention)) {
     if(message.content.toLowerCase().startsWith("null")) return 
     let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify", "setgame", "weather", "time"]
-   if(message.content.startsWith(prefix + validCommands)) return
+   if(message.content.startsWith(prefixes + validCommands)) return
       let args = message.content.split(" ").slice(1).join(" ")
   var cleverbot = require("cleverbot.io"),
 bot = new cleverbot(process.env.cb_user, process.env.cb_token);
