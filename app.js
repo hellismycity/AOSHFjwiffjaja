@@ -4,10 +4,9 @@ const client = new Discord.Client({
 });
 
 client.on('ready', () => {
-  const avatars = ["https://cdn.discordapp.com/attachments/318636556006981644/398012109797195776/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012134560235521/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012248016158720/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398016034512044034/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012493722550272/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012699696562178/image.jpg", "https://cdn.discordapp.com/attachments/318636556006981644/398012658835521546/image.jpg"]
-  const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
-  client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
-// setInterval(function(){ client.user.setAvatar(`${Math.floor(Math.random() * avatars.length)}`); }, 900000);
+  //const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
+  //client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
+  client.user.setGame(`Formerly known as Fergie | i:help`)
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
@@ -18,12 +17,12 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
 });
 
-var prefix = 'f:'
+var prefix = 'i:'
 
 
 client.on('guildCreate', guild => {
   const defaultChannel = guild.channels.find(c=> c.permissionsFor(guild.me).has("SEND_MESSAGES"));
-  defaultChannel.send("Hi, I'm Fergie! \n To see all of my commands, type `f:help` \n Full command documentation can be found at https://github.com/Fergie-bot/fergie/wiki \n You can join my server here: https://discordapp.com/invite/ZXugv2Z")
+ // defaultChannel.send("Hi, I'm Fergie! \n To see all of my commands, type `f:help` \n Full command documentation can be found at https://github.com/Fergie-bot/fergie/wiki \n You can join my server here: https://discordapp.com/invite/ZXugv2Z")
 let users = guild.memberCount
 let bots = guild.members.filter(m=>m.user.bot).size
 let percent = Math.floor(bots / users * 10000) / 100;
@@ -122,22 +121,22 @@ client.on('guildMemberRemove', member => {
 
 client.on('message', message => {
 if(message.author.bot) return
-const emoji = client.emojis.find("name", "fergie_error") 
+const emoji = client.emojis.find("name", "iriserror") 
   
 const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   const prefixMention = mentionPrefix.exec(message.content);
 
-  const prefixes = ['fergie, ', 'f:', `${prefixMention}`];
+  const prefixes = ['i:', 'iris,'];
   let prefix = false;
 
   for (const thisPrefix of prefixes) {
     if (message.content.indexOf(thisPrefix) == 0) prefix = thisPrefix;
   }
 
-  if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
+ /* if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
     let mentionMsg = "Hello, I'm Fergie! To see the commands, type `f:help`. Need more help? Come to my server! \n https://discordapp.com/invite/ZXugv2Z";
     return message.channel.send(mentionMsg);
-  }
+  } */
 
   if (message.content.startsWith(prefix + 'ping')) {
   message.channel.send('Ping?').then(m => {
@@ -303,7 +302,8 @@ if (message.content.startsWith(prefix + 'avatar')) {
 }
 
 if (message.content.toLowerCase().startsWith(prefix + "info")) {
-  const embed = new Discord.RichEmbed()
+  message.channel.send(`${emoji} I'm sorry ${message.author.username}, but the info command is currently unavailable as it is being redone. Check back later!`)
+ /* const embed = new Discord.RichEmbed()
     .setTitle(`Information about Fergie`)
     .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
     .addField("Avatar Designer", `${client.users.get("287475779346890752").tag}`, false)
@@ -311,6 +311,7 @@ if (message.content.toLowerCase().startsWith(prefix + "info")) {
     .setFooter(`Made with love by ${client.users.get("298706728856453121").tag}`, `${client.users.get("298706728856453121").avatarURL}`)
   
     message.channel.send({embed});
+    */
 }
    
  if (message.content.startsWith(prefix + "weather")) {
@@ -320,10 +321,9 @@ const args = message.content.split(" ").slice(1)
       if (!args[0]) {
         message.channel.send('Please provide a place to find weather.');
       } else {
-        const oof = '```css'; 
         const cb = '```'
         snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {
-       message.channel.send(`${oof}\n${data.text}\n${cb}`);
+       message.channel.send(`${cb}\n${data.text}\n${cb}`);
         }).catch(console.error);
       }
     
@@ -560,7 +560,7 @@ var Jimp = require('jimp')
         message.channel.send({
           files: [{
             attachment: buffer,
-            name: 'bringBack-sendFile.png'
+            name: 'blurred.png'
           }]
         })
       })
@@ -573,7 +573,7 @@ var Jimp = require('jimp')
         message.channel.send({
           files: [{
             attachment: buffer,
-            name: 'bringBack-sendFile.png'
+            name: 'blurred.png'
           }]
         })
       })
@@ -591,7 +591,7 @@ var Jimp = require('jimp')
         message.channel.send({
           files: [{
             attachment: buffer,
-            name: 'bringBack-sendFile.png'
+            name: 'pixelated.png'
           }]
         })
       })
@@ -604,38 +604,7 @@ var Jimp = require('jimp')
         message.channel.send({
           files: [{
             attachment: buffer,
-            name: 'bringBack-sendFile.png'
-          }]
-        })
-      })
-    })
-  }
-} 
-  
-if(message.content.startsWith(prefix + 'blur')) {
-var Jimp = require('jimp')
-  if (message.mentions.users.size === 0) {
-    const res = message.channel.send(":stopwatch: Generating... Please be patient.")
-    Jimp.read(message.author.avatarURL, (err, avatar) => {
-      if (err) return message.channel.send(`${emoji} Failed to generate.`)
-      avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
-        message.channel.send({
-          files: [{
-            attachment: buffer,
-            name: 'bringBack-sendFile.png'
-          }]
-        })
-      })
-    })
-  } else {
-    const res = message.channel.send(":stopwatch: Generating... Please be patient.")
-    Jimp.read(message.mentions.users.first().avatarURL, (err, avatar) => {
-      if (err) return message.channel.send(`${emoji} Failed to generate.`)
-      avatar.blur(5).getBuffer(Jimp.MIME_PNG, (err, buffer) => {
-        message.channel.send({
-          files: [{
-            attachment: buffer,
-            name: 'bringBack-sendFile.png'
+            name: 'pixelated.png'
           }]
         })
       })
@@ -653,7 +622,7 @@ var Jimp = require('jimp')
         message.channel.send({
           files: [{
             attachment: buffer,
-            name: 'bringBack-sendFile.png'
+            name: 'inverted.png'
           }]
         })
       })
@@ -666,7 +635,7 @@ var Jimp = require('jimp')
         message.channel.send({
           files: [{
             attachment: buffer,
-            name: 'bringBack-sendFile.png'
+            name: 'inverted.png'
           }]
         })
       })
@@ -688,7 +657,7 @@ require("moment-duration-format");
 
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
    const embed = new Discord.RichEmbed()
-   embed.setAuthor(`Fergie Stats`)
+   embed.setAuthor(`${client.user.username} Stats`)
    embed.addField(`Memory Usage`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, false)
    embed.addField(`Uptime`, `${duration}`, false)
    embed.addField(`Users`, `${client.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()}`, false)
@@ -729,7 +698,7 @@ const embed = new Discord.RichEmbed()
    })
   }
 
-   if (message.content.startsWith(prefix + 'softban')) {
+  /* if (message.content.startsWith(prefix + 'softban')) {
    var reason = message.content.split(' ').slice(2).join(' ');
    let userToSoftBan = message.mentions.users.first()
 
@@ -770,7 +739,7 @@ const embed = new Discord.RichEmbed()
           timestamp: new Date(),
           }
         });
-  }
+  } */
 
   if(message.content.startsWith(prefix + 'achievement')) {
   const snekfetch = require('snekfetch');
@@ -794,10 +763,10 @@ const embed = new Discord.RichEmbed()
 };
   
  if(message.content.startsWith(prefix + 'userinfo')) {
-    const online = client.emojis.find("name", "fergieonline");
-    const offline = client.emojis.find("name", "fergieoffline");
-    const dnd = client.emojis.find("name", "fergiednd");
-    const idle = client.emojis.find("name", "fergieidle");
+    const online = client.emojis.find("name", "irisonline");
+    const offline = client.emojis.find("name", "irisoffline");
+    const dnd = client.emojis.find("name", "irisdnd");
+    const idle = client.emojis.find("name", "irisidle");
    let args = message.content.split(" ").slice(1).join(" ")
  const moment = require("moment");
 require("moment-duration-format");
@@ -830,17 +799,11 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
 
   message.channel.send({embed})
 };
-  
-  
-  if (message.content.startsWith(prefix + 'randomlyric')) {
-    message.channel.send(`${fergieLyrics[Math.floor(Math.random() * fergieLyrics.length)]}`)
-  }
-
 
  if (message.content.startsWith(prefix + 'help')) {
    message.reply(`You've been DMed a list of commands.`)
    const embed = new Discord.RichEmbed()
-   embed.setAuthor(`Fergie Commands`)
+   embed.setAuthor(`${client.user.username} Commands`)
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `changenick` `quote` `weather` `time` `source`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
