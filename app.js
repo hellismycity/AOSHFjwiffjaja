@@ -648,7 +648,7 @@ var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
     const res = message.channel.send(":stopwatch: Generating... Please be patient.")
     Jimp.read(message.author.avatarURL, (err, avatar) => {
-      if (err) return message.channel.send(`${emoji} Failed to generate.')
+      if (err) return message.channel.send(`${emoji} Failed to generate.`)
       avatar.invert().getBuffer(Jimp.MIME_PNG, (err, buffer) => {
         message.channel.send({
           files: [{
