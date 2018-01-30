@@ -126,7 +126,7 @@ const emoji = client.emojis.find("name", "iriserror")
 const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   const prefixMention = mentionPrefix.exec(message.content);
 
-  const prefixes = ['i:', 'iris,'];
+  const prefixes = ['i:', 'iris,', `${prefixMention}`];
   let prefix = false;
 
   for (const thisPrefix of prefixes) {
