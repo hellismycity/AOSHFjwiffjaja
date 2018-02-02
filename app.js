@@ -26,7 +26,7 @@ client.on('guildCreate', guild => {
 let users = guild.memberCount
 let bots = guild.members.filter(m=>m.user.bot).size
 let percent = Math.floor(bots / users * 10000) / 100;
-const embed = new Discord.RichEmbed()
+const embed = new Discord.MessageEmbed()
   .setTitle(`${guild.name}`)
   .setAuthor('Joined Server')
   .setColor(0x64e547)
@@ -50,7 +50,7 @@ client.on('guildDelete', guild => {
   let users = guild.memberCount
   let bots = guild.members.filter(m=>m.user.bot).size
   let percent = Math.floor(bots / users * 10000) / 100;
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
     .setTitle(`${guild.name}`)
     .setAuthor('Left Server')
     .setColor(0xe52020)
@@ -121,8 +121,8 @@ client.on('guildMemberRemove', member => {
 
 client.on('message', message => {
 if(message.author.bot) return
-const emoji = client.emojis.find("name", "iriserror") 
-  
+const emoji = client.emojis.find("name", "iriserror")
+
 const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   const prefixMention = mentionPrefix.exec(message.content);
 
@@ -136,18 +136,18 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>$`))) {
     let mentionMsg = "oh";
     return message.channel.send(mentionMsg);
-  } 
+  }
 
   if (message.content.startsWith(prefix + 'ping')) {
   message.channel.send('Ping?').then(m => {
     m.edit(`Pong! - Time Taken: ${m.createdTimestamp - message.createdTimestamp}ms`)
   })
   }
-  
+
   if (message.content.toLowerCase().startsWith(prefix + "nameapp")) {
  message.react("✅")
     message.author.send("Here you go!\n \n https://goo.gl/forms/jhQOKUKRnO1FIBOm1")
-      const embed = new Discord.RichEmbed()
+      const embed = new Discord.MessageEmbed()
     .setTitle(`Form requested`)
     .setDescription("Details:")
     .addField("Tag", `${message.author.tag}`, false)
@@ -156,7 +156,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
     .setTimestamp()
     client.channels.get("372610299548794881").send(`${message.author.tag} (${message.author.id}) requested the form.`, { embed })
   }
-  
+
   // For personal guild
   /* if (message.guild.id === "397581409256079361") {
      const regex = /(fuck(?:ing)?|dicks?|asshole?|sucks?(?:ing)?|bitch(?:es)?|cunt(?:s)?|hoe(?:s?)|kys(?:kill yourself)?|shit(?:hole|head)?)/igm.test(message.content)
@@ -165,32 +165,32 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
        message.channel.send(`[${message.author}] Please do not swear.`)
      }
        } */
-  
+
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
   }
-  
+
   if (message.content.startsWith(prefix + "setgame")) {
    let args = message.content.split(" ").slice(1).join(" ")
-   const emoji = client.emojis.find("name", "fergie_error") 
+   const emoji = client.emojis.find("name", "fergie_error")
    if (!args) {
-   message.channel.send(`${emoji} ${message.author}, you need to provide arguments to change my playing status!`) 
-   } 
+   message.channel.send(`${emoji} ${message.author}, you need to provide arguments to change my playing status!`)
+   }
    if (message.author.id !== "298706728856453121") {
-   message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`) 
+   message.channel.send(`${emoji} My Apologies ${message.author}, but you must be the bot owner to use this.`)
    } else {
   if(args.length < 1) game = null;
   client.user.setGame(`${args}`)
      message.channel.send(`:thumbsup: Successfully changed playing status to \`${args}\``)
    }
   }
-  
+
     if(message.content.startsWith(prefix + 'rate')) {
       const args = message.content.split(" ").slice(1).join(" ")
       if(!args) return message.channel.send(`I'd rate **${message.author.username}** ${(Math.floor(Math.random() * 101))}\/100`)
   message.channel.send(`I'd rate **${args}** ${(Math.floor(Math.random() * 101))}\/100`)
 }
-  
+
 if(message.content.startsWith(prefix + "test")) {
   message.reply('not today')
   /* var MAPI = require("mojang-api")
@@ -203,8 +203,8 @@ MAPI.nameToUuid(`${args}`, function(err, res) {
     }
 });
  */
-} 
-  
+}
+
 if (message.content.startsWith(prefix + '8ball')) {
   const responses = [
    'Yes', 'No', 'Maybe', 'Definitely', 'Probably', 'Ask me later', 'Definitely not', 'Unlikely', 'Absolutely'
@@ -214,9 +214,9 @@ if (message.content.startsWith(prefix + '8ball')) {
     message.channel.send("That doesn't look like a question. Make sure you end your question with `?`")
     } else {
      message.channel.send(`:8ball: | Question: **${ball}** \n Response: ${responses[Math.floor(Math.random() * responses.length)]}`);
-  } 
+  }
 }
-  
+
   if (message.content.startsWith(prefix + 'source')) {
    let args = message.content.split(" ").slice(1).join(" ")
     const replyTo = args;
@@ -226,23 +226,23 @@ if (message.content.startsWith(prefix + '8ball')) {
     message.channel.send(`Raw message with the ID of ${replyTo}: \`\`\`md\n${clean(replyToMsg.content)}\n\`\`\``)
   })
   }
-  
+
   if (message.content.startsWith(prefix + 'emojify')) {
     try {
     let args = message.content.split(" ").slice(1).join(" ")
     if(!args) return message.channel.send('You must provide some characters to emojify!')
     let newmsg = args.replace(/[A-Za-z]/g, letter => `:regional_indicator_${letter.toLowerCase()}:`)
     if(newmsg.length > 1990) {
-     message.channel.send(`${emoji} I'm sorry ${message.author}, but the output was too long to send.`) 
+     message.channel.send(`${emoji} I'm sorry ${message.author}, but the output was too long to send.`)
     }
 message.channel.send(newmsg)
     } catch (e) {
      message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
     }
   }
-  
+
   if (message.content.startsWith(prefixMention)) {
-    if(message.content.toLowerCase().startsWith("null")) return 
+    if(message.content.toLowerCase().startsWith("null")) return
     let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify", "setgame", "weather", "time"]
    if(message.content.startsWith(prefixes + validCommands)) return
       let args = message.content.split(" ").slice(1).join(" ")
@@ -251,11 +251,11 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        message.channel.startTyping();
        bot.ask(args, function (err, response) {
   message.channel.send(response).catch(err => message.channel.send('An error occurred! This is probably something to do with the Cleverbot API. Error:' + `\n \`\`\`${err.stack}\`\`\``))
-        message.channel.stopTyping();   
+        message.channel.stopTyping();
        });
 }
-  
-  
+
+
   if (message.content.startsWith(prefix + 'f')) {
    const args = message.content.split(" ").slice(1).join(" ")
    if(!args) {
@@ -264,13 +264,13 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
      message.channel.send(`**${message.author.tag}** paid their respects to **${args}** ❤`)
   }
   }
-  
+
   if (message.content.startsWith(prefix + 'flipcoin')) {
   const coin = ['Heads', 'Tails']
    message.reply(`You got ${coin[~~(Math.random() * 100) % 2]}!`)
   }
 
-  
+
  if (message.content.startsWith(prefix + 'lmao')) {
   const emote = client.emojis.find('name', 'lmao')
   const args = message.content.split(" ").slice(1).join(` ${emote} `)
@@ -279,19 +279,19 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
   }
   message.channel.send(`${emote} ${args} ${emote}`)
  }
-  
+
 if (message.content.startsWith(prefix + 'avatar')) {
   const mentioned = message.mentions.users.first()
 
   if (!mentioned) {
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
     .setTitle(`${message.author.tag}'s Avatar`)
 
     .setColor("0x4f351")
     .setImage(message.author.displayAvatarURL)
 
     message.channel.send({embed}) } else {
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
     .setTitle(`${mentioned.tag}'s Avatar`)
 
     .setColor("0x4f351")
@@ -303,17 +303,17 @@ if (message.content.startsWith(prefix + 'avatar')) {
 
 if (message.content.toLowerCase().startsWith(prefix + "info")) {
   message.channel.send(`${emoji} I'm sorry ${message.author.username}, but the info command is currently unavailable as it is being redone. Check back later!`)
- /* const embed = new Discord.RichEmbed()
+ /* const embed = new Discord.MessageEmbed()
     .setTitle(`Information about Fergie`)
     .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
     .addField("Avatar Designer", `${client.users.get("287475779346890752").tag}`, false)
     .setColor("0x4f351")
     .setFooter(`Made with love by ${client.users.get("298706728856453121").tag}`, `${client.users.get("298706728856453121").avatarURL}`)
-  
+
     message.channel.send({embed});
     */
 }
-   
+
  if (message.content.startsWith(prefix + "weather")) {
    const snekfetch = require("snekfetch")
 const args = message.content.split(" ").slice(1)
@@ -326,7 +326,7 @@ const args = message.content.split(" ").slice(1)
        message.channel.send(`${cb}\n${data.text}\n${cb}`);
         }).catch(console.error);
       }
-    
+
     } catch (error) {
       message.channel.send(error.message)
     }
@@ -336,10 +336,10 @@ const args = message.content.split(" ").slice(1)
    if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
   message.channel.send(`${message.guild.roles.map(r=>`[${r.name}][${r.id}]`).join('\n')}`, { code: "md" } )
  }
-  
+
 if (message.content.startsWith(prefix + 'quote')) {
   const args = message.content.split(" ").slice(1).join(" ")
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
   .setTitle(``)
   .setAuthor(`Quote`)
 
@@ -355,7 +355,7 @@ if (message.content.startsWith(prefix + 'quote')) {
   message.guild.channels.find('name', 'quotes').send({embed})
 
 }
-  
+
   if (message.content.startsWith(prefix + 'time')) {
    var time = require('time')
    let args = message.content.split(" ").slice(1).join(" ")
@@ -367,8 +367,8 @@ message.channel.send(`Time in **${a.getTimezoneAbbr()}**: ${a.toString()}`)
 } catch (e) {
 message.channel.send(e.message)
 }
-  } 
-  
+  }
+
  /* if (message.content.startsWith(prefix + 'ban')) {
    const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
@@ -381,7 +381,7 @@ message.channel.send(e.message)
     }
 
    try {
-   
+
    if (message.author.toString() === userToBan.toString()) {
    return message.channel.send("You cannot ban yourself!")
    }
@@ -390,23 +390,23 @@ message.channel.send(e.message)
   }
  if (!message.guild.member(userToBan).bannable) {
    return message.channel.send(`I can't ban that user!`)
-  } 
+  }
 
   message.mentions.members.first().ban({days: 0, reason: reason || null})
-     
+
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
     }
 } */
-  
+
    if(message.content.startsWith(prefix + 'ban')) {
 let args = message.content.split(" ").slice(1).join(" ")
 let reasonbase = message.content.split(" ").slice(2).join(" ")
 let reason = `[${message.author.tag}] ${reasonbase || "No reason given"}`
 try {
   const member = message.mentions.members.first() || message.guild.members.get(args)
-   
+
 if(message.author.toString() === member.toString()) return message.channel.send("You can't ban yourself!")
   if (message.member.permissions.has("BAN_MEMBERS")) {
   if(!args) return message.channel.send('Please provide someone to ban.')
@@ -415,12 +415,12 @@ if(message.author.toString() === member.toString()) return message.channel.send(
  member.ban(reason)
 } else {
  message.channel.send('You must have the `BAN_MEMBERS` permission to use this command!')
-}   
+}
 message.channel.send(":thumbsup: Successfully **banned** the user.")
 } catch (e) {
- message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)  
+ message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
 }
-} 
+}
 
    if (message.content.startsWith(prefix + 'kick')) {
       message.channel.send("Um yeah it broke try again later")
@@ -448,7 +448,7 @@ message.channel.send(":thumbsup: Successfully **banned** the user.")
     } catch (e) {
     } */
 }
-  
+
  if(message.content.startsWith(prefix + 'changenick')) {
   if (!message.member.permissions.has("MANAGE_NICKNAMES")) {
     message.channel.send(`${emoji} My Apologies ${message.author}, but you must have the \`MANAGE_NICKNAMES\` permission to use this.`);
@@ -478,21 +478,21 @@ message.channel.send(":thumbsup: Successfully **banned** the user.")
 if (message.content.startsWith(prefix + 'cat')) {
   const {get} = require("snekfetch");
       get("https://random.cat/meow").then(res => {
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
     .setImage(res.body.file)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
-  
+
   if (message.content.startsWith(prefix + 'dog')) {
   const {get} = require("snekfetch");
       get("https://random.dog/woof.json").then(res => {
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
     .setImage(res.body.url)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
   };
-  
+
 if(message.content.startsWith(prefix + 'discrim')) {
   try {
   let args = message.content.split(" ").slice(1).join(" ")
@@ -500,12 +500,12 @@ if(message.content.startsWith(prefix + 'discrim')) {
    return message.channel.send("Please provide a discriminator!")
   }
   if(args.length > 4) {
-   return message.channel.send("That does not look like a valid discriminator!") 
+   return message.channel.send("That does not look like a valid discriminator!")
   }
   const res = client.users.filter(u => u.discriminator === `${args}`).map(u => `${u.tag} (${u.id})`);
   message.channel.send(`= Users found =` + `\n${res.join('\n') || "[No one with that discriminator was found.]"}`, { code: "asciidoc" })
   } catch (e) {
-   message.channel.send(`An error occurred! \n \`\`\`${e.message}\`\`\``) 
+   message.channel.send(`An error occurred! \n \`\`\`${e.message}\`\`\``)
   }
 };
 
@@ -536,7 +536,7 @@ if(message.content.startsWith(prefix + 'urban')) {
  .end(function (result, err) {
    if(!result.body.list[0]) return message.reply('No definition found!')
    //message.channel.send(`\`Definition for ${args.join(' ')}\`\n\n**Definition**: ${result.body.list[0].definition}\n\n**Example**: ${result.body.list[0].example}\n\n**Author**: ${result.body.list[0].author}\n\n**Up / Down Ratio**: ${result.body.list[0].thumbs_up} :thumbsup: to ${result.body.list[0].thumbs_down} :thumbsdown:`)
-   const embed = new Discord.RichEmbed()
+   const embed = new Discord.MessageEmbed()
    embed.setAuthor(`Definition for ${args}`)
    embed.setTitle(`By ${result.body.list[0].author || `${emoji} No Author`}`)
    embed.setDescription(`${result.body.list[0].definition || `${emoji} No Definition`}`)
@@ -546,10 +546,10 @@ if(message.content.startsWith(prefix + 'urban')) {
    message.channel.send({embed})
  })
   } catch (e) {
-   message.channel.send(`${emoji} there was a problem with the result.`) 
+   message.channel.send(`${emoji} there was a problem with the result.`)
   }
 }
-  
+
 if(message.content.startsWith(prefix + 'blur')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
@@ -579,8 +579,8 @@ var Jimp = require('jimp')
       })
     })
   }
-} 
-  
+}
+
 if(message.content.startsWith(prefix + 'pixelate')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
@@ -610,8 +610,8 @@ var Jimp = require('jimp')
       })
     })
   }
-} 
-  
+}
+
 if(message.content.startsWith(prefix + 'invert')) {
 var Jimp = require('jimp')
   if (message.mentions.users.size === 0) {
@@ -641,22 +641,22 @@ var Jimp = require('jimp')
       })
     })
   }
-} 
-    
+}
+
 if(message.content.startsWith(prefix + 'reverse')) {
 let args = message.content.split(" ").slice(1)
 var text = args.join(" ");
     text = text.split("").reverse().join("");
  message.channel.send(`🔄 ${text}`)
 }
-  
+
 if(message.content.startsWith(prefix + 'stats')) {
 const { version: discordVersion } = require("discord.js");
 const moment = require("moment");
 require("moment-duration-format");
 
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
-   const embed = new Discord.RichEmbed()
+   const embed = new Discord.MessageEmbed()
    embed.setAuthor(`${client.user.username} Stats`)
    embed.addField(`Memory Usage`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, false)
    embed.addField(`Uptime`, `${duration}`, false)
@@ -668,12 +668,12 @@ require("moment-duration-format");
    embed.addField(`Shards`, `Currently no shards`, false)
    embed.setColor(0xffffff)
    message.channel.send({embed})
-}                          
-  
+}
+
 if(message.content.startsWith(prefix + 'serverinfo')) {
   if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
  const arrow = client.emojis.get('373337856061472769')
-const embed = new Discord.RichEmbed()
+const embed = new Discord.MessageEmbed()
    embed.setAuthor(`Server Information for ${message.guild.name}`)
    embed.setThumbnail(`${message.guild.iconURL}`)
    embed.addField(`► Owner`, `${message.guild.owner.user.tag}`, true)
@@ -684,7 +684,7 @@ const embed = new Discord.RichEmbed()
    embed.addField(`► Region`, `${message.guild.region}`, true)
    embed.addField(`► ID`, `${message.guild.id}`, true)
    embed.addField(`► Verification`, `${message.guild.verificationLevel}`, true)
-   
+
    embed.setColor(message.member.displayColor)
    message.channel.send({embed})
   }
@@ -761,7 +761,7 @@ const embed = new Discord.RichEmbed()
   message.delete();
 
 };
-  
+
  if(message.content.startsWith(prefix + 'userinfo')) {
     const online = client.emojis.find("name", "irisonline");
     const offline = client.emojis.find("name", "irisoffline");
@@ -785,7 +785,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
   } else {
     bot = "No";
   }
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
     .setColor(randomColor)
     .setThumbnail(`${member.user.avatarURL}`)
     .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL}`)
@@ -802,7 +802,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
 
  if (message.content.startsWith(prefix + 'help')) {
    message.reply(`You've been DMed a list of commands.`)
-   const embed = new Discord.RichEmbed()
+   const embed = new Discord.MessageEmbed()
    embed.setAuthor(`${client.user.username} Commands`)
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `changenick` `quote` `weather` `time` `source`", false)
@@ -822,27 +822,27 @@ if(message.content.startsWith(prefix + 'eval')) {
  try {
       const code = message.content.split(" ").slice(1).join(" ")
       if(!code) {
-      return message.channel.send("You have to give me something to eval!") 
+      return message.channel.send("You have to give me something to eval!")
       }
       let evaled = eval(code);
- 
+
       if (typeof evaled !== 'string')
         evaled = require('util').inspect(evaled);
- 
-        const embed = new Discord.RichEmbed()
+
+        const embed = new Discord.MessageEmbed()
         .setTitle(`Evaluation:`)
- 
+
         .setColor("0x4f351")
         .setDescription(`✔ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
- 
+
       message.channel.send({embed});
     } catch (err) {
-      const embed = new Discord.RichEmbed()
+      const embed = new Discord.MessageEmbed()
       .setTitle(`Evaluation:`)
- 
+
       .setColor("0xff0202")
       .setDescription(`❌ Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(err)}\`\`\``)
- 
+
       message.channel.send({embed});
     }
   }
