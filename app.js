@@ -6,7 +6,13 @@ const client = new Discord.Client({
 client.on('ready', () => {
   //const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
   //client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
-  client.user.setActivity({game: {name: "test", type:3}});
+ // client.user.setActivity({game: {name: "test", type:3}});
+   client.user.setPresence({
+              activity: {
+                  name: `${client.users.size} users`,
+                  type: 3
+              }
+          })
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
