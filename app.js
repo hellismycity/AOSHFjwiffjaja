@@ -26,7 +26,7 @@ client.on('guildCreate', guild => {
 let users = guild.memberCount
 let bots = guild.members.filter(m=>m.user.bot).size
 let percent = Math.floor(bots / users * 10000) / 100;
-const embed = new Discord.MessageEmbed()
+const embed = new Discord.RichEmbed()
   .setTitle(`${guild.name}`)
   .setAuthor('Joined Server')
   .setColor(0x64e547)
@@ -44,13 +44,27 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ server_count: client.guilds.size })
   .then(() => console.log('Updated discordbots.org stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
+  
+   try {
+    snekfetch.post({
+        url: `https://discord.services/api/bots/${client.user.id}/`,
+        form: {guild_count: client.guilds.size},
+        json: true,
+        headers: {
+            Authorization: process.env.DSER_TOKEN
+            }
+        })
+    console.log("Successfully posted guild_count to Discord Services");
+} catch (e) {
+        console.error(e);
+}
 })
 
 client.on('guildDelete', guild => {
   let users = guild.memberCount
   let bots = guild.members.filter(m=>m.user.bot).size
   let percent = Math.floor(bots / users * 10000) / 100;
-  const embed = new Discord.MessageEmbed()
+  const embed = new Discord.RichEmbed()
     .setTitle(`${guild.name}`)
     .setAuthor('Left Server')
     .setColor(0xe52020)
@@ -68,6 +82,20 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ server_count: client.guilds.size })
   .then(() => console.log('Updated discordbots.org stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
+  
+  try {
+    snekfetch.post({
+        url: `https://discord.services/api/bots/${client.user.id}/`,
+        form: {guild_count: client.guilds.size},
+        json: true,
+        headers: {
+            Authorization: process.env.DSER_TOKEN
+            }
+        })
+    console.log("Successfully posted guild_count to Discord Services");
+} catch (e) {
+        console.error(e);
+}
 })
 
 client.on('guildMemberAdd', member => {
@@ -112,7 +140,6 @@ client.on('guildMemberRemove', member => {
         url: '',
         thumbnail: {url: `${message.author.displayAvatarURL}`},
         title: `🚫 Message deleted by ${message.author.tag}`,
-
         description: `Content: \`\`\`${message}\`\`\` `,
         }
       });
@@ -151,7 +178,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
       message.delete()
        message.channel.send(`[${message.author}] Please do not swear.`)
      }
-       } 
+       }
 
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
@@ -271,14 +298,14 @@ if (message.content.startsWith(prefix + 'avatar')) {
   const mentioned = message.mentions.users.first()
 
   if (!mentioned) {
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.RichEmbed()
     .setTitle(`${message.author.tag}'s Avatar`)
 
     .setColor("0x4f351")
     .setImage(message.author.displayAvatarURL)
 
     message.channel.send({embed}) } else {
-  const embed = new Discord.MessageEmbed()
+  const embed = new Discord.RichEmbed()
     .setTitle(`${mentioned.tag}'s Avatar`)
 
     .setColor("0x4f351")
@@ -290,13 +317,12 @@ if (message.content.startsWith(prefix + 'avatar')) {
 
 if (message.content.toLowerCase().startsWith(prefix + "info")) {
   message.channel.send(`${emoji} I'm sorry ${message.author.username}, but the info command is currently unavailable as it is being redone. Check back later!`)
- /* const embed = new Discord.MessageEmbed()
+ /* const embed = new Discord.RichEmbed()
     .setTitle(`Information about Fergie`)
     .setDescription(`Total guilds: ${client.guilds.size} \`use f:stats for more stats\``)
     .addField("Avatar Designer", `${client.users.get("287475779346890752").tag}`, false)
     .setColor("0x4f351")
     .setFooter(`Made with love by ${client.users.get("298706728856453121").tag}`, `${client.users.get("298706728856453121").avatarURL}`)
-
     message.channel.send({embed});
     */
 }
@@ -326,7 +352,7 @@ const args = message.content.split(" ").slice(1)
 
 if (message.content.startsWith(prefix + 'quote')) {
   const args = message.content.split(" ").slice(1).join(" ")
-  const embed = new Discord.MessageEmbed()
+  const embed = new Discord.RichEmbed()
   .setTitle(``)
   .setAuthor(`Quote`)
 
@@ -366,9 +392,7 @@ message.channel.send(e.message)
     if(!message.guild.member(client.user).permissions.has("BAN_MEMBERS")) {
      return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission.')
     }
-
    try {
-
    if (message.author.toString() === userToBan.toString()) {
    return message.channel.send("You cannot ban yourself!")
    }
@@ -378,9 +402,7 @@ message.channel.send(e.message)
  if (!message.guild.member(userToBan).bannable) {
    return message.channel.send(`I can't ban that user!`)
   }
-
   message.mentions.members.first().ban({days: 0, reason: reason || null})
-
    message.channel.send("👍 Successfully **banned** the user.");
     } catch (e) {
     message.channel.send(`An error occurred whilst attempting to execute the ban command. \n \`\`\`${e.message}\`\`\``)
@@ -414,14 +436,12 @@ message.channel.send(":thumbsup: Successfully **banned** the user.")
   /*  const args = message.content.split(" ").slice(1).join(" ")
   var reason = message.content.split(' ').slice(2).join(" ")
    const userToKick = message.mentions.members.first() || message.guild.members.get(args) || message.member;
-
   if (!message.member.permissions.has("KICK_MEMBERS")) {
     return message.channel.send('You do not have the required permissions to execute this command.');
   }
     if(!message.guild.member(client.user).permissions.has("KICK_MEMBERS")) {
      return message.channel.send('I do not have the required premissions to execute this command. I need the `BAN_MEMBERS` permission.')
     }
-
    try {
   if (!args) {
    return message.reply("Please mention a user or use an ID.");
@@ -429,7 +449,6 @@ message.channel.send(":thumbsup: Successfully **banned** the user.")
   if (!message.guild.member(userToKick).kickable) {
    return message.channel.send(`I can't ban ${userToBan.user.username}!`)
   }
-
   userToKick.kick(reason || null)
    message.channel.send("👍 Successfully **kicked** the user.");
     } catch (e) {
@@ -465,7 +484,7 @@ message.channel.send(":thumbsup: Successfully **banned** the user.")
 if (message.content.startsWith(prefix + 'cat')) {
   const {get} = require("snekfetch");
       get("https://random.cat/meow").then(res => {
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.RichEmbed()
     .setImage(res.body.file)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
@@ -474,7 +493,7 @@ if (message.content.startsWith(prefix + 'cat')) {
   if (message.content.startsWith(prefix + 'dog')) {
   const {get} = require("snekfetch");
       get("https://random.dog/woof.json").then(res => {
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.RichEmbed()
     .setImage(res.body.url)
           message.channel.send({embed});
       }).catch(e => message.channel.send('An error occurred! Error:' + `\n \`\`\`${e.stack}\`\`\``))
@@ -523,7 +542,7 @@ if(message.content.startsWith(prefix + 'urban')) {
  .end(function (result, err) {
    if(!result.body.list[0]) return message.reply('No definition found!')
    //message.channel.send(`\`Definition for ${args.join(' ')}\`\n\n**Definition**: ${result.body.list[0].definition}\n\n**Example**: ${result.body.list[0].example}\n\n**Author**: ${result.body.list[0].author}\n\n**Up / Down Ratio**: ${result.body.list[0].thumbs_up} :thumbsup: to ${result.body.list[0].thumbs_down} :thumbsdown:`)
-   const embed = new Discord.MessageEmbed()
+   const embed = new Discord.RichEmbed()
    embed.setAuthor(`Definition for ${args}`)
    embed.setTitle(`By ${result.body.list[0].author || `${emoji} No Author`}`)
    embed.setDescription(`${result.body.list[0].definition || `${emoji} No Definition`}`)
@@ -643,7 +662,7 @@ const moment = require("moment");
 require("moment-duration-format");
 
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
-   const embed = new Discord.MessageEmbed()
+   const embed = new Discord.RichEmbed()
    embed.setAuthor(`${client.user.username} Stats`)
    embed.addField(`Memory Usage`, `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, false)
    embed.addField(`Uptime`, `${duration}`, false)
@@ -660,7 +679,7 @@ require("moment-duration-format");
 if(message.content.startsWith(prefix + 'serverinfo')) {
   if(message.channel.type !== "text") return message.channel.send('This command can only be run in servers.')
  const arrow = client.emojis.get('373337856061472769')
-const embed = new Discord.MessageEmbed()
+const embed = new Discord.RichEmbed()
    embed.setAuthor(`Server Information for ${message.guild.name}`)
    embed.setThumbnail(`${message.guild.iconURL}`)
    embed.addField(`► Owner`, `${message.guild.owner.user.tag}`, true)
@@ -688,30 +707,24 @@ const embed = new Discord.MessageEmbed()
   /* if (message.content.startsWith(prefix + 'softban')) {
    var reason = message.content.split(' ').slice(2).join(' ');
    let userToSoftBan = message.mentions.users.first()
-
    if (!message.member.permissions.has("BAN_MEMBERS")) {
      return message.channel.send("Insufficient Permissions.").catch(console.error);
    }
    if (!message.guild.member(client.user).permissions.has("BAN_MEMBERS")) {
      return message.channel.send("I cannot execute this command as I have insufficient permissions.").catch(console.error);
    }
-
      if (message.mentions.users.size === 0) {
        return message.channel.send("No user provided.")
      }
-
      if (!message.guild.member(userToSoftBan).bannable) {
        return message.channel.send("I cannot softban that member.").catch(console.error);
      }
-
      if (message.author.id === message.mentions.users.first().id) {
        return message.channel.send("You can't softban yourself.").catch(console.error);
      }
-
      if (client.user.id === message.mentions.users.first().id) {
        return message.channel.send(`I can't be softbanned, ${message.author.username}.`).catch(console.error);
      }
-
    userToSoftBan.ban().then(member => {message.guild.unban(member.user.id)});
      var user = message.mentions.users.first()
      message.guild.channels.find("name", "mod-log").send('', {
@@ -772,7 +785,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
   } else {
     bot = "No";
   }
-  const embed = new Discord.MessageEmbed()
+  const embed = new Discord.RichEmbed()
     .setColor(randomColor)
     .setThumbnail(`${member.user.avatarURL}`)
     .setAuthor(`${member.user.tag} (${member.id})`, `${member.user.avatarURL}`)
@@ -789,7 +802,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
 
  if (message.content.startsWith(prefix + 'help')) {
    message.reply(`You've been DMed a list of commands.`)
-   const embed = new Discord.MessageEmbed()
+   const embed = new Discord.RichEmbed()
    embed.setAuthor(`${client.user.username} Commands`)
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `changenick` `quote` `weather` `time` `source`", false)
@@ -816,7 +829,7 @@ if(message.content.startsWith(prefix + 'eval')) {
       if (typeof evaled !== 'string')
         evaled = require('util').inspect(evaled);
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new Discord.RichEmbed()
         .setTitle(`Evaluation:`)
 
         .setColor("0x4f351")
@@ -824,7 +837,7 @@ if(message.content.startsWith(prefix + 'eval')) {
 
       message.channel.send({embed});
     } catch (err) {
-      const embed = new Discord.MessageEmbed()
+      const embed = new Discord.RichEmbed()
       .setTitle(`Evaluation:`)
 
       .setColor("0xff0202")
