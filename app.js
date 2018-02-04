@@ -296,7 +296,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
     let artist = args[0]
     let song = message.content.split(" ").slice(2).join(" ")
  
-lyr.fetch(artist, song, function (err, lyrics) {
+lyr.getLyrics(artist, song, function (err, lyrics) {
     message.channel.send(err || lyrics, { split: true });
 });
   }
