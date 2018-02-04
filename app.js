@@ -292,7 +292,7 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
 
   if (message.content.startsWith(prefix + 'lyrics')) {
    let args = message.content.split(" ").slice(1).join(" ")
-   var lyr = require('lyrics-fetcher');
+   var lyr = require('gimme-lyrics');
     let artist = args[0]
     let song = message.content.split(" ").slice(2).join(" ")
  
