@@ -15,6 +15,20 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ server_count: client.guilds.size })
   .then(() => console.log('Updated discordbots.org stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
+  
+   try {
+    snekfetch.post({
+        url: `https://discord.services/api/bots/${client.user.id}/`,
+        form: {guild_count: client.guilds.size},
+        json: true,
+        headers: {
+            Authorization: process.env.DSER_TOKEN
+            }
+        })
+    console.log("Successfully posted guild_count to Discord Services");
+} catch (e) {
+        console.error(e);
+}
 });
 
 var prefix = 'i:'
