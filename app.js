@@ -6,13 +6,7 @@ const client = new Discord.Client({
 client.on('ready', () => {
   //const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
   //client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
- // client.user.setActivity({game: {name: "test", type:3}});
-   client.user.setPresence({
-              activity: {
-                  name: `${client.users.size} users`,
-                  type: 3
-              }
-          })
+  client.user.setActivity({game: {name: `Type 'i:help'!`}});
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
@@ -150,27 +144,14 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   })
   }
 
-  if (message.content.toLowerCase().startsWith(prefix + "nameapp")) {
- message.react("✅")
-    message.author.send("Here you go!\n \n https://goo.gl/forms/jhQOKUKRnO1FIBOm1")
-      const embed = new Discord.MessageEmbed()
-    .setTitle(`Form requested`)
-    .setDescription("Details:")
-    .addField("Tag", `${message.author.tag}`, false)
-    .addField("ID", `${message.author.id}`, false)
-    .setColor("0xedca3d")
-    .setTimestamp()
-    client.channels.get("372610299548794881").send(`${message.author.tag} (${message.author.id}) requested the form.`, { embed })
-  }
-
   // For personal guild
-  /* if (message.guild.id === "397581409256079361") {
+  if (message.guild.id === "397581409256079361") {
      const regex = /(fuck(?:ing)?|dicks?|asshole?|sucks?(?:ing)?|bitch(?:es)?|cunt(?:s)?|hoe(?:s?)|kys(?:kill yourself)?|shit(?:hole|head)?)/igm.test(message.content)
      if(regex) {
       message.delete()
        message.channel.send(`[${message.author}] Please do not swear.`)
      }
-       } */
+       } 
 
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
