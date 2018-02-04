@@ -290,6 +290,16 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
    message.reply(`You got ${coin[~~(Math.random() * 100) % 2]}!`)
   }
 
+  if (message.content.startsWith(prefix + 'lyrics')) {
+   let args = message.content.split(" ").slice(1).join(" ")
+   var lyr = require('lyrics-fetcher');
+    let artist = args[0]
+    let song = message.content.split(" ").slice(2).join(" ")
+ 
+lyr.fetch(artist, song, function (err, lyrics) {
+    message.channel.send(err || lyrics, { split: true });
+});
+  }
 
  if (message.content.startsWith(prefix + 'lmao')) {
   const emote = client.emojis.find('name', 'lmao')
