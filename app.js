@@ -15,7 +15,7 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ server_count: client.guilds.size })
   .then(() => console.log('Updated discordbots.org stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
-  
+
   snekfetch.post(`https://discord.services/api/bots/${client.user.id}/`)
   .set('Authorization', process.env.DSER_TOKEN)
   .send({ guild_count: client.guilds.size })
@@ -50,7 +50,7 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ server_count: client.guilds.size })
   .then(() => console.log('Updated discordbots.org stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
-  
+
    try {
     snekfetch.post({
         url: `https://discord.services/api/bots/${client.user.id}/`,
@@ -88,7 +88,7 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ server_count: client.guilds.size })
   .then(() => console.log('Updated discordbots.org stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
-  
+
   try {
     snekfetch.post({
         url: `https://discord.services/api/bots/${client.user.id}/`,
@@ -262,6 +262,7 @@ message.channel.send(newmsg)
   }
 
   if (message.content.startsWith(prefixMention)) {
+    try {
     if(message.content.toLowerCase().startsWith("null")) return
     let validCommands = ["help", "invite", "kick", "ban", "hackban", "softban", "achievement", "blur", "pixelate", "invert", "f", "cat", "dog", "ping", "reverse", "flipcoin", "urban", "8ball", "userinfo", "serverinfo", "stats", "roles", "discrim", "name", "quote", "emojify", "setgame", "weather", "time"]
    if(message.content.startsWith(prefixes + validCommands)) return
@@ -270,9 +271,13 @@ message.channel.send(newmsg)
 bot = new cleverbot(process.env.cb_user, process.env.cb_token);
        message.channel.startTyping();
        bot.ask(args, function (err, response) {
-  message.channel.send(response).catch(err => message.channel.send('An error occurred! This is probably something to do with the Cleverbot API. Error:' + `\n \`\`\`${err.stack}\`\`\``))
+  message.channel.send(response)
         message.channel.stopTyping();
        });
+     } catch (e) {
+         message.channel.send(`An error occurred whilst attempting to connect with the Cleverbot API. \n \`\`\`${e.message}\`\`\``)
+         message.channel.stopTyping({force: true})
+     }
 }
 
 
@@ -293,11 +298,15 @@ bot = new cleverbot(process.env.cb_user, process.env.cb_token);
   if (message.content.startsWith(prefix + 'lyrics')) {
    let args = message.content.split(" ").slice(1).join(" ")
    var lyr = require('gimme-lyrics');
-    let artist = args[0]
-    let song = message.content.split(" ").slice(2).join(" ")
- 
-lyr.getLyrics(artist, song, function (err, lyrics) {
-    message.channel.send(err || lyrics, { split: true });
+
+lyr.getLyrics("Nicki Minaj", "Only", function (err, lyrics) {
+  //  message.channel.send(err || lyrics, { split: true });
+  const embed = new Discord.RichEmbed()
+  .setTitle(`Lyrics for song`)
+
+  .setColor("0x4f351")
+  .addField(lyrics, false)
+  message.channel.send({embed}, {split: true})
 });
   }
 
