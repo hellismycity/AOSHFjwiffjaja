@@ -4,9 +4,8 @@ const client = new Discord.Client({
 });
 
 client.on('ready', () => {
-  //const statuses = [`f:help | ${client.guilds.size} guilds`, `f:help | ${client.users.size} users`, `f:help | ${client.channels.size} channels`]
-  //client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
-  client.user.setActivity({game: {name: `Type 'i:help'!`}});
+  const statuses = [`i:help | ${client.guilds.size} guilds`, `i:help | ${client.users.size} users`, `i:help | ${client.channels.size} channels`]
+  client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
 
