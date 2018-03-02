@@ -207,10 +207,10 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
        }
   
   if(message.content.startsWith(prefix + "batslap")) {
-    message.channel.send("WIP, try again later!")
  const Idiot = require('idiotic-api')
 client.API = new Idiot.Client(process.env.image_token, {dev: true})
-message.channel.send(new Discord.MessageAttachment(client.API.batSlap(message.author.avatarURL, message.mentions.users.first().avatarURL), 'batslap.png'));
+client.API.batSlap(message.author.displayAvatarURL.replace('.gif', '.png'), message.mentions.users.first().avatarURL).then(img => {
+            message.channel.send(new Discord.MessageAttachment(img, 'slap.png'));
   }
   
   if(message.content.startsWith(prefix + "pls")) {
