@@ -212,10 +212,10 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
 const iapi = new IdioticAPI.Client(process.env.image_token);
     if(!member) {
    message.channel.send(new Discord.MessageAttachment(
-   iapi.batslap(message.author.displayAvatarURL({format:"png", size:128}))))
+   iapi.batslap(message.author.avatarURL({format:"png", size:128}))))
                 } else {
     message.channel.send(new Discord.MessageAttachment(
-     iapi.batslap(member.user.displayAvatarURL({format:"png", size:128}))))
+     iapi.batslap(member.user.avatarURL({format:"png", size:128}))))
   }
   }
   
