@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const IdioticAPI = require("idiotic-api");
-client.api = new IdioticAPI.Client(process.env.image_api);
+const client.api = new IdioticAPI.Client(process.env.image_api);
 const client = new Discord.Client({
   disableEveryone: true
 });
