@@ -208,11 +208,15 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   
   if(message.content.startsWith(prefix + "batslap")) {
     const IdioticAPI = require("idiotic-api");
+    const member = message.mentions.members.first()
 const iapi = new IdioticAPI.Client(process.env.image_token);
+    if(!member) {
    message.channel.send(new Discord.MessageAttachment(
-   iapi.batslap(message.author.displayAvatarURL({format:"png", size:128}),
-    message.mentions.users.first().displayAvatarURL({format:"png", size:128})),
-  "batslap.png")); 
+   iapi.batslap(message.author.displayAvatarURL({format:"png", size:128}))))
+                } else {
+    message.channel.send(new Discord.MessageAttachment(
+     iapi.batslap(member.user.displayAvatarURL({format:"png", size:128}))))
+  }
   }
   
   if(message.content.startsWith(prefix + "pls")) {
