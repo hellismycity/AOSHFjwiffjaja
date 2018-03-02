@@ -207,13 +207,12 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
        }
   
   if(message.content.startsWith(prefix + "batslap")) {
-    const IdioticAPI = require("idiotic-api");
-    const member = message.mentions.members.first()
-const iapi = new IdioticAPI.Client(process.env.image_token);
-    message.channel.send(new Discord.MessageAttachment(
-   iapi.batSlap(message.author.displayAvatarURL({ format: "png", size: 128 }),
-    message.mentions.users.first().displayAvatarURL({ format: "png", size: 128 })),
-  "batslap.png"));
+  const Idiot = require('idiotic-api');
+client.API = new Idiot.Client(process.env.image_token, { dev: true });
+message.channel.send(new Discord.MessageAttachment(
+    client.API.batslap(message.author.displayAvatarURL,
+        message.mentions.users.first().displayAvatarURL),
+    'batslap.png'));
   }
   
   if(message.content.startsWith(prefix + "pls")) {
