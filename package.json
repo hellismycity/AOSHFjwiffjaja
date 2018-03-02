@@ -15,7 +15,8 @@
     "cleverbot.io": "1.0.4",
     "time": "0.12.0",
     "mojang-api": "0.0.2",
-    "gimme-lyrics": "0.3.1"
+    "gimme-lyrics": "0.3.1",
+    "idiotic-api": "0.1.7"
   },
   "engines": { 
     "node": "8.7.0" }
