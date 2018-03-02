@@ -95,7 +95,7 @@ client.on('guildDelete', guild => {
     .addField('Members', `${guild.memberCount - guild.members.filter(m=>m.user.bot).size} (${guild.members.filter(m=>m.user.bot).size} bots)`, true)
     .addField('Percent', `${percent}%`)
     .addField('ID', `${guild.id}`, true)
-  client.channels.get('372227505324818432').send({embed}).then(guild.leave())
+  client.channels.get('372227505324818432').send({embed})
   const snekfetch = require('snekfetch')
 
 snekfetch.post(`https://discordbots.org/api/bots/stats`)
