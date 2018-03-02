@@ -215,7 +215,7 @@ const iapi = new IdioticAPI.Client(process.env.image_token);
    iapi.batslap(message.author.avatarURL({format:"png", size:128}))))
                 } else {
     message.channel.send(new Discord.MessageAttachment(
-     iapi.batslap(member.avatarURL({format:"png", size:128}))))
+     iapi.batslap(member.user.avatarURL({format:"png", size:128}))))
   }
   }
   
