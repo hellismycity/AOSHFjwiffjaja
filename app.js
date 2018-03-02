@@ -207,17 +207,19 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
        }
   
   if(message.content.startsWith(prefix + "batslap")) {
-  const Idiot = require('idiotic-api')
+    message.channel.send("WIP, try again later!")
+/* const Idiot = require('idiotic-api')
 client.API = new Idiot.Client(process.env.image_token, {dev: true})
-message.channel.send(new Discord.MessageAttachment(client.API.batSlap(message.author.displayAvatarURL, message.mentions.users.first().displayAvatarURL), 'batslap.png'));
+message.channel.send(new Discord.MessageAttachment(client.API.batSlap(message.author.displayAvatarURL, message.mentions.users.first().displayAvatarURL), 'batslap.png')); */
   }
   
   if(message.content.startsWith(prefix + "pls")) {
-    const IdioticAPI = require("idiotic-api");
+    message.channel.send("WIP, try again later!")
+     /*const IdioticAPI = require("idiotic-api");
 const iapi = new IdioticAPI.Client(process.env.image_token);
    message.channel.send(new Discord.MessageAttachment(
  iapi.pls((message.mentions.members.first() || message.member).displayName),
-  "pls.png")); 
+  "pls.png")); */
   }
 
   if (message.content.startsWith(prefix + 'invite')) {
