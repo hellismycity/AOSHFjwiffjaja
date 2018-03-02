@@ -208,7 +208,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   
   if(message.content.startsWith(prefix + "batslap")) {
   const Idiot = require('idiotic-api');
-client.API = new Idiot.Client(process.env.image_token, { dev: true });
+client.API = new Idiot.Client(process.env.image_token)
 message.channel.send(new Discord.MessageAttachment(
     client.API.batSlap(message.author.displayAvatarURL,
         message.mentions.users.first().displayAvatarURL),
