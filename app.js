@@ -210,7 +210,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
   const Idiot = require('idiotic-api');
 client.API = new Idiot.Client(process.env.image_token, { dev: true });
 message.channel.send(new Discord.MessageAttachment(
-    client.API.batslap(message.author.displayAvatarURL,
+    client.API.batSlap(message.author.displayAvatarURL,
         message.mentions.users.first().displayAvatarURL),
     'batslap.png'));
   }
