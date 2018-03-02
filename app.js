@@ -211,6 +211,7 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
 client.API = new Idiot.Client(process.env.image_token, {dev: true})
 client.API.batSlap(message.author.displayAvatarURL.replace('.gif', '.png'), message.mentions.users.first().avatarURL).then(img => {
             message.channel.send(new Discord.MessageAttachment(img, 'slap.png'));
+}
   }
   
   if(message.content.startsWith(prefix + "pls")) {
