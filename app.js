@@ -3,8 +3,9 @@ const client = new Discord.Client({
   disableEveryone: true
 });
 
+const statuses = [`i:help | ${client.guilds.size} guilds`, `i:help | ${client.users.size} users`, `i:help | ${client.channels.size} channels`]
+
 client.on('ready', () => {
-  const statuses = [`i:help | ${client.guilds.size} guilds`, `i:help | ${client.users.size} users`, `i:help | ${client.channels.size} channels`]
   client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
   console.log('I am ready!');
   const snekfetch = require('snekfetch')
@@ -20,12 +21,19 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
   .send({ guild_count: client.guilds.size })
   .then(() => console.log('Updated discord.services stats.'))
   .catch(err => console.error(`Whoops something went wrong: ${err.body}`));
+
+    snekfetch.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
+        .set('Authorization', process.env.bfd_token)
+        .send({ server_count: client.guilds.size })
+        .then(() => console.log('Updated botsfordiscord.com stats.'))
+        .catch(err => console.error(`Unable to update botsfordiscord.com stats: ${err.body}`));
 });
 
 var prefix = 'i:'
 
 
 client.on('guildCreate', guild => {
+   client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
   const defaultChannel = guild.channels.find(c=> c.permissionsFor(guild.me).has("SEND_MESSAGES"));
  // defaultChannel.send("Hi, I'm Fergie! \n To see all of my commands, type `f:help` \n Full command documentation can be found at https://github.com/Fergie-bot/fergie/wiki \n You can join my server here: https://discordapp.com/invite/ZXugv2Z")
 let users = guild.memberCount
@@ -62,10 +70,17 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
     console.log("Successfully posted guild_count to Discord Services");
 } catch (e) {
         console.error(e);
+  
 }
+   snekfetch.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
+        .set('Authorization', process.env.bfd_token)
+        .send({ server_count: client.guilds.size })
+        .then(() => console.log('Updated botsfordiscord.com stats.'))
+        .catch(err => console.error(`Unable to update botsfordiscord.com stats: ${err.body}`));
 })
 
 client.on('guildDelete', guild => {
+   client.user.setGame(`${statuses[Math.floor(Math.random() * statuses.length)]}`)
   let users = guild.memberCount
   let bots = guild.members.filter(m=>m.user.bot).size
   let percent = Math.floor(bots / users * 10000) / 100;
@@ -101,6 +116,11 @@ snekfetch.post(`https://discordbots.org/api/bots/stats`)
 } catch (e) {
         console.error(e);
 }
+   snekfetch.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
+        .set('Authorization', process.env.bfd_token)
+        .send({ server_count: client.guilds.size })
+        .then(() => console.log('Updated botsfordiscord.com stats.'))
+        .catch(err => console.error(`Unable to update botsfordiscord.com stats: ${err.body}`));
 })
 
 client.on('guildMemberAdd', member => {
