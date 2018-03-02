@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const IdioticAPI = require("idiotic-api");
+client.api = new IdioticAPI.Client(process.env.image_api);
 const client = new Discord.Client({
   disableEveryone: true
 });
@@ -205,6 +207,19 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
        message.channel.send(`[${message.author}] Please do not swear.`)
      }
        }
+  
+  if(message.content.startsWith(prefix + "batslap")) {
+   message.channel.send(new MessageAttachment(
+   client.api.batslap(message.author.displayAvatarURL({format:"png", size:128}),
+    message.mentions.users.first().displayAvatarURL({format:"png", size:128})),
+  "batslap.png")); 
+  }
+  
+  if(message.content.startsWith(prefix + "pls")) {
+   message.channel.send(new MessageAttachment(
+ client.api.pls((message.mentions.members.first() || message.member).displayName),
+  "pls.png")); 
+  }
 
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
@@ -852,7 +867,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `changenick` `quote` `weather` `time` `source`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
-   embed.addField("Image `(5)`", "`achievement` `blur` `pixelate` `invert` `cat` `dog`", false)
+   embed.addField("Image `(7)`", "`achievement` `batslap` `blur` `pixelate` `pls` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
