@@ -206,23 +206,6 @@ const mentionPrefix = new RegExp(`^<@!?${client.user.id}> `);
      }
        }
   
-  if(message.content.startsWith(prefix + "batslap")) {
- const Idiot = require('idiotic-api')
-client.API = new Idiot.Client(process.env.image_token, {dev: true})
-client.API.batSlap(message.author.displayAvatarURL.replace('.gif', '.png'), message.mentions.users.first().avatarURL).then(img => {
-            message.channel.send(new Discord.MessageAttachment(img, 'slap.png'));
-})
-  }
-  
-  if(message.content.startsWith(prefix + "pls")) {
-    message.channel.send("WIP, try again later!")
-     /*const IdioticAPI = require("idiotic-api");
-const iapi = new IdioticAPI.Client(process.env.image_token);
-   message.channel.send(new Discord.MessageAttachment(
- iapi.pls((message.mentions.members.first() || message.member).displayName),
-  "pls.png")); */
-  }
-
   if (message.content.startsWith(prefix + 'invite')) {
   message.channel.send('Use this link to invite me! \n https://discordapp.com/oauth2/authorize?client_id=366033207931568138&scope=bot&permissions=8')
   }
@@ -869,7 +852,7 @@ const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random
    embed.addField("Fun `(7)`", "`ping` `f` `reverse` `flipcoin` `urban` `emojify` `8ball`", false)
    embed.addField("Utility `(10)`", "`userinfo` `serverinfo` `stats` `roles` `discrim` `changenick` `quote` `weather` `time` `source`", false)
    embed.addField("Moderation `(4)`", "`kick` `ban` `softban` `hackban`", false)
-   embed.addField("Image `(7)`", "`achievement` `batslap` `blur` `pixelate` `pls` `invert` `cat` `dog`", false)
+   embed.addField("Image `(5)`", "`achievement``blur` `pixelate` `invert` `cat` `dog`", false)
    embed.addField("Misc `(2)`", "`help` `invite`", false)
    embed.addField("Need support or want to hangout?", "[Join our server!](https://discord.gg/ZXugv2Z)")
    embed.setColor("RANDOM")
